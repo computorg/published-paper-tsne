@@ -1,0 +1,24 @@
+## Common to all Computo publications
+number-sections: true
+format:
+  html:
+    include-in-header: metrics.html 
+    include-before-body: banner.html
+    toc: true
+    theme: 
+      - cosmo
+      - computo.scss
+    highlight-style: github
+    code-background: true
+    code-border-left: "#31BAE9"
+    code-copy: true
+    code-fold: true
+    link-external-icon: true
+    anchor-sections: true
+    html-math-method: katex
+#    self-contained: true
+crossref:
+  sec-prefix: Section
+  eq-prefix: Equation
+  fig-prefix: Figure   
+  tbl-prefix: Table
