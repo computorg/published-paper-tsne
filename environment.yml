@@ -1,0 +1,8 @@
+name: computorbuild
+channels:
+  - conda-forge
+dependencies:
+  - jupyter
+  - matplotlib
+  - numpy
+  - sklearn
