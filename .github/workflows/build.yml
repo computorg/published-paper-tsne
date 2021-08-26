@@ -23,25 +23,22 @@ jobs:
           environment-file: environment.yml
           activate-environment: computo
 
-      - name: "Install Quarto and render"
-        uses: pommevilla/quarto-render@main
-      
-#      - name: Download last version of quarto
-#        uses: wei/wget@v1
-#        with:
-#          args: -O quarto.deb https://github.com/quarto-dev/quarto-cli/releases/latest/download/quarto-0.2.94-amd64.deb
-#        
-#      - name: Install Quarto
-#        shell: bash -l {0} 
-#        run: |
-#            sudo dpkg -i quarto.deb
-#
-#      - name: Rendering with Quarto
-#        shell: bash -l {0}
-#        run: |
-#            mkdir _build
-#            quarto render content.qmd
-#            mv content.html _build/index.html
+      - name: Download last version of quarto
+        uses: wei/wget@v1
+        with:
+          args: -O quarto.deb https://github.com/quarto-dev/quarto-cli/releases/latest/download/quarto-0.2.94-amd64.deb
+        
+      - name: Install Quarto
+        shell: bash -l {0} 
+        run: |
+            sudo dpkg -i quarto.deb
+
+      - name: Rendering with Quarto
+        shell: bash -l {0}
+        run: |
+            mkdir _build
+            quarto render content.qmd
+            mv content.html _build/index.html
 
       - name: Deploying article on github pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
