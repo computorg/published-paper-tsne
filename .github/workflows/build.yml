@@ -26,7 +26,7 @@ jobs:
       - name: Download last version of quarto
         uses: wei/wget@v1
         with:
-          args: -O quarto.deb https://github.com/quarto-dev/quarto-cli/releases/latest/download/quarto-0.2.94-amd64.deb
+          args: -O quarto.deb https://github.com/quarto-dev/quarto-cli/releases/latest/download/quarto-0.2.114-amd64.deb
         
       - name: Install Quarto
         shell: bash -l {0} 
