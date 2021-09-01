@@ -11,7 +11,7 @@ format:
     theme: 
       - cosmo
       - computo.scss
-    highlight-style: ayu
+    highlight-style: github
     code-background: true
     code-border-left: "#31BAE9"
     code-copy: true
