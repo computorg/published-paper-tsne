@@ -2,13 +2,16 @@
 number-sections: true
 format:
   html:
-    include-in-header: includes/metrics.html 
+    include-in-header:
+      - includes/metrics.html
+      - includes/pseudocode-header.html
     include-before-body: includes/banner.html
+    include-after-body: includes/pseudocode-footer.html
     toc: true
     theme: 
       - cosmo
       - computo.scss
-    highlight-style: github
+    highlight-style: ayu
     code-background: true
     code-border-left: "#31BAE9"
     code-copy: true

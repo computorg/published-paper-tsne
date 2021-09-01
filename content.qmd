@@ -521,20 +521,32 @@ solutions. Instead, the long-range forces in t-SNE facilitate the
 identification of good local optima without resorting to simulated
 annealing
 
-```{#lst-tsne .sql lst-cap="Simple version of t-Distributed Stochastic Neighbor Embedding."}
+::: {#algo-tsne}
 
-Data: data set X = {x_1, x_2, …, x_n}
-cost function parameters: perplexity Perp,
-optimization parameters: number of iterations T, learning rate eta, momemuntum
-alpha(t)
+<pre id="tsne">
 
-Results: low-dimensional data representation Y(T) = {y_1, y_2, …, y_n}.
+\begin{algorithm}
+\caption{Simple version of t-Distributed Stochastic Neighbor Embeding}
+\begin{algorithmic}
+\STATE \textbf{Data}: high-dimensional representation $\mathcal{X} = \{x_1, \dots, x_n\}$
+\STATE cost function parameters: perplexity  $Perp$
+\STATE optimization parameters: number of iterations $T$, learning rate $\eta$, momentum $\alpha(t)$
+\STATE \textbf{Result}: low-dimensional data representation $\mathcal{Y}^{(T)} = \{y_1, \dots, y_n\}$
+\PROCEDURE{t-sne}{$Perp, T, \eta, \alpha(t)$}
+    \STATE compute pairwise affinities $p_{j|i}$ with perplexity $Perp$ (using Equation 1)
+    \STATE set $p_{ij} = \frac{1}{2n} (p_{j|i} + p_{i|j})$
+    \STATE sample initial solution $\mathcal{Y}^{(0)} = \{y_1,\dots,y_n\}$ from $\mathcal{N}(0,1e^{-4} I)$
+    \FOR{$t = 0$ \TO $T$}
+        \STATE compute low-dimensional affinities $q_{ij}$ (using Equation 4)
+        \STATE compute gradient $\frac{\partial C}{\partial \mathcal{Y}}$ (using Equation 5)
+        \STATE et $\mathcal{Y}^{t} = \mathcal{Y}^{t-1} + \eta \frac{\partial C}{\partial \mathcal{Y}} + \alpha(t) \left(\mathcal{Y}^{t-1} - \mathcal{Y}^{t-2}\right)$ 
+    \ENDFOR
+\ENDPROCEDURE
+\end{algorithmic}
+\end{algorithm}
+</pre>
 
-begin
-   Compute pairwise affinitities p_{ji} with perpexity Perp (Using equation 1)
-   set 
-end
-```
+:::
 
 ## Optimization methods for t-SNE {#sec-optimization_methods_for_tsne}
 
@@ -542,7 +554,7 @@ We start by presenting a relatively simple, gradient descent procedure for
 optimizing the t-SNE cost function. This simple procedure uses a momentum term
 to reduce the number of iterations required and it works best if the momentum
 term is small until the map points have become moderately well organized.
-Pseudocode for this simple algorithm is presented in Algorithm 1 (FIXME). The
+Pseudocode for this simple algorithm is presented in Algorithm 1 (FIXME: ref not working). The
 simple algorithm can be sped up using the adaptive learning rate scheme that
 is described by @jacobs:rates, which gradually increases the learning
 rate in directions in which the gradient is stable.
@@ -572,16 +584,17 @@ clusters in the map. This creates a lot of relatively empty space in the map,
 which makes it much easier for the clusters to move around relative to one
 another in order to find a good global organization.
 
-In all the visualizations presented in this paper and in the supporting
-material, we used exactly the same optimization procedure. We used the early
-exaggeration method with an exaggeration of 4 for the first 50 iterations
-(note that early exaggeration is not included in the pseudocode in Algorithm
-1, FIXME). The number of gradient descent iterations $T$ was set 1000, and the
-momentum term was set to $\alpha^{(t)} = 0.5$ for $t<250$ and
-$\alpha^{(t)}=0.8$ for $t \geq 250$. The learning rate $\eta$ is initially set
-to 100 and it is updated after every iteration by means of the adaptive
-learning rate scheme described by @jacobs:rates. A Matlab
-implementation of the resulting algorithm is available at
+In all the visualizations presented in this paper and in the
+supporting material, we used exactly the same optimization
+procedure. We used the early exaggeration method with an exaggeration
+of 4 for the first 50 iterations (note that early exaggeration is not
+included in the pseudocode in Algorithm 1). The number of
+gradient descent iterations $T$ was set 1000, and the momentum term
+was set to $\alpha^{(t)} = 0.5$ for $t<250$ and $\alpha^{(t)}=0.8$ for
+$t \geq 250$. The learning rate $\eta$ is initially set to 100 and it
+is updated after every iteration by means of the adaptive learning
+rate scheme described by @jacobs:rates. A Matlab implementation of the
+resulting algorithm is available at
 <https://lvdmaaten.github.io/tsne/>.
 
 # Experiments {#sec-experiments}
@@ -664,6 +677,10 @@ optimization, we performed Newton's method for 500 iterations.
 
 ## Results {#sec-results}
 
+::: {.panel-tabset}
+
+### Python implementation
+
 ```{python}
 from sklearn.datasets import load_digits
 import numpy as np
@@ -742,6 +759,20 @@ ax.spines["bottom"].set_linewidth(0)
 ax.set_xticks([])
 ax.set_yticks([])
 ```
+
+### R implementation
+
+```{.r}
+
+```
+
+### Julia implementation
+
+```{.julia}
+
+```
+
+:::
 
 % (FIXME) use proper references for all Figures mentionned in the paragraph
 
