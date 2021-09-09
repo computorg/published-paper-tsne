@@ -23,7 +23,7 @@ jobs:
           environment-file: environment.yml
           activate-environment: computo
 
-      - name: install quarto
+      - name: Installing quarto
         uses: quarto-dev/quarto-actions/install-quarto@v1
 
       - name: Rendering with Quarto
