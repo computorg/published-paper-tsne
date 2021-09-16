@@ -1282,7 +1282,7 @@ adjacency matrix W) first reaches a specific landmark point is equal
 to computing the solution to the combinatorial Dirichlet problem in
 which the boundary conditions are at the locations of the landmark
 points, the considered landmark point is fixed to unity, and the other
-landmarks points are set to zero kakutani:dirichlet ;
+landmarks points are set to zero @kakutani:dirichlet ;
 @doyle:random.  In practice, the solution can thus be obtained
 by minimizing the combinatorial formulation of the Dirichlet integral
 
