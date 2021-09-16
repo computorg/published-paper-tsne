@@ -139,7 +139,7 @@ $p_{j|i}$ is given by
 $$
 p_{j|i} = \frac{\exp(-\|x_i - x_j\|^2/(2\sigma_i^2))}{\sum_{k\neq i} \exp(-\|x_i
 - x_k\|^2 / 2 \sigma_i^2)}\,.
-$$
+$$ {#eq-sne_large_space}
 
 where $\sigma_i$ is the variance of the Gaussian that is centered on datapoint
 $x_i$. The method for determining the value of $\sigma_i$ is presented later
@@ -475,7 +475,7 @@ is derived in Appendix A, and is given by
 $$
 \frac{\partial C}{\partial y_i} = 4 \sum_j (p_{ij} - q_{ij})(y_i -
 y_j)(1+\|y_i - y_j\|^2)^{-1}\,.
-$$
+$$ {#eq-gradient-tsne}
 
 :::{#fig-gradients} 
 
@@ -905,19 +905,20 @@ Visualization of 6,000 digits from the MNIST data set produced by the random wal
 version of t-SNE (employing all 60,000 digit images).
 :::
 
-@fig-random_walk_tsne shows the results of an experiment, in which we applied the
-random walk version of t-SNE to 6,000 randomly selected digits from
-the MNIST data set, using all 60,000 digits to compute the pairwise
-affinities $p_{j|i}$. In the experiment, we used a neighborhood graph
-that was constructed using a value of $k = 20$ nearest neighbors.[^knn] The
-inset of the figure shows the same visualization as a scatterplot in
-which the colors represent the labels of the digits. In the t-SNE map,
-all classes are clearly separated and the "continental" sevens form a
-small separate cluster.  Moreover, t-SNE reveals the main dimensions
-of variation within each class, such as the orientation of the ones,
-fours, sevens, and nines, or the "loopiness" of the twos. The strong
-performance of t-SNE is also reflected in the generalization error of
-nearest neighbor classifiers that are trained on the low-dimensional
+@fig-random_walk_tsne shows the results of an experiment, in which we
+applied the random walk version of t-SNE to 6,000 randomly selected
+digits from the MNIST data set, using all 60,000 digits to compute the
+pairwise affinities $p_{j|i}$. In the experiment, we used a
+neighborhood graph that was constructed using a value of $k = 20$
+nearest neighbors.[^knn] The inset of the figure shows the same
+visualization as a scatterplot in which the colors represent the
+labels of the digits. In the t-SNE map, all classes are clearly
+separated and the "continental" sevens form a small separate cluster.
+Moreover, t-SNE reveals the main dimensions of variation within each
+class, such as the orientation of the ones, fours, sevens, and nines,
+or the "loopiness" of the twos. The strong performance of t-SNE is
+also reflected in the generalization error of nearest neighbor
+classifiers that are trained on the low-dimensional
 representation. Whereas the generalization error (measured using
 10-fold cross validation) of a 1-nearest neighbor classifier trained
 on the original 784-dimensional datapoints is 5.75%, the
@@ -925,7 +926,7 @@ generalization error of a 1-nearest neighbor classifier trained on the
 two-dimensional data representation produced by t-SNE is only
 5.13%. The computational requirements of random walk t-SNE are
 reasonable: it took only one hour of CPU time to construct the map in
-{numref}`random_walk_tSNE`.
+@fig-random_walk_tsne.
 
 [^knn]: In preliminary experiments, we found the performance of random
     walk t-SNE to be very robust under changes of $k$.
@@ -940,7 +941,7 @@ between t-SNE and other non-parametric techniques
 weaknesses and possible improvements of t-SNE
 ([ 6.2](sec-weakness)).
 
-# Comparison with Related Techniques {#sec-comparison}
+## Comparison with Related Techniques {#sec-comparison}
 
 Classical scaling @torgerson:multidimensional, which is closely
 related to PCA @mardia:multivariate
@@ -1235,7 +1236,7 @@ $$
 $$ {#eq-appendixa2}
 
 The gradient $\frac{\partial C}{\partial d_{ji}}$ is computed
-from the definition of the Kullback-Leibler divergence in @eq-appendixa2
+from the definition of the Kullback-Leibler divergence in @eq-appendixa1
 (note that he first part of this equation is a constant).
 
 $$
@@ -1262,7 +1263,7 @@ $$
 \end{aligned}
 $$
 
-Substituting this term into @eq-appendixA2, we obtain the gradient
+Substituting this term into @eq-appendixa2, we obtain the gradient
 
 $$
 \frac{\partial C}{\partial y_i} = 4 \sum_j (p{ij} - q_{ij}) (1 + \|y_i - y_j\|^2)^{-1} (y_i - y_j).
@@ -1341,7 +1342,7 @@ parts of the solutions that correspond to the duplicate landmark
 points. For computational reasons, we first perform a Cholesky
 factorization of $L_N$, such that $L_N = C C^\top$, where $C$ is an
 upper-triangular matrix. Subsequently, the solution to the linear
-system in Equation {eq}`appendixB_eq1` is obtained by solving the
+system in Equation @eq-appendixb_eq1 is obtained by solving the
 linear systems $Cy = −B^\top$ and $C x_N = y$ using a fast
 backsubstitution method.
 
