@@ -1,2 +1,2 @@
 # published-paper-tsne
-A prototype of paper published paper (using quarto)
+A prototype of published paper (using quarto)
