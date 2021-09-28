@@ -688,11 +688,11 @@ optimization, we performed Newton's method for 500 iterations.
 
 ## Results {#sec-results}
 
-::: {.panel-tabset}
-
-### Python implementation
-
 ```{python}
+###############################################################################
+# Figure 2. Visualization by t-SNE and Sammon mapping
+###############################################################################
+
 from sklearn.datasets import load_digits
 import numpy as np
 from sklearn import manifold
@@ -725,7 +725,7 @@ colors = {
     9: "C9",
 }
 
-fig, axes = plt.subplots(nrows=2, figsize=(4, 8))
+fig, axes = plt.subplots(nrows=2, figsize=(6, 12))
 
 ###############################################################################
 # t-SNE manifold learning
@@ -747,12 +747,43 @@ ax.spines["top"].set_linewidth(0)
 ax.spines["bottom"].set_linewidth(0)
 ax.set_xticks([])
 ax.set_yticks([])
-
+ax.set_title("Visualization by t-SNE")
 ax.legend()
 
 ###############################################################################
-# ISOMAP
+# Sammon mapping
+
+# FIXME I think Sammon mapping has weights?
 ax = axes[1]
+embedding = manifold.MDS(n_components=n_components)
+X_transformed = mem.cache(embedding.fit_transform)(X)
+for label in np.unique(y):
+    mask = y == label
+    ax.scatter(
+        X_transformed[mask, 0],
+        X_transformed[mask, 1],
+        c=colors[label], marker=".",
+        label=label)
+
+ax.spines["left"].set_linewidth(0)
+ax.spines["right"].set_linewidth(0)
+ax.spines["top"].set_linewidth(0)
+ax.spines["bottom"].set_linewidth(0)
+ax.set_xticks([])
+ax.set_yticks([])
+ax.set_title("Visualization by Sammon mapping.")
+```
+
+```{python}
+###############################################################################
+# Figure 3. Visualization by Isomap and LLE
+###############################################################################
+
+fig, axes = plt.subplots(nrows=2, figsize=(6, 12))
+
+###############################################################################
+# ISOMAP
+ax = axes[0]
 isomap = manifold.Isomap(n_components=n_components, n_neighbors=10)
 X_transformed = mem.cache(isomap.fit_transform)(X)
 for label in np.unique(y):
@@ -769,25 +800,146 @@ ax.spines["top"].set_linewidth(0)
 ax.spines["bottom"].set_linewidth(0)
 ax.set_xticks([])
 ax.set_yticks([])
+ax.set_title("Visualization by Isomap.")
+
+###############################################################################
+# LLE
+ax = axes[1]
+embedding = manifold.LocallyLinearEmbedding(
+    n_components=n_components,
+    n_neighbors=10)
+X_transformed = mem.cache(embedding.fit_transform)(X)
+for label in np.unique(y):
+    mask = y == label
+    ax.scatter(
+        X_transformed[mask, 0],
+        X_transformed[mask, 1],
+        c=colors[label], marker=".",
+        label=label)
+
+ax.spines["left"].set_linewidth(0)
+ax.spines["right"].set_linewidth(0)
+ax.spines["top"].set_linewidth(0)
+ax.spines["bottom"].set_linewidth(0)
+ax.set_xticks([])
+ax.set_yticks([])
+ax.set_title("Visualization by LLE.")
+
 ```
 
-### R implementation
+```{python}
+###############################################################################
+# Figure 4. Visualization of the Olivetti faces data set
+###############################################################################
 
-```{.r}
+# First, load the olivetti datasets
+from sklearn.datasets import fetch_olivetti_faces
+import itertools
 
+data = fetch_olivetti_faces()
+X = data["data"]
+y = data["target"]
+
+markers = ["+", ".", "v", "^", ">", "<", "d", "*"]
+colors = ["black", "blue", "red", "pink"]
+
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(8, 8))
+
+###############################################################################
+# t-SNE manifold learning
+ax = axes[0, 0]
+
+tsne = manifold.TSNE(n_components=n_components, init="pca", random_state=42)
+X_transformed = mem.cache(tsne.fit_transform)(X)
+for label, (m, c) in zip(np.unique(y), itertools.product(markers, colors)):
+    mask = y == label
+    ax.scatter(
+        X_transformed[mask, 0],
+        X_transformed[mask, 1],
+	marker=m, c=c,
+	s=8,
+        label=label)
+
+ax.spines["left"].set_linewidth(0)
+ax.spines["right"].set_linewidth(0)
+ax.spines["top"].set_linewidth(0)
+ax.spines["bottom"].set_linewidth(0)
+ax.set_xticks([])
+ax.set_yticks([])
+ax.set_title("Visualization by t-SNE")
+
+###############################################################################
+# Sammon mapping
+
+ax = axes[0, 1]
+embedding = manifold.MDS(n_components=n_components)
+X_transformed = mem.cache(embedding.fit_transform)(X)
+for label, (m, c) in zip(np.unique(y), itertools.product(markers, colors)):
+    mask = y == label
+    ax.scatter(
+        X_transformed[mask, 0],
+        X_transformed[mask, 1],
+	marker=m, c=c,
+	s=8,
+        label=label)
+
+ax.spines["left"].set_linewidth(0)
+ax.spines["right"].set_linewidth(0)
+ax.spines["top"].set_linewidth(0)
+ax.spines["bottom"].set_linewidth(0)
+ax.set_xticks([])
+ax.set_yticks([])
+ax.set_title("Visualization by Sammon mapping.")
+
+###############################################################################
+# ISOMAP
+ax = axes[1, 0]
+isomap = manifold.Isomap(n_components=n_components, n_neighbors=10)
+X_transformed = mem.cache(isomap.fit_transform)(X)
+for label, (m, c) in zip(np.unique(y), itertools.product(markers, colors)):
+    mask = y == label
+    ax.scatter(
+        X_transformed[mask, 0],
+        X_transformed[mask, 1],
+	marker=m, c=c,
+	s=8,
+        label=label)
+
+ax.spines["left"].set_linewidth(0)
+ax.spines["right"].set_linewidth(0)
+ax.spines["top"].set_linewidth(0)
+ax.spines["bottom"].set_linewidth(0)
+ax.set_xticks([])
+ax.set_yticks([])
+ax.set_title("Visualization by Isomap.")
+
+###############################################################################
+# LLE
+ax = axes[1, 1]
+embedding = manifold.LocallyLinearEmbedding(
+    n_components=n_components,
+    n_neighbors=10)
+X_transformed = mem.cache(embedding.fit_transform)(X)
+
+for label, (m, c) in zip(np.unique(y), itertools.product(markers, colors)):
+    mask = y == label
+    ax.scatter(
+        X_transformed[mask, 0],
+        X_transformed[mask, 1],
+	marker=m, c=c,
+	s=8,
+        label=label)
+
+ax.spines["left"].set_linewidth(0)
+ax.spines["right"].set_linewidth(0)
+ax.spines["top"].set_linewidth(0)
+ax.spines["bottom"].set_linewidth(0)
+ax.set_xticks([])
+ax.set_yticks([])
+ax.set_title("Visualization by LLE.")
 ```
 
-### Julia implementation
-
-```{.julia}
-
-```
-
-:::
-
-% (FIXME) use proper references for all Figures mentionned in the paragraph
-
-In Figures 2 and 3 , we show the results of our experiments with t-SNE,
+In Figures 2 and 3, we show the results of our experiments with t-SNE,
 Sammon mapping, Isomap, and LLE on the MNIST data set. The results
 reveal the strong performance of t-SNE compared to the other
 techniques. In particular, Sammon mapping constructs a "ball" in which
