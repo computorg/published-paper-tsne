@@ -8,6 +8,7 @@ author:
 bibliography: references.bib
 jupyter: python3
 ---
+
 ::: {.callout-note icon=false}
 
 ## Note
@@ -1494,11 +1495,12 @@ parts of the solutions that correspond to the duplicate landmark
 points. For computational reasons, we first perform a Cholesky
 factorization of $L_N$, such that $L_N = C C^\top$, where $C$ is an
 upper-triangular matrix. Subsequently, the solution to the linear
-system in Equation @eq-appendixb_eq1 is obtained by solving the
+system in Equation @eq-appendixb1 is obtained by solving the
 linear systems $Cy = −B^\top$ and $C x_N = y$ using a fast
 backsubstitution method.
 
 # References {.unnumbered}
 
-```{bibliography}
-```
+::: {#refs}
+:::
+
