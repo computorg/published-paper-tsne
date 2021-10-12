@@ -32,12 +32,6 @@ jobs:
             mkdir _build
             quarto render content.qmd
             mv content.html _build/index.html
-
-            # Now convert into jupyter-notebook for binder
-            # Totally using a hack… jupytet doesn't know about quarto-type
-            # markdown. So just pretent it's an Rmd
-            cp content.qmd content.Rmd
-            jupytext --to ipynb content.Rmd
             mv content.ipynb _build/
             cp environment.yml _build/
 
