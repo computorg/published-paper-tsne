@@ -1,10 +1,11 @@
 ---
 title: "Visualizing Data using t-SNE"
 subtitle: "A practical computo example"
-date: "August 2021"
+date: "Last build: October 2021"
 author: 
   - Laurens van der Maaten, <LVDMAATEN@GMAIL.COM>, TiCC, Tilburg University
   - Geoffrey Hinton, <HINTON@CS.TORONTO.EDU>, Department of Computer Science, University of Toronto
+github: https://github.com/computorg/published-paper-tsne
 bibliography: references.bib
 jupyter: python3
 ---
