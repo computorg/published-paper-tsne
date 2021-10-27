@@ -1,4 +1,4 @@
-# A mock Computo contribution: t-NR remake
+# A mock Computo contribution: t-SNE remake
 
 A prototype of published paper (using quarto)
 
