@@ -7,17 +7,26 @@ format:
       - includes/pseudocode-header.html
     include-before-body: includes/banner.html
     include-after-body: includes/pseudocode-footer.html
+    toc-title: Contents
     toc: true
     theme: 
       - default
       - computo.scss
+    hover-citations: true
+    hover-footnotes: true
     highlight-style: github
     code-background: true
     code-border-left: "#31BAE9"
+    code-tools:
+      source: true
+      toggle: false
+      caption: "source"
     code-copy: true
     code-fold: true
-    link-external-icon: true
+    code-summary: "Show the code"
     anchor-sections: true
+    link-external-icon: true
+    link-external-newwindow: true
     html-math-method: katex
     self-contained: true
 crossref:
@@ -25,3 +34,5 @@ crossref:
   eq-prefix: Equation
   fig-prefix: Figure   
   tbl-prefix: Table
+execute:
+  keep-ipynb: true
