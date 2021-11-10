@@ -1,7 +1,7 @@
 ---
 title: "Visualizing Data using t-SNE"
 subtitle: "A practical computo example"
-date: "Last build: October 2021"
+date: "Last build: November 2021"
 author: 
   - Laurens van der Maaten, <LVDMAATEN@GMAIL.COM>, TiCC, Tilburg University
   - Geoffrey Hinton, <HINTON@CS.TORONTO.EDU>, Department of Computer Science, University of Toronto
@@ -13,7 +13,7 @@ jupyter: python3
 
 [![build status](https://github.com/computorg/{{< meta repo >}}/workflows/build/badge.svg)](https://github.com/computorg/{{< meta repo >}})
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/computorg/{{< meta repo >}}/gh-pages?filepath=content.ipynb)
-<!-- [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/) -->
+[![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
 ::: {.callout-note icon=false}
 
