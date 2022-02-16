@@ -9,9 +9,7 @@ format:
     include-after-body: includes/pseudocode-footer.html
     toc-title: Contents
     toc: true
-    theme: 
-      - default
-      - computo.scss
+    theme: cosmo
     hover-citations: true
     hover-footnotes: true
     highlight-style: github

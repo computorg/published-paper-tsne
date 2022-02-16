@@ -45,7 +45,7 @@ $navbar-hover-color: #{$computo-color-light};
 h1, h2, h3, h4, h5, h6 {
   font-family: $ff-title ;
   font-weight: 500;
-  color: var(--global-title-color) !important;
+  color: var(--computo-color-dark) !important;
 }
 
 :root {
@@ -58,19 +58,9 @@ body {
 }
 
 .logo {
-  width : 100px;
   position: absolute;
   left: 20px;
-}
-
-.metrics {
-  width : 30%;
-  position: absolute;
-  right:0px;
-}
-
-.metrics, img {
-  padding: 2px; 
+  width : 100px;
 }
 
 .callout-header {

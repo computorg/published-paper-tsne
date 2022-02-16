@@ -14,6 +14,8 @@ jupyter: python3
 [![build status](https://github.com/computorg/{{< meta repo >}}/workflows/build/badge.svg)](https://github.com/computorg/{{< meta repo >}})
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/computorg/{{< meta repo >}}/gh-pages?filepath=content.ipynb)
 [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
+<div data-badge-type="4" class='altmetric-embed' data-doi='10.1016/S0140-6736(11)61619-x-y'></div>
+<span class="__dimensions_badge_embed__" data-doi="10.1007/bf02307872" data-style="small_rectangle"></span>
 
 ::: {.callout-note icon=false}
 
