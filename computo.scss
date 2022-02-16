@@ -57,14 +57,8 @@ body {
     font-weight: 300;
 }
 
-.logo {
-  position: absolute;
-  left: 20px;
-  width : 100px;
-}
-
 .callout-header {
-    background-color: $computo-color-light !important;
+    background-color: $computo-color !important;
     font-size: 1.1rem;
     font-weight: 600;    
     color: $computo-color-dark ;
