@@ -5,13 +5,16 @@ format:
     include-in-header:
       - includes/metrics.html
       - includes/pseudocode-header.html
-    include-before-body: includes/banner.html
     include-after-body: includes/pseudocode-footer.html
     toc-title: >
       <a href="https://computo.sfds.asso.fr"><img style="width: 96px;" alt="Computo" src="https://computo.sfds.asso.fr/assets/img/logo_text_vertical.svg"/></a> <br/><br/>
       Contents
     toc: true
     theme: cosmo
+    license: "CC BY"
+    date-format: long
+    title-block-banner-color: "#034E79"
+    title-block-banner: "figures/logo_notext_current.color.svg"
     hover-citations: true
     hover-footnotes: true
     highlight-style: github

@@ -1,14 +1,16 @@
 ---
 title: "Visualizing Data using t-SNE"
 subtitle: "A practical computo example"
-date: >+
-  Last build: February 2022 <br/>  
-  [![build status](https://github.com/computorg/{{< meta repo >}}/workflows/build/badge.svg)](https://github.com/computorg/{{< meta repo >}})
-  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/computorg/{{< meta repo >}}/gh-pages?filepath=content.ipynb)
-  [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
+date: 30/03/2022
+description: |
+  This page is a reworking of the original t-SNE article using the Computo template. It aims to help authors submitting to the journal by using some advanced formatting features. We warmly thank the authors of t-SNE and the editor of JMLR for allowing us to use their work to illustrate the Computo spirit.
 author: 
-  - Laurens van der Maaten, <LVDMAATEN@GMAIL.COM>, TiCC, Tilburg University
-  - Geoffrey Hinton, <HINTON@CS.TORONTO.EDU>, Department of Computer Science, University of Toronto 
+  - name: Laurens van der Maaten
+    email: <LVDMAATEN@GMAIL.COM>
+    affililation: TiCC, Tilburg University
+  - name: Geoffrey Hinton
+    email: <HINTON@CS.TORONTO.EDU>
+    affiliation: Department of Computer Science, University of Toronto
 abstract: >+
   We present a new technique called "t-SNE" that visualizes
   high-dimensional data by giving each datapoint a location in a two
@@ -29,16 +31,18 @@ abstract: >+
   non-parametric visualization techniques, including Sammon mapping,
   Isomap, and Locally Linear Embedding. The visualization produced by
   t-SNE are significantly better than those produced by other
-  techniques on almost all of the data sets. \ <br/>
-
-  **Keywords**: *visualization*, *dimensionality reduction*, *manifold learning*, *embedding algorithms*, *multidimensional scaling*
-doi: 'example doi'
-github: https://github.com/computorg/published-paper-tsne
+  techniques on almost all of the data sets. <br/>
+  
+  **keywords:** visualization, dimensionality reduction, manifold learning, embedding algorithms, multidimensional scaling
+github: https://github.com/computorg/
 bibliography: references.bib
 repo: "published-paper-tsne"
 jupyter: python3
 ---
 
+[![build status](https://github.com/computorg/{{< meta repo >}}/workflows/build/badge.svg)](https://github.com/computorg/{{< meta repo >}})
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/computorg/{{< meta repo >}}/gh-pages?filepath=content.ipynb)
+[![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 <div data-badge-type="4" class='altmetric-embed' data-doi='10.1016/S0140-6736(11)61619-x-y'></div>
 <span class="__dimensions_badge_embed__" data-doi="10.1007/bf02307872" data-style="small_rectangle"></span>
 
@@ -1343,7 +1347,7 @@ and cooperates with RACM. Geoffrey Hinton is a fellow of the Canadian
 Institute for Advanced Research, and is also supported by grants from
 NSERC and CFI and gifts from Google and Microsoft.
 
-# Appendix A. Derivation of the t-SNE gradient {.unnumbered}
+# Appendix A. Derivation of the t-SNE gradient {.appendix}
 
 t-SNE minimizes the Kullback-Leibler divergence between the joint
 probabilities $p_{ij}$ in the highdimensional space and the joint
@@ -1421,7 +1425,7 @@ $$
 \frac{\partial C}{\partial y_i} = 4 \sum_j (p{ij} - q_{ij}) (1 + \|y_i - y_j\|^2)^{-1} (y_i - y_j).
 $$
 
-# Appendix B. Analytical Solution to Random Walk Probabilities {.unnumbered}
+# Appendix B. Analytical Solution to Random Walk Probabilities {.appendix}
 
 Below, we describe the analytical solution to the random walk
 probabilities that are employed in the random walk version of t-SNE
@@ -1498,7 +1502,7 @@ system in Equation @eq-appendixb1 is obtained by solving the
 linear systems $Cy = −B^\top$ and $C x_N = y$ using a fast
 backsubstitution method.
 
-# References {.unnumbered}
+### References
 
 ::: {#refs}
 :::
