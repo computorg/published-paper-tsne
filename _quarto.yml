@@ -18,7 +18,7 @@ format:
     hover-citations: true
     hover-footnotes: true
     highlight-style: github
-    code-block-background: true
+    code-block-bg: true
     code-block-border-left: "#034E79"
     code-tools:
       source: true
