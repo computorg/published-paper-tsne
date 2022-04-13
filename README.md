@@ -11,7 +11,6 @@ by
 [![build status](https://github.com/computorg/published-paper-tsne/workflows/build/badge.svg)](https://github.com/computorg/published-paper-tsne/)
 [![](https://img.shields.io/github/last-commit/computorg/published-paper-tsne.svg)](https://github.com/computorg/published-paper-tsne/commits/main)
 [![DOI:xxx/xxx-xxx ](https://img.shields.io/badge/DOI-xxx%2Fxxx-034E79.svg)](https://doi.org/xxx/xxx-xxx)
-[![review 1](https://img.shields.io/badge/review-report%201-blue)](https://github.com/computorg/published-paper-tsne/issues/1)
-[![review 2](https://img.shields.io/badge/review-report%202-blue)](https://github.com/computorg/published-paper-tsne/issues/2)
+[![review 1](https://img.shields.io/badge/review-report%201-blue)](https://github.com/computorg/published-paper-tsne/issues/4)
 [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
