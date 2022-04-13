@@ -32,8 +32,9 @@ jobs:
       - name: Rendering with Quarto
         shell: bash -l {0}
         run: |
-            mkdir _build
+            wget https://raw.githubusercontent.com/computorg/template-computo-quarto/main/_quarto.yml
             quarto render content.qmd
+            mkdir _build
             mv content.html _build/index.html
             mv content.ipynb _build/
             cp environment.yml _build/

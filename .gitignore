@@ -1,6 +1,6 @@
 /.quarto/
 /.joblib
-
+_quarto.yml
 content.html
 content.ipynb
 
