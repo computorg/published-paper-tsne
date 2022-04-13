@@ -37,6 +37,8 @@ abstract: >+
 github: https://github.com/computorg/
 bibliography: references.bib
 repo: "published-paper-tsne"
+execute:
+  keep-ipynb: true
 jupyter: python3
 ---
 
