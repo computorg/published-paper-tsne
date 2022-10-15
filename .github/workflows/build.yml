@@ -20,17 +20,6 @@ jobs:
       - name: Checking out repository for Github action
         uses: actions/checkout@v3
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          # To manage extension
-          version: pre-release
- 
-      - name: Install Quarto extension for Computo
-        shell: bash -l {0}
-        run: |
-            quarto install --no-prompt extension computorg/computo-quarto-extension
-
       - name: Cache conda
         uses: actions/cache@v1
         env:
@@ -46,9 +35,18 @@ jobs:
           auto-update-conda: true
           auto-activate-base: false
           miniconda-version: 'latest'
+          python-version: 3.9
           environment-file: environment.yml
           activate-environment: computo
-    
+
+      - name: Set up Quarto and install Computo extension
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          # To manage extension
+          version: pre-release
+        run: |
+            quarto install --no-prompt extension computorg/computo-quarto-extension
+     
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
