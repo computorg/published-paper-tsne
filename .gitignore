@@ -1,7 +1,6 @@
 /.quarto/
 /.joblib
 /_extensions/
-_quarto.yml
-content.html
-content.ipynb
+published-paper-tsne.html
+published-paper-tsne.ipynb
 

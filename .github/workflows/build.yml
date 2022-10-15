@@ -9,7 +9,6 @@ on:
       - main
 
 env: # Change this if needed
-  quarto_file: content
   GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -19,7 +18,7 @@ jobs:
 
     steps:
       - name: Checking out repository for Github action
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Cache conda
         uses: actions/cache@v1
@@ -36,27 +35,24 @@ jobs:
           auto-update-conda: true
           auto-activate-base: false
           miniconda-version: 'latest'
-          python-version: 3.9
           environment-file: environment.yml
           activate-environment: computo
 
-      - name: Installing quarto
-        uses: quarto-dev/quarto-actions/install-quarto@v1
-
-      - name: Rendering with Quarto
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          # To manage extension
+          version: pre-release
+ 
+      - name: Install Quarto extension for Computo
         shell: bash -l {0}
         run: |
-            wget https://raw.githubusercontent.com/computorg/template-computo-quarto/main/_quarto.yml
-            quarto render ${{ env.quarto_file }}.qmd
-            mkdir _build
-            mv ${{ env.quarto_file }}.html _build/index.html
-            mv ${{ env.quarto_file }}.ipynb _build/
-            cp environment.yml _build/
-
-      - name: Deploying article on github pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+            quarto install computorg/computo-quarto-extension
+    
+      - name: Publish to GitHub Pages (and render)
+        uses: quarto-dev/quarto-actions/publish@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: _build
-          CLEAN: true
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+
