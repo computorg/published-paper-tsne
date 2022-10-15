@@ -47,7 +47,7 @@ jobs:
       - name: Install Quarto extension for Computo
         shell: bash -l {0}
         run: |
-            quarto install computorg/computo-quarto-extension
+            quarto install extension computorg/computo-quarto-extension
     
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
