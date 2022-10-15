@@ -20,52 +20,47 @@ jobs:
       - name: Checking out repository for Github action
         uses: actions/checkout@v3
 
-      - name: Cache conda
-        uses: actions/cache@v1
-        env:
-          # Increase this value to reset cache if environment.yml has not changed
-          CACHE_NUMBER: 0
-        with:
-          path: ~/conda_pkgs_dir
-          key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles('environment.yml') }}
+#      - name: Cache conda
+#        uses: actions/cache@v1
+#        env:
+#          # Increase this value to reset cache if environment.yml has not changed
+#          CACHE_NUMBER: 0
+#        with:
+#          path: ~/conda_pkgs_dir
+#          key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles('environment.yml') }}
 
-      - name: Installing dependencies with Miniconda
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-update-conda: true
-          auto-activate-base: false
-          miniconda-version: 'latest'
-          environment-file: environment.yml
-          activate-environment: computo
+#      - name: Installing dependencies with Miniconda
+#        uses: conda-incubator/setup-miniconda@v2
+#        with:
+#          auto-update-conda: true
+#          auto-activate-base: false
+#          miniconda-version: 'latest'
+#          environment-file: environment.yml
+#          activate-environment: computo
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          # To manage extension
           version: pre-release
 
       - name: Install Computo extension for Quarto
         run: |
             quarto install --no-prompt extension computorg/computo-quarto-extension
 
-      - name: Rendering with Quarto
-        run: |
-            quarto render
-            mkdir _build
-            mv *.html _build/index.html
-            cp environment.yml _build/
-            
-      - name: Deploying article on github pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Instal Python dependecies
+        uses: actions/setup-python@v4
         with:
-          BRANCH: gh-pages
-          FOLDER: _build
-          CLEAN: true
-        
-#      - name: Publish to GitHub Pages (and render)
-#        uses: quarto-dev/quarto-actions/publish@v2
-#        with:
-#          target: gh-pages
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+          python-version: '3.8.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          cache: 'pip'
+      - run: pip install jupyter
+      - run: pip install numpy
+      - run: pip install matplotlib
+      - run: pip install scikit-learn
+
+      - name: Publish to GitHub Pages (and render)
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
