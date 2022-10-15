@@ -12,7 +12,7 @@ env: # Change this if needed
   GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  computorticle:
+  build-deploy:
     if: "!contains(github.event.head_commit.message, 'skip build')"
     runs-on: ubuntu-latest
 
@@ -20,7 +20,7 @@ jobs:
       - name: Checking out repository for Github action
         uses: actions/checkout@v3
 
-     - name: Set up Quarto
+      - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           # To manage extension
@@ -44,10 +44,10 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
-          auto-activate-base: true
+          auto-activate-base: false
           miniconda-version: 'latest'
           environment-file: environment.yml
-          activate-environment: ""
+          activate-environment: computo
     
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
@@ -55,3 +55,4 @@ jobs:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+
