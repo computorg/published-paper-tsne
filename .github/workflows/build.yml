@@ -35,7 +35,6 @@ jobs:
           auto-update-conda: true
           auto-activate-base: false
           miniconda-version: 'latest'
-          python-version: 3.8
           environment-file: environment.yml
           activate-environment: computo
 
@@ -48,11 +47,25 @@ jobs:
       - name: Install Computo extension for Quarto
         run: |
             quarto install --no-prompt extension computorg/computo-quarto-extension
-     
-      - name: Publish to GitHub Pages (and render)
-        uses: quarto-dev/quarto-actions/publish@v2
+
+      - name: Rendering with Quarto
+        run: |
+            quarto render
+            mkdir _build
+            mv *.html _build/index.html
+            cp environment.yml _build/
+            
+      - name: Deploying article on github pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+          BRANCH: gh-pages
+          FOLDER: _build
+          CLEAN: true
+        
+#      - name: Publish to GitHub Pages (and render)
+#        uses: quarto-dev/quarto-actions/publish@v2
+#        with:
+#          target: gh-pages
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
 
