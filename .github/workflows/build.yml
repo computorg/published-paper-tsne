@@ -39,11 +39,13 @@ jobs:
           environment-file: environment.yml
           activate-environment: computo
 
-      - name: Set up Quarto and install Computo extension
+      - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           # To manage extension
           version: pre-release
+
+      - name: Install Computo extension for Quarto
         run: |
             quarto install --no-prompt extension computorg/computo-quarto-extension
      
