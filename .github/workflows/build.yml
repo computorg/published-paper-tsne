@@ -53,9 +53,7 @@ jobs:
           python-version: '3.8.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
           cache: 'pip'
       - run: pip install jupyter
-      - run: pip install numpy
-      - run: pip install matplotlib
-      - run: pip install scikit-learn
+      - run: pip install -r requirements.txt
 
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
