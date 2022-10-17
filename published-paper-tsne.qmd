@@ -518,7 +518,7 @@ annealing
 
 :::{.column-outset} 
 
-<pre id="tsne">
+<pre class="pseudocode">
 
 \begin{algorithm}
 \caption{Simple version of t-Distributed Stochastic Neighbor Embeding}
