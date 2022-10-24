@@ -25,6 +25,7 @@ draft: false
 published: true
 format: 
   computo-html: default
+  computo-pdf: default
 execute:
   keep-ipynb: true
 jupyter: python3
