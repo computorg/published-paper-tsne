@@ -8,6 +8,7 @@ on:
       - main
 
 env: 
+  quarto_file: ${{ github.event.repository.name }}
   GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -19,13 +20,6 @@ jobs:
       - name: Checking out repository for Github action
         uses: actions/checkout@v3
 
-      - name: Run read-yaml action
-        id: quarto_file
-        uses: jbutcher5/read-yaml@main
-        with:
-          file: './_quarto.yml'          
-          key-path: '["project", "title"]'
-
       - name: Installing dependencies with Micromamba
         uses: mamba-org/provision-with-micromamba@main
         with:
@@ -35,7 +29,8 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: pre-release
-
+          tinytex: true
+  
       - name: Install Computo extension for Quarto
         run: |
             quarto install --no-prompt extension computorg/computo-quarto-extension
@@ -44,10 +39,10 @@ jobs:
         shell: bash -l {0}
 
         run: |
-            quarto render ${{ steps.quarto_file.outputs.data }}.qmd
+            quarto render ${{ env.quarto_file }}.qmd
             mkdir _build
-            mv ${{ steps.quarto_file.outputs.data }}.html _build/index.html
-            mv -vf ${{ steps.quarto_file.outputs.data }}_files figures ${{ steps.quarto_file.outputs.data }}.pdf _build/
+            mv ${{ env.quarto_file }}.html _build/index.html
+            mv -vf ${{ env.quarto_file }}_files figures ${{ env.quarto_file }}.pdf _build/
             cp environment.yml _build/
             touch _build/.nojekyll
 
