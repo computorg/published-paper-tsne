@@ -8,6 +8,7 @@ on:
       - main
 
 env: # Change this if needed
+  quarto_file: published-paper-tsne
   GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
