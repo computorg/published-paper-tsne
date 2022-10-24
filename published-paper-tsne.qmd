@@ -516,9 +516,7 @@ solutions. Instead, the long-range forces in t-SNE facilitate the
 identification of good local optima without resorting to simulated
 annealing
 
-:::{.column-outset} 
-
-<pre class="pseudocode">
+:::{.pseudocode} 
 
 \begin{algorithm}
 \caption{Simple version of t-Distributed Stochastic Neighbor Embeding}
@@ -539,7 +537,6 @@ annealing
 \ENDPROCEDURE
 \end{algorithmic}
 \end{algorithm}
-</pre>
 
 :::
 
