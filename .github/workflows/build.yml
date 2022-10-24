@@ -19,23 +19,10 @@ jobs:
       - name: Checking out repository for Github action
         uses: actions/checkout@v3
 
-#      - name: Cache conda
-#        uses: actions/cache@v1
-#        env:
-#          # Increase this value to reset cache if environment.yml has not changed
-#          CACHE_NUMBER: 0
-#        with:
-#          path: ~/conda_pkgs_dir
-#          key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles('environment.yml') }}
-
-#      - name: Installing dependencies with Miniconda
-#        uses: conda-incubator/setup-miniconda@v2
-#        with:
-#          auto-update-conda: true
-#          auto-activate-base: false
-#          miniconda-version: 'latest'
-#          environment-file: environment.yml
-#          activate-environment: computo
+      - name: Installing dependencies with Micromamba
+        uses: mamba-org/provision-with-micromamba@main
+        with:
+          cache-env: true
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -46,18 +33,21 @@ jobs:
         run: |
             quarto install --no-prompt extension computorg/computo-quarto-extension
 
-      - name: Instal Python dependecies
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.8.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-          cache: 'pip'
-      - run: pip install jupyter
-      - run: pip install -r requirements.txt
+      - name: Rendering with Quarto
+        shell: bash -l {0}
 
-      - name: Publish to GitHub Pages (and render)
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+            quarto render ${{ env.quarto_file }}.qmd
+            mkdir _build
+            mv ${{ env.quarto_file }}.html _build/index.html
+            mv -vf ${{ env.quarto_file }}_files figures ${{ env.quarto_file }}.pdf _build/
+            cp environment.yml _build/
+            touch _build/.nojekyll
+            
 
+      - name: Deploying article on github pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          BRANCH: gh-pages
+          FOLDER: _build
+          CLEAN: true
