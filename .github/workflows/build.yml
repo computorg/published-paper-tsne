@@ -7,8 +7,7 @@ on:
     branches:
       - main
 
-env: # Change this if needed
-  quarto_file: published-paper-tsne
+env: 
   GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -19,6 +18,13 @@ jobs:
     steps:
       - name: Checking out repository for Github action
         uses: actions/checkout@v3
+
+      - name: Run read-yaml action
+        id: quarto_file
+        uses: jbutcher5/read-yaml@main
+        with:
+          file: './_quarto.yml'          
+          key-path: '["project", "title"]'
 
       - name: Installing dependencies with Micromamba
         uses: mamba-org/provision-with-micromamba@main
@@ -38,13 +44,12 @@ jobs:
         shell: bash -l {0}
 
         run: |
-            quarto render ${{ env.quarto_file }}.qmd
+            quarto render ${{ steps.quarto_file.outputs.data }}.qmd
             mkdir _build
-            mv ${{ env.quarto_file }}.html _build/index.html
-            mv -vf ${{ env.quarto_file }}_files figures ${{ env.quarto_file }}.pdf _build/
+            mv ${{ steps.quarto_file.outputs.data }}.html _build/index.html
+            mv -vf ${{ steps.quarto_file.outputs.data }}_files figures ${{ steps.quarto_file.outputs.data }}.pdf _build/
             cp environment.yml _build/
             touch _build/.nojekyll
-            
 
       - name: Deploying article on github pages
         uses: JamesIves/github-pages-deploy-action@v4
