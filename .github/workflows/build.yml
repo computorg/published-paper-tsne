@@ -33,7 +33,7 @@ jobs:
   
       - name: Install Computo extension for Quarto
         run: |
-            quarto install --no-prompt extension computorg/computo-quarto-extension
+            quarto add --no-prompt computorg/computo-quarto-extension
 
       - name: Rendering with Quarto
         shell: bash -l {0}
