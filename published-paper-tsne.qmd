@@ -517,29 +517,27 @@ solutions. Instead, the long-range forces in t-SNE facilitate the
 identification of good local optima without resorting to simulated
 annealing
 
-:::{.pseudocode} 
-
+```{.pseudocode}
 \begin{algorithm}
 \caption{Simple version of t-Distributed Stochastic Neighbor Embeding}
 \begin{algorithmic}
-\STATE \textbf{Data}: high-dimensional representation $\mathcal{X} = \{x_1, \dots, x_n\}$
-\STATE cost function parameters: perplexity  $Perp$
-\STATE optimization parameters: number of iterations $T$, learning rate $\eta$, momentum $\alpha(t)$
-\STATE \textbf{Result}: low-dimensional data representation $\mathcal{Y}^{(T)} = \{y_1, \dots, y_n\}$
-\PROCEDURE{t-sne}{$Perp, T, \eta, \alpha(t)$}
-    \STATE compute pairwise affinities $p_{j|i}$ with perplexity $Perp$ (using Equation 1)
-    \STATE set $p_{ij} = \frac{1}{2n} (p_{j|i} + p_{i|j})$
-    \STATE sample initial solution $\mathcal{Y}^{(0)} = \{y_1,\dots,y_n\}$ from $\mathcal{N}(0,1e^{-4} I)$
-    \FOR{$t = 0$ \TO $T$}
-        \STATE compute low-dimensional affinities $q_{ij}$ (using Equation 4)
-        \STATE compute gradient $\frac{\partial C}{\partial \mathcal{Y}}$ (using Equation 5)
-        \STATE et $\mathcal{Y}^{t} = \mathcal{Y}^{t-1} + \eta \frac{\partial C}{\partial \mathcal{Y}} + \alpha(t) \left(\mathcal{Y}^{t-1} - \mathcal{Y}^{t-2}\right)$ 
-    \ENDFOR
-\ENDPROCEDURE
+\State \textbf{Data}: high-dimensional representation $\mathcal{X} = \{x_1, \dots, x_n\}$
+\State cost function parameters: perplexity  $Perp$
+\State optimization parameters: number of iterations $T$, learning rate $\eta$, momentum $\alpha(t)$
+\State \textbf{Result}: low-dimensional data representation $\mathcal{Y}^{(T)} = \{y_1, \dots, y_n\}$
+\Procedure{t-sne}{$Perp, T, \eta, \alpha(t)$}
+    \State compute pairwise affinities $p_{j|i}$ with perplexity $Perp$ (using Equation 1)
+    \State set $p_{ij} = \frac{1}{2n} (p_{j|i} + p_{i|j})$
+    \State sample initial solution $\mathcal{Y}^{(0)} = \{y_1,\dots,y_n\}$ from $\mathcal{N}(0,1e^{-4} I)$
+    \For{$t = 0$\dots$T$}
+        \State compute low-dimensional affinities $q_{ij}$ (using Equation 4)
+        \State compute gradient $\frac{\partial C}{\partial \mathcal{Y}}$ (using Equation 5)
+        \State et $\mathcal{Y}^{t} = \mathcal{Y}^{t-1} + \eta \frac{\partial C}{\partial \mathcal{Y}} + \alpha(t) \left(\mathcal{Y}^{t-1} - \mathcal{Y}^{t-2}\right)$ 
+    \EndFor
+\EndProcedure
 \end{algorithmic}
 \end{algorithm}
-
-:::
+```
 
 ## Optimization methods for t-SNE {#sec-optimization_methods_for_tsne}
 
@@ -1483,4 +1481,3 @@ upper-triangular matrix. Subsequently, the solution to the linear
 system in Equation @eq-appendixb1 is obtained by solving the
 linear systems $Cy = −B^\top$ and $C x_N = y$ using a fast
 backsubstitution method.
-
