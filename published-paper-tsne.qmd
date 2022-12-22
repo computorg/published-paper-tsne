@@ -657,7 +657,6 @@ optimization, we performed Newton's method for 500 iterations.
 [^neighborhood_graph]: Isomap and LLE require data that gives rise to a
   neighborhood graph that is connected.
 
-::: {.column-margin}
 
 | Technique      | Cost function parameters |
 |----------------|-------------------------:|
@@ -668,7 +667,6 @@ optimization, we performed Newton's method for 500 iterations.
 
 : Cost function parameter settings for the experiments {#tbl-cost-function-parameters}
 
-:::
 
 ## Results {#sec-results}
 
@@ -982,17 +980,18 @@ about the underlying manifolds.  Suppose, for example, that A, B, and
 C are all equidistant in the high-dimensional space. If there are many
 undisplayed datapoints between A and B and none between A and C, it is
 much more likely that A and B are part of the same cluster than A and
-C. This is illustrated in @fig-random_walk. In this section, we
+C. This is illustrated in @fig-random-walk. In this section, we
 show how t-SNE can be modified to display a random subset of the
 datapoints (so-called landmark points) in a way that uses information
 from the entire (possibly very large) data set.
 
 
 
-::: {.column-margin} 
+:::
 
 ![An illustration of the advantage of the random walk version of t-SNE over a standard
-landmark approach. The shaded points A, B, and C are three (almost) equidistant landmark points, whereas the non-shaded datapoints are non-landmark points. The arrows represent a directed neighborhood graph where $k = 3$. In a standard landmark approach, the pairwise affinity between A and B is approximately equal to the pairwise affinity between A and C. In the random walk version of t-SNE, the pairwise affinity between A and B is much larger than the pairwise affinity between A and C, and therefore, it reflects the structure of the data much better.](figures/random_walk.png){#fig-random_walk}
+landmark approach. The shaded points A, B, and C are three (almost) equidistant landmark points, whereas the non-shaded datapoints are non-landmark points. The arrows represent a directed neighborhood graph where $k = 3$. In a standard landmark approach, the pairwise affinity between A and B is approximately equal to the pairwise affinity between A and C. In the random walk version of t-SNE, the pairwise affinity between A and B is much larger than the pairwise affinity between A and C, and therefore, it reflects the structure of the data much better.](figures/random_walk.png){#fig-random-walk}
+
 :::
 
 We start by choosing a desired number of neighbors and creating a
