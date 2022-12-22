@@ -464,12 +464,9 @@ y_j)(1+\|y_i - y_j\|^2)^{-1}\,.
 $$ {#eq-gradient-tsne}
 
 
-:::{.column-page}
-
 ![Gradients of three types of SNE as a function of the pairwise Euclidean
 distance between two points in the high-dimensional and the pairwise distance
 between the points in the low-dimensional data representation.](figures/gradients.png){#fig-gradients}
-:::
 
 In @fig-gradients, we show the gradients between the
 low-dimensional datapoints $y_i$ and $y_j$ as a function of their
