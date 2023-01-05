@@ -28,7 +28,6 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: pre-release
           tinytex: true
   
       - name: Install Computo extension for Quarto
