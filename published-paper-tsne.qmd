@@ -664,12 +664,12 @@ optimization, we performed Newton's method for 500 iterations.
 
 : Cost function parameter settings for the experiments {#tbl-cost-function-parameters}
 
-
 ## Results {#sec-results}
 
-```{python, results='hide'}
+```{python}
 #| label: fig-tsne-sammon
 #| fig-cap: "Visualization by t-SNE and Sammon mapping"
+#| warning: false
 
 ###############################################################################
 # Figure 2. Visualization by t-SNE and Sammon mapping
@@ -682,9 +682,7 @@ import joblib
 
 import matplotlib.pyplot as plt
 
-
 mem = joblib.Memory(".joblib")
-
 
 digits = load_digits()
 
@@ -729,8 +727,7 @@ ax.spines["top"].set_linewidth(0)
 ax.spines["bottom"].set_linewidth(0)
 ax.set_xticks([])
 ax.set_yticks([])
-ax.set_title("Visualization by t-SNE")
-ax.legend()
+ax.set_title("t-SNE")
 
 ###############################################################################
 # Sammon mapping
@@ -753,12 +750,14 @@ ax.spines["top"].set_linewidth(0)
 ax.spines["bottom"].set_linewidth(0)
 ax.set_xticks([])
 ax.set_yticks([])
-ax.set_title("Visualization by Sammon mapping.")
+ax.set_title("Sammon mapping")
+plt.show()
 ```
 
-```{python, results='hide'}
-#| label: fig-isomap-LLE
+```{python}
+#| label: fig-isomap-lle
 #| fig-cap: "Visualization by Isomap and LLE"
+#| warning: false
 
 ###############################################################################
 # Figure 3. Visualization by Isomap and LLE
@@ -785,7 +784,7 @@ ax.spines["top"].set_linewidth(0)
 ax.spines["bottom"].set_linewidth(0)
 ax.set_xticks([])
 ax.set_yticks([])
-ax.set_title("Visualization by Isomap.")
+ax.set_title("Isomap")
 
 ###############################################################################
 # LLE
@@ -808,13 +807,14 @@ ax.spines["top"].set_linewidth(0)
 ax.spines["bottom"].set_linewidth(0)
 ax.set_xticks([])
 ax.set_yticks([])
-ax.set_title("Visualization by LLE.")
-
+ax.set_title("LLE")
+plt.show()
 ```
 
-```{python, results='hide'}
-#| label: fig-Olivetti
+```{python}
+#| label: fig-olivetti
 #| fig-cap: "Visualization of the Olivetti faces data set"
+#| warning: false
 
 ###############################################################################
 # Figure 4. Visualization of the Olivetti faces data set
@@ -854,7 +854,7 @@ ax.spines["top"].set_linewidth(0)
 ax.spines["bottom"].set_linewidth(0)
 ax.set_xticks([])
 ax.set_yticks([])
-ax.set_title("Visualization by t-SNE")
+ax.set_title("t-SNE")
 
 ###############################################################################
 # Sammon mapping
@@ -877,7 +877,7 @@ ax.spines["top"].set_linewidth(0)
 ax.spines["bottom"].set_linewidth(0)
 ax.set_xticks([])
 ax.set_yticks([])
-ax.set_title("Visualization by Sammon mapping.")
+ax.set_title("Sammon mapping")
 
 ###############################################################################
 # ISOMAP
@@ -899,7 +899,7 @@ ax.spines["top"].set_linewidth(0)
 ax.spines["bottom"].set_linewidth(0)
 ax.set_xticks([])
 ax.set_yticks([])
-ax.set_title("Visualization by Isomap.")
+ax.set_title("Isomap")
 
 ###############################################################################
 # LLE
@@ -924,10 +924,11 @@ ax.spines["top"].set_linewidth(0)
 ax.spines["bottom"].set_linewidth(0)
 ax.set_xticks([])
 ax.set_yticks([])
-ax.set_title("Visualization by LLE.")
+ax.set_title("LLE")
+plt.show()
 ```
 
-In @fig-tsne-sammon and @fig-isomap-LLE, we show the results of our experiments with t-SNE,
+In @fig-tsne-sammon and @fig-isomap-lle, we show the results of our experiments with t-SNE,
 Sammon mapping, Isomap, and LLE on the MNIST data set. The results
 reveal the strong performance of t-SNE compared to the other
 techniques. In particular, Sammon mapping constructs a "ball" in which
@@ -941,7 +942,7 @@ orientation of the ones) is captured as well. This is illustrated in
 more detail in @sec-large-data (see @fig-random_walk_tsne). The map produced by t-SNE
 contains some points that are clustered with the wrong class, but most
 of these points correspond to distorted digits many of which are
-difficult to identify. @fig-Olivetti shows the results of applying t-SNE,
+difficult to identify. @fig-olivetti shows the results of applying t-SNE,
 Sammon mapping, Isomap, and LLE to the Olivetti faces data set. Again,
 Isomap and LLE produce solutions that provide little insight into the
 class structure of the data. The map constructed by Sammon mapping is

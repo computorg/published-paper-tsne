@@ -2,7 +2,5 @@ project:
   title: "published-paper-tsne"
 
 format:
-  html:
+  computo-html:
     code-fold: true
-
-
