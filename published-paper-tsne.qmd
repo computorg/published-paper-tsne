@@ -669,7 +669,7 @@ optimization, we performed Newton's method for 500 iterations.
 ```{python}
 #| label: fig-tsne-sammon
 #| fig-cap: "Visualization by t-SNE and Sammon mapping"
-#| results: 'hide'
+#| tags: ['remove-output']
 
 ###############################################################################
 # Figure 2. Visualization by t-SNE and Sammon mapping
@@ -757,7 +757,7 @@ plt.show()
 ```{python}
 #| label: fig-isomap-lle
 #| fig-cap: "Visualization by Isomap and LLE"
-#| results: 'hide'
+#| tags: ['remove-output']
 
 ###############################################################################
 # Figure 3. Visualization by Isomap and LLE
@@ -814,7 +814,7 @@ plt.show()
 ```{python}
 #| label: fig-olivetti
 #| fig-cap: "Visualization of the Olivetti faces data set"
-#| results: 'hide'
+#| tags: ['remove-output']
 
 ###############################################################################
 # Figure 4. Visualization of the Olivetti faces data set
