@@ -1,5 +1,8 @@
 project:
   title: "published-paper-tsne"
 
+format:
+  html:
+    code-fold: show
 
 
