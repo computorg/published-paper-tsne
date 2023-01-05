@@ -28,6 +28,7 @@ format:
   computo-pdf: default
 execute:
   keep-ipynb: true
+  warning: false  
 jupyter: python3
 ---
 
@@ -669,7 +670,6 @@ optimization, we performed Newton's method for 500 iterations.
 ```{python}
 #| label: fig-tsne-sammon
 #| fig-cap: "Visualization by t-SNE and Sammon mapping"
-#| tags: ['remove-output']
 
 ###############################################################################
 # Figure 2. Visualization by t-SNE and Sammon mapping
@@ -682,7 +682,7 @@ import joblib
 
 import matplotlib.pyplot as plt
 
-mem = joblib.Memory(".joblib")
+mem = joblib.Memory(".joblib", verbose = 0)
 
 digits = load_digits()
 
@@ -757,7 +757,6 @@ plt.show()
 ```{python}
 #| label: fig-isomap-lle
 #| fig-cap: "Visualization by Isomap and LLE"
-#| tags: ['remove-output']
 
 ###############################################################################
 # Figure 3. Visualization by Isomap and LLE
@@ -814,7 +813,6 @@ plt.show()
 ```{python}
 #| label: fig-olivetti
 #| fig-cap: "Visualization of the Olivetti faces data set"
-#| tags: ['remove-output']
 
 ###############################################################################
 # Figure 4. Visualization of the Olivetti faces data set
