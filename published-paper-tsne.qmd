@@ -667,7 +667,7 @@ optimization, we performed Newton's method for 500 iterations.
 
 ## Results {#sec-results}
 
-```{python}
+```{python, results='hide'}
 #| label: fig-tsne-sammon
 #| fig-cap: "Visualization by t-SNE and Sammon mapping"
 
@@ -756,7 +756,7 @@ ax.set_yticks([])
 ax.set_title("Visualization by Sammon mapping.")
 ```
 
-```{python}
+```{python, results='hide'}
 #| label: fig-isomap-LLE
 #| fig-cap: "Visualization by Isomap and LLE"
 
@@ -812,7 +812,7 @@ ax.set_title("Visualization by LLE.")
 
 ```
 
-```{python}
+```{python, results='hide'}
 #| label: fig-Olivetti
 #| fig-cap: "Visualization of the Olivetti faces data set"
 

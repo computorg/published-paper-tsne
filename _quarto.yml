@@ -3,6 +3,6 @@ project:
 
 format:
   html:
-    code-fold: show
+    code-fold: true
 
 
