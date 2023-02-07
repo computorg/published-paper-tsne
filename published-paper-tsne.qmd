@@ -822,6 +822,7 @@ plt.show()
 ```{python}
 #| label: fig-olivetti
 #| fig-cap: "Visualization of the Olivetti faces data set"
+#| error: false
 
 ###############################################################################
 # Figure 4. Visualization of the Olivetti faces data set
