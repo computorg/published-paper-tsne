@@ -25,7 +25,7 @@ repo: "published-paper-tsne"
 draft: false
 published: true
 citation:
-  citation-key: computo-2008-tsne
+  citation-label: computo-2008-tsne
   title: "Visualizing Data using t-SNE: a practical computo example (mock)"
   author: van der Maaten, Laurens and Hinton, Geoffrey
   type: article-journal
