@@ -8,7 +8,6 @@ on:
       - main
 
 env: 
-  # quarto_file: ${{ github.event.repository.name }}
   GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -24,6 +23,7 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
+          version: pre-release
           
       - name: Install Computo extension for Quarto
         run: |
