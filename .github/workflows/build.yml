@@ -20,15 +20,14 @@ jobs:
       - name: Checking out repository for Github action
         uses: actions/checkout@v3
 
-      # - name: Installing dependencies with Micromamba
-      #   uses: mamba-org/provision-with-micromamba@main
-      #   with:
-      #     cache-env: true
-      # 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
+          
+      - name: Install Computo extension for Quarto
+        run: |
+            quarto add --no-prompt computorg/computo-quarto-extension
 
       - name: Install Python and Dependencies
         uses: actions/setup-python@v4
@@ -43,25 +42,3 @@ jobs:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-      # - name: Install Computo extension for Quarto
-      #   run: |
-      #       quarto add --no-prompt computorg/computo-quarto-extension
-      # 
-      # - name: Rendering with Quarto
-      #   shell: bash -l {0}
-      # 
-      #   run: |
-      #       quarto render ${{ env.quarto_file }}.qmd
-      #       mkdir _build
-      #       mv ${{ env.quarto_file }}.html _build/index.html
-      #       mv -vf ${{ env.quarto_file }}_files figures ${{ env.quarto_file }}.pdf _build/
-      #       cp environment.yml _build/
-      #       touch _build/.nojekyll
-      # 
-      # - name: Deploying article on github pages
-      #   uses: JamesIves/github-pages-deploy-action@v4
-      #   with:
-      #     BRANCH: gh-pages
-      #     FOLDER: _build
-      #     CLEAN: true
