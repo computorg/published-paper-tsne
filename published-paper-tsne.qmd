@@ -11,6 +11,7 @@ author:
     affiliation: TiCC, Tilburg University
     affiliation-url: https://www.tilburguniversity.edu/
     orcid: 0000-0002-1931-6828
+      
   - name: Geoffrey Hinton
     url: https://www.cs.toronto.edu/~hinton/
     affiliation: Department of Computer Science, University of Toronto
@@ -25,9 +26,7 @@ repo: "published-paper-tsne"
 draft: false
 published: true
 citation:
-  citation-key: computo2008tsne
   title: "Visualizing Data using t-SNE: a practical computo example (mock)"
-  author: van der Maaten, Laurens and Hinton, Geoffrey
   type: article-journal
   container-title: "Computo"
   publisher: "Société Française de Statistique"
@@ -1322,7 +1321,7 @@ generalization to held-out test data by using the t-SNE objective
 function to train a multilayer neural network that provides an
 explicit mapping to the low-dimensional space
 
-#### Acknowledgments {.appendix .unnumbered}
+# Acknowledgments {.unnumbered}
 
 The authors thank Sam Roweis for many helpful discussions, Andriy Mnih
 for supplying the wordfeatures data set, Ruslan Salakhutdinov for help
@@ -1330,13 +1329,19 @@ with the Netflix data set (results for these data sets are presented
 in the supplemental material), and Guido de Croon for pointing us to
 the analytical solution of the random walk probabilities.
 
-Laurens van der Maaten is supported by the CATCH-programme of the
-Dutch Scientific Organization (NWO), project RICH (grant 640.002.401),
-and cooperates with RACM. Geoffrey Hinton is a fellow of the Canadian
-Institute for Advanced Research, and is also supported by grants from
-NSERC and CFI and gifts from Google and Microsoft.
+Laurens van der Maaten is supported by the CATCH-programme of the Dutch Scientific 
+Organization (NWO), project RICH (grant 640.002.401), and cooperates with RACM.  
+Geoffrey Hinton is a fellow of the Canadian Institute for Advanced Research, and 
+is also supported by grants from NSERC and CFI and gifts from Google and Microsoft.
 
-# Appendix A. Derivation of the t-SNE gradient {.appendix .unnumbered}
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
+
+
+# Appendix A: Derivation of the t-SNE gradient {.appendix .unnumbered}
 
 t-SNE minimizes the Kullback-Leibler divergence between the joint
 probabilities $p_{ij}$ in the highdimensional space and the joint
@@ -1414,7 +1419,7 @@ $$
 \frac{\partial C}{\partial y_i} = 4 \sum_j (p{ij} - q_{ij}) (1 + \|y_i - y_j\|^2)^{-1} (y_i - y_j).
 $$
 
-# Appendix B. Analytical Solution to Random Walk Probabilities {.appendix .unnumbered}
+# Appendix B: Analytical Solution to Random Walk Probabilities {.appendix .unnumbered}
 
 Below, we describe the analytical solution to the random walk
 probabilities that are employed in the random walk version of t-SNE
@@ -1490,3 +1495,4 @@ upper-triangular matrix. Subsequently, the solution to the linear
 system in Equation @eq-appendixb1 is obtained by solving the
 linear systems $Cy = −B^\top$ and $C x_N = y$ using a fast
 backsubstitution method.
+
