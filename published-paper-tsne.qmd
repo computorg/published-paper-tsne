@@ -1047,6 +1047,12 @@ appropriate.
 
 Visualization of 6,000 digits from the MNIST data set produced by the random walk
 version of t-SNE (employing all 60,000 digit images).
+
+[Note of the editor] Please note that this dataset is too large for the code
+to be processed through continuous integration. You can find the code to
+reproduce this plot on
+[github](https://github.com/computorg/published-paper-tsne/tree/main/scripts)
+
 :::
 
 @fig-random_walk_tsne shows the results of an experiment, in which we
