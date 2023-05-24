@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.80">
+<meta name="generator" content="quarto-1.4.84">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -190,7 +190,7 @@ ISSN 2824-7795</p>
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">May 21, 2023</p>
+        <p class="date-modified">May 24, 2023</p>
       </div>
     </div>
       
@@ -739,7 +739,8 @@ y_j)(1+\|y_i - y_j\|^2)^{-1}\,.
 <div id="fig-random_walk_tsne" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/random_walk_tSNE.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;6: Visualization of 6,000 digits from the MNIST data set produced by the random walk version of t-SNE (employing all 60,000 digit images).</figcaption>
+<p>Visualization of 6,000 digits from the MNIST data set produced by the random walk version of t-SNE (employing all 60,000 digit images).</p>
+<figcaption class="figure-caption">Figure&nbsp;6: [Note of the editor] Please note that this dataset is too large for the code to be processed through continuous integration. You can find the code to reproduce this plot on <a href="https://github.com/computorg/published-paper-tsne/tree/main/scripts">github</a></figcaption>
 </figure>
 </div>
 <p><a href="#fig-random_walk_tsne" class="quarto-xref">Figure&nbsp;6</a> shows the results of an experiment, in which we applied the random walk version of t-SNE to 6,000 randomly selected digits from the MNIST data set, using all 60,000 digits to compute the pairwise affinities <span class="math inline">p_{j|i}</span>. In the experiment, we used a neighborhood graph that was constructed using a value of <span class="math inline">k = 20</span> nearest neighbors.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> The inset of the figure shows the same visualization as a scatterplot in which the colors represent the labels of the digits. In the t-SNE map, all classes are clearly separated and the “continental” sevens form a small separate cluster. Moreover, t-SNE reveals the main dimensions of variation within each class, such as the orientation of the ones, fours, sevens, and nines, or the “loopiness” of the twos. The strong performance of t-SNE is also reflected in the generalization error of nearest neighbor classifiers that are trained on the low-dimensional representation. Whereas the generalization error (measured using 10-fold cross validation) of a 1-nearest neighbor classifier trained on the original 784-dimensional datapoints is 5.75%, the generalization error of a 1-nearest neighbor classifier trained on the two-dimensional data representation produced by t-SNE is only 5.13%. The computational requirements of random walk t-SNE are reasonable: it took only one hour of CPU time to construct the map in <a href="#fig-random_walk_tsne" class="quarto-xref">Figure&nbsp;6</a>.</p>
@@ -2417,454 +2418,460 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-1053"><a href="#cb6-1053" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-1054"><a href="#cb6-1054" aria-hidden="true" tabindex="-1"></a>Visualization of 6,000 digits from the MNIST data set produced by the random walk</span>
 <span id="cb6-1055"><a href="#cb6-1055" aria-hidden="true" tabindex="-1"></a>version of t-SNE (employing all 60,000 digit images).</span>
-<span id="cb6-1056"><a href="#cb6-1056" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-1057"><a href="#cb6-1057" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1058"><a href="#cb6-1058" aria-hidden="true" tabindex="-1"></a>@fig-random_walk_tsne shows the results of an experiment, in which we</span>
-<span id="cb6-1059"><a href="#cb6-1059" aria-hidden="true" tabindex="-1"></a>applied the random walk version of t-SNE to 6,000 randomly selected</span>
-<span id="cb6-1060"><a href="#cb6-1060" aria-hidden="true" tabindex="-1"></a>digits from the MNIST data set, using all 60,000 digits to compute the</span>
-<span id="cb6-1061"><a href="#cb6-1061" aria-hidden="true" tabindex="-1"></a>pairwise affinities $p_{j|i}$. In the experiment, we used a</span>
-<span id="cb6-1062"><a href="#cb6-1062" aria-hidden="true" tabindex="-1"></a>neighborhood graph that was constructed using a value of $k = 20$</span>
-<span id="cb6-1063"><a href="#cb6-1063" aria-hidden="true" tabindex="-1"></a>nearest neighbors.<span class="ot">[^knn]</span> The inset of the figure shows the same</span>
-<span id="cb6-1064"><a href="#cb6-1064" aria-hidden="true" tabindex="-1"></a>visualization as a scatterplot in which the colors represent the</span>
-<span id="cb6-1065"><a href="#cb6-1065" aria-hidden="true" tabindex="-1"></a>labels of the digits. In the t-SNE map, all classes are clearly</span>
-<span id="cb6-1066"><a href="#cb6-1066" aria-hidden="true" tabindex="-1"></a>separated and the "continental" sevens form a small separate cluster.</span>
-<span id="cb6-1067"><a href="#cb6-1067" aria-hidden="true" tabindex="-1"></a>Moreover, t-SNE reveals the main dimensions of variation within each</span>
-<span id="cb6-1068"><a href="#cb6-1068" aria-hidden="true" tabindex="-1"></a>class, such as the orientation of the ones, fours, sevens, and nines,</span>
-<span id="cb6-1069"><a href="#cb6-1069" aria-hidden="true" tabindex="-1"></a>or the "loopiness" of the twos. The strong performance of t-SNE is</span>
-<span id="cb6-1070"><a href="#cb6-1070" aria-hidden="true" tabindex="-1"></a>also reflected in the generalization error of nearest neighbor</span>
-<span id="cb6-1071"><a href="#cb6-1071" aria-hidden="true" tabindex="-1"></a>classifiers that are trained on the low-dimensional</span>
-<span id="cb6-1072"><a href="#cb6-1072" aria-hidden="true" tabindex="-1"></a>representation. Whereas the generalization error (measured using</span>
-<span id="cb6-1073"><a href="#cb6-1073" aria-hidden="true" tabindex="-1"></a>10-fold cross validation) of a 1-nearest neighbor classifier trained</span>
-<span id="cb6-1074"><a href="#cb6-1074" aria-hidden="true" tabindex="-1"></a>on the original 784-dimensional datapoints is 5.75%, the</span>
-<span id="cb6-1075"><a href="#cb6-1075" aria-hidden="true" tabindex="-1"></a>generalization error of a 1-nearest neighbor classifier trained on the</span>
-<span id="cb6-1076"><a href="#cb6-1076" aria-hidden="true" tabindex="-1"></a>two-dimensional data representation produced by t-SNE is only</span>
-<span id="cb6-1077"><a href="#cb6-1077" aria-hidden="true" tabindex="-1"></a>5.13%. The computational requirements of random walk t-SNE are</span>
-<span id="cb6-1078"><a href="#cb6-1078" aria-hidden="true" tabindex="-1"></a>reasonable: it took only one hour of CPU time to construct the map in</span>
-<span id="cb6-1079"><a href="#cb6-1079" aria-hidden="true" tabindex="-1"></a>@fig-random_walk_tsne.</span>
-<span id="cb6-1080"><a href="#cb6-1080" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1081"><a href="#cb6-1081" aria-hidden="true" tabindex="-1"></a><span class="ot">[^knn]: </span>In preliminary experiments, we found the performance of random</span>
-<span id="cb6-1082"><a href="#cb6-1082" aria-hidden="true" tabindex="-1"></a>    walk t-SNE to be very robust under changes of $k$.</span>
-<span id="cb6-1083"><a href="#cb6-1083" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1084"><a href="#cb6-1084" aria-hidden="true" tabindex="-1"></a><span class="fu"># Discussion {#sec-discussion}</span></span>
-<span id="cb6-1085"><a href="#cb6-1085" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1086"><a href="#cb6-1086" aria-hidden="true" tabindex="-1"></a>The results in the previous two sections (and those in the</span>
-<span id="cb6-1087"><a href="#cb6-1087" aria-hidden="true" tabindex="-1"></a>supplemental material) demonstrate the performance of t-SNE on a wide</span>
-<span id="cb6-1088"><a href="#cb6-1088" aria-hidden="true" tabindex="-1"></a>variety of data sets. In this section, we discuss the differences</span>
-<span id="cb6-1089"><a href="#cb6-1089" aria-hidden="true" tabindex="-1"></a>between t-SNE and other non-parametric techniques</span>
-<span id="cb6-1090"><a href="#cb6-1090" aria-hidden="true" tabindex="-1"></a>(<span class="co">[</span><span class="ot"> 6.1</span><span class="co">](sec-comparison)</span>), and we also discuss a number of</span>
-<span id="cb6-1091"><a href="#cb6-1091" aria-hidden="true" tabindex="-1"></a>weaknesses and possible improvements of t-SNE</span>
-<span id="cb6-1092"><a href="#cb6-1092" aria-hidden="true" tabindex="-1"></a>(<span class="co">[</span><span class="ot"> 6.2</span><span class="co">](sec-weakness)</span>).</span>
-<span id="cb6-1093"><a href="#cb6-1093" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1094"><a href="#cb6-1094" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparison with Related Techniques {#sec-comparison}</span></span>
-<span id="cb6-1095"><a href="#cb6-1095" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1096"><a href="#cb6-1096" aria-hidden="true" tabindex="-1"></a>Classical scaling @torgerson:multidimensional, which is closely</span>
-<span id="cb6-1097"><a href="#cb6-1097" aria-hidden="true" tabindex="-1"></a>related to PCA @mardia:multivariate</span>
-<span id="cb6-1098"><a href="#cb6-1098" aria-hidden="true" tabindex="-1"></a>@williams:connection, finds a linear transformation of the data</span>
-<span id="cb6-1099"><a href="#cb6-1099" aria-hidden="true" tabindex="-1"></a>that minimizes the sum of the squared errors between high-dimensional</span>
-<span id="cb6-1100"><a href="#cb6-1100" aria-hidden="true" tabindex="-1"></a>pairwise distances and their low-dimensional representatives. A linear</span>
-<span id="cb6-1101"><a href="#cb6-1101" aria-hidden="true" tabindex="-1"></a>method such as classical scaling is not good at modeling curved</span>
-<span id="cb6-1102"><a href="#cb6-1102" aria-hidden="true" tabindex="-1"></a>manifolds and it focuses on preserving the distances between widely</span>
-<span id="cb6-1103"><a href="#cb6-1103" aria-hidden="true" tabindex="-1"></a>separated datapoints rather than on preserving the distances between</span>
-<span id="cb6-1104"><a href="#cb6-1104" aria-hidden="true" tabindex="-1"></a>nearby datapoints. An important approach that attempts to address the</span>
-<span id="cb6-1105"><a href="#cb6-1105" aria-hidden="true" tabindex="-1"></a>problems of classical scaling is the Sammon mapping</span>
-<span id="cb6-1106"><a href="#cb6-1106" aria-hidden="true" tabindex="-1"></a>@sammon:nonlinear which alters the cost function of classical</span>
-<span id="cb6-1107"><a href="#cb6-1107" aria-hidden="true" tabindex="-1"></a>scaling by dividing the squared error in the representation of each</span>
-<span id="cb6-1108"><a href="#cb6-1108" aria-hidden="true" tabindex="-1"></a>pairwise Euclidean distance by the original Euclidean distance in the</span>
-<span id="cb6-1109"><a href="#cb6-1109" aria-hidden="true" tabindex="-1"></a>high-dimensional space. The resulting cost function is given by</span>
-<span id="cb6-1110"><a href="#cb6-1110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1111"><a href="#cb6-1111" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1112"><a href="#cb6-1112" aria-hidden="true" tabindex="-1"></a>    C = \frac{1}{\sum_{ij} \|x_i - x_j\|} \sum_{i \neq j} \frac{\left(\|x_i - x_j\| - \|x_i - x_j\|\right)^2}{\|x_i - x_j\|}\,</span>
-<span id="cb6-1113"><a href="#cb6-1113" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1114"><a href="#cb6-1114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1115"><a href="#cb6-1115" aria-hidden="true" tabindex="-1"></a>where the constant outside of the sum is added in order to simplify</span>
-<span id="cb6-1116"><a href="#cb6-1116" aria-hidden="true" tabindex="-1"></a>the derivation of the gradient.  The main weakness of the Sammon cost</span>
-<span id="cb6-1117"><a href="#cb6-1117" aria-hidden="true" tabindex="-1"></a>function is that the importance of retaining small pairwise distances</span>
-<span id="cb6-1118"><a href="#cb6-1118" aria-hidden="true" tabindex="-1"></a>in the map is largely dependent on small differences in these pairwise</span>
-<span id="cb6-1119"><a href="#cb6-1119" aria-hidden="true" tabindex="-1"></a>distances. In particular, a small error in the model of two</span>
-<span id="cb6-1120"><a href="#cb6-1120" aria-hidden="true" tabindex="-1"></a>high-dimensional points that are extremely close together results in a</span>
-<span id="cb6-1121"><a href="#cb6-1121" aria-hidden="true" tabindex="-1"></a>large contribution to the cost function. Since all small pairwise</span>
-<span id="cb6-1122"><a href="#cb6-1122" aria-hidden="true" tabindex="-1"></a>distances constitute the local structure of the data, it seems more</span>
-<span id="cb6-1123"><a href="#cb6-1123" aria-hidden="true" tabindex="-1"></a>appropriate to aim to assign approximately equal importance to all</span>
-<span id="cb6-1124"><a href="#cb6-1124" aria-hidden="true" tabindex="-1"></a>small pairwise distances.</span>
-<span id="cb6-1125"><a href="#cb6-1125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1126"><a href="#cb6-1126" aria-hidden="true" tabindex="-1"></a>In contrast to Sammon mapping, the Gaussian kernel employed in the</span>
-<span id="cb6-1127"><a href="#cb6-1127" aria-hidden="true" tabindex="-1"></a>high-dimensional space by t-SNE defines a soft border between the</span>
-<span id="cb6-1128"><a href="#cb6-1128" aria-hidden="true" tabindex="-1"></a>local and global structure of the data and for pairs of datapoints</span>
-<span id="cb6-1129"><a href="#cb6-1129" aria-hidden="true" tabindex="-1"></a>that are close together relative to the standard deviation of the</span>
-<span id="cb6-1130"><a href="#cb6-1130" aria-hidden="true" tabindex="-1"></a>Gaussian, the importance of modeling their separations is almost</span>
-<span id="cb6-1131"><a href="#cb6-1131" aria-hidden="true" tabindex="-1"></a>independent of the magnitudes of those separations. Moreover, t-SNE</span>
-<span id="cb6-1132"><a href="#cb6-1132" aria-hidden="true" tabindex="-1"></a>determines the local neighborhood size for each datapoint separately</span>
-<span id="cb6-1133"><a href="#cb6-1133" aria-hidden="true" tabindex="-1"></a>based on the local density of the data (by forcing each conditional</span>
-<span id="cb6-1134"><a href="#cb6-1134" aria-hidden="true" tabindex="-1"></a>probability distribution $P_i$ to have the same perplexity).</span>
-<span id="cb6-1135"><a href="#cb6-1135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1136"><a href="#cb6-1136" aria-hidden="true" tabindex="-1"></a>The strong performance of t-SNE compared to Isomap is partly explained</span>
-<span id="cb6-1137"><a href="#cb6-1137" aria-hidden="true" tabindex="-1"></a>by Isomap’s susceptibility to “short-circuiting”. Also, Isomap mainly</span>
-<span id="cb6-1138"><a href="#cb6-1138" aria-hidden="true" tabindex="-1"></a>focuses on modeling large geodesic distances rather than small ones.</span>
-<span id="cb6-1139"><a href="#cb6-1139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1140"><a href="#cb6-1140" aria-hidden="true" tabindex="-1"></a>The strong performance of t-SNE compared to LLE is mainly due to a</span>
-<span id="cb6-1141"><a href="#cb6-1141" aria-hidden="true" tabindex="-1"></a>basic weakness of LLE: the only thing that prevents all datapoints</span>
-<span id="cb6-1142"><a href="#cb6-1142" aria-hidden="true" tabindex="-1"></a>from collapsing onto a single point is a constraint on the covariance</span>
-<span id="cb6-1143"><a href="#cb6-1143" aria-hidden="true" tabindex="-1"></a>of the low-dimensional representation. In practice, this constraint is</span>
-<span id="cb6-1144"><a href="#cb6-1144" aria-hidden="true" tabindex="-1"></a>often satisfied by placing most of the map points near the center of</span>
-<span id="cb6-1145"><a href="#cb6-1145" aria-hidden="true" tabindex="-1"></a>the map and using a few widely scattered points to create large</span>
-<span id="cb6-1146"><a href="#cb6-1146" aria-hidden="true" tabindex="-1"></a>covariance (see Figure FIXME). For neighborhood graphs that are almost</span>
-<span id="cb6-1147"><a href="#cb6-1147" aria-hidden="true" tabindex="-1"></a>disconnected, the covariance constraint can also be satisfied by a</span>
-<span id="cb6-1148"><a href="#cb6-1148" aria-hidden="true" tabindex="-1"></a>“curdled” map in which there are a few widely separated, collapsed</span>
-<span id="cb6-1149"><a href="#cb6-1149" aria-hidden="true" tabindex="-1"></a>subsets corresponding to the almost disconnected components.</span>
-<span id="cb6-1150"><a href="#cb6-1150" aria-hidden="true" tabindex="-1"></a>Furthermore, neighborhood-graph based techniques (such as Isomap and</span>
-<span id="cb6-1151"><a href="#cb6-1151" aria-hidden="true" tabindex="-1"></a>LLE) are not capable of visualizing data that consists of two or more</span>
-<span id="cb6-1152"><a href="#cb6-1152" aria-hidden="true" tabindex="-1"></a>widely separated submanifolds, because such data does not give rise to</span>
-<span id="cb6-1153"><a href="#cb6-1153" aria-hidden="true" tabindex="-1"></a>a connected neighborhood graph. It is possible to produce a separate</span>
-<span id="cb6-1154"><a href="#cb6-1154" aria-hidden="true" tabindex="-1"></a>map for each connected component, but this loses information about the</span>
-<span id="cb6-1155"><a href="#cb6-1155" aria-hidden="true" tabindex="-1"></a>relative similarities of the separate components.</span>
-<span id="cb6-1156"><a href="#cb6-1156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1157"><a href="#cb6-1157" aria-hidden="true" tabindex="-1"></a>Like Isomap and LLE, the random walk version of t-SNE employs</span>
-<span id="cb6-1158"><a href="#cb6-1158" aria-hidden="true" tabindex="-1"></a>neighborhood graphs, but it does not suffer from short-circuiting</span>
-<span id="cb6-1159"><a href="#cb6-1159" aria-hidden="true" tabindex="-1"></a>problems because the pairwise similarities between the highdimensional</span>
-<span id="cb6-1160"><a href="#cb6-1160" aria-hidden="true" tabindex="-1"></a>datapoints are computed by integrating over all paths through the</span>
-<span id="cb6-1161"><a href="#cb6-1161" aria-hidden="true" tabindex="-1"></a>neighborhood graph.  Because of the diffusion-based interpretation of</span>
-<span id="cb6-1162"><a href="#cb6-1162" aria-hidden="true" tabindex="-1"></a>the conditional probabilities underlying the random walk version of</span>
-<span id="cb6-1163"><a href="#cb6-1163" aria-hidden="true" tabindex="-1"></a>t-SNE, it is useful to compare t-SNE to diffusion maps. Diffusion maps</span>
-<span id="cb6-1164"><a href="#cb6-1164" aria-hidden="true" tabindex="-1"></a>define a "diffusion distance" on the high-dimensional datapoints that</span>
-<span id="cb6-1165"><a href="#cb6-1165" aria-hidden="true" tabindex="-1"></a>is given by</span>
-<span id="cb6-1166"><a href="#cb6-1166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1167"><a href="#cb6-1167" aria-hidden="true" tabindex="-1"></a>$$ </span>
-<span id="cb6-1168"><a href="#cb6-1168" aria-hidden="true" tabindex="-1"></a>D^{(t)}(x_i,x_j) = \sqrt{ \sum_{k} \frac{\left(p^{(t)}_{ik} -</span>
-<span id="cb6-1169"><a href="#cb6-1169" aria-hidden="true" tabindex="-1"></a>p^{(t)}_{jk}\right)^2)}{\psi(x_k)^{(0)}} }\,</span>
-<span id="cb6-1170"><a href="#cb6-1170" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1171"><a href="#cb6-1171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1172"><a href="#cb6-1172" aria-hidden="true" tabindex="-1"></a>where $p^{(t)}_{ij}$ represents the probability of a particle</span>
-<span id="cb6-1173"><a href="#cb6-1173" aria-hidden="true" tabindex="-1"></a>traveling from $x_i$ to $x_j$ in $t$ timesteps through a graph on the</span>
-<span id="cb6-1174"><a href="#cb6-1174" aria-hidden="true" tabindex="-1"></a>data with Gaussian emission probabilities. The term $\psi(x_k)^{(0)}$</span>
-<span id="cb6-1175"><a href="#cb6-1175" aria-hidden="true" tabindex="-1"></a>is a measure for the local density of the points, and serves a similar</span>
-<span id="cb6-1176"><a href="#cb6-1176" aria-hidden="true" tabindex="-1"></a>purpose to the fixed perplexity Gaussian kernel that is employed in</span>
-<span id="cb6-1177"><a href="#cb6-1177" aria-hidden="true" tabindex="-1"></a>SNE. The diffusion map is formed by the principal non-trivial</span>
-<span id="cb6-1178"><a href="#cb6-1178" aria-hidden="true" tabindex="-1"></a>eigenvectors of the Markov matrix of the random walks of length</span>
-<span id="cb6-1179"><a href="#cb6-1179" aria-hidden="true" tabindex="-1"></a>$t$. It can be shown that when all $(n−1)$ non-trivial eigenvectors</span>
-<span id="cb6-1180"><a href="#cb6-1180" aria-hidden="true" tabindex="-1"></a>are employed, the Euclidean distances in the diffusion map are equal</span>
-<span id="cb6-1181"><a href="#cb6-1181" aria-hidden="true" tabindex="-1"></a>to the diffusion distances in the high-dimensional data representation</span>
-<span id="cb6-1182"><a href="#cb6-1182" aria-hidden="true" tabindex="-1"></a>@lafon:diffusion. Mathematically, diffusion maps minimize</span>
-<span id="cb6-1183"><a href="#cb6-1183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1184"><a href="#cb6-1184" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1185"><a href="#cb6-1185" aria-hidden="true" tabindex="-1"></a>C = \sum_i \sum_j \left(D^{(t)}(x_i,x_j) - \|y_i-y_j\|\right)^2</span>
-<span id="cb6-1186"><a href="#cb6-1186" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1187"><a href="#cb6-1187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1188"><a href="#cb6-1188" aria-hidden="true" tabindex="-1"></a>As a result, diffusion maps are susceptible to the same problems as</span>
-<span id="cb6-1189"><a href="#cb6-1189" aria-hidden="true" tabindex="-1"></a>classical scaling: they assign much higher importance to modeling the</span>
-<span id="cb6-1190"><a href="#cb6-1190" aria-hidden="true" tabindex="-1"></a>large pairwise diffusion distances than the small ones and as a</span>
-<span id="cb6-1191"><a href="#cb6-1191" aria-hidden="true" tabindex="-1"></a>result, they are not good at retaining the local structure of the</span>
-<span id="cb6-1192"><a href="#cb6-1192" aria-hidden="true" tabindex="-1"></a>data. Moreover, in contrast to the random walk version of t-SNE,</span>
-<span id="cb6-1193"><a href="#cb6-1193" aria-hidden="true" tabindex="-1"></a>diffusion maps do not have a natural way of selecting the length, $t$,</span>
-<span id="cb6-1194"><a href="#cb6-1194" aria-hidden="true" tabindex="-1"></a>of the random walks.</span>
-<span id="cb6-1195"><a href="#cb6-1195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1196"><a href="#cb6-1196" aria-hidden="true" tabindex="-1"></a>In the supplemental material, we present results that reveal that</span>
-<span id="cb6-1197"><a href="#cb6-1197" aria-hidden="true" tabindex="-1"></a>t-SNE outperforms CCA @demartines:curvilinear, MVU</span>
-<span id="cb6-1198"><a href="#cb6-1198" aria-hidden="true" tabindex="-1"></a>@weinberger:learning, and Laplacian Eigenmaps</span>
-<span id="cb6-1199"><a href="#cb6-1199" aria-hidden="true" tabindex="-1"></a>@belkin:laplacian as well. For CCA and the closely related CDA</span>
-<span id="cb6-1200"><a href="#cb6-1200" aria-hidden="true" tabindex="-1"></a>@lee:robust, these results can be partially explained by the</span>
-<span id="cb6-1201"><a href="#cb6-1201" aria-hidden="true" tabindex="-1"></a>hard border $\lambda$ that these techniques define between local and global</span>
-<span id="cb6-1202"><a href="#cb6-1202" aria-hidden="true" tabindex="-1"></a>structure, as opposed to the soft border of t-SNE. Moreover, within</span>
-<span id="cb6-1203"><a href="#cb6-1203" aria-hidden="true" tabindex="-1"></a>the range $\lambda$, CCA suffers from the same weakness as Sammon mapping: it</span>
-<span id="cb6-1204"><a href="#cb6-1204" aria-hidden="true" tabindex="-1"></a>assigns extremely high importance to modeling the distance between two</span>
-<span id="cb6-1205"><a href="#cb6-1205" aria-hidden="true" tabindex="-1"></a>datapoints that are extremely close.</span>
-<span id="cb6-1206"><a href="#cb6-1206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1207"><a href="#cb6-1207" aria-hidden="true" tabindex="-1"></a>Like t-SNE, MVU @weinberger:learning tries to model all of the</span>
-<span id="cb6-1208"><a href="#cb6-1208" aria-hidden="true" tabindex="-1"></a>small separations well but MVU insists on modeling them perfectly</span>
-<span id="cb6-1209"><a href="#cb6-1209" aria-hidden="true" tabindex="-1"></a>(i.e., it treats them as constraints) and a single erroneous</span>
-<span id="cb6-1210"><a href="#cb6-1210" aria-hidden="true" tabindex="-1"></a>constraint may severely affect the performance of MVU. This can occur</span>
-<span id="cb6-1211"><a href="#cb6-1211" aria-hidden="true" tabindex="-1"></a>when there is a short-circuit between two parts of a curved manifold</span>
-<span id="cb6-1212"><a href="#cb6-1212" aria-hidden="true" tabindex="-1"></a>that are far apart in the intrinsic manifold coordinates. Also, MVU</span>
-<span id="cb6-1213"><a href="#cb6-1213" aria-hidden="true" tabindex="-1"></a>makes no attempt to model longer range structure: It simply pulls the</span>
-<span id="cb6-1214"><a href="#cb6-1214" aria-hidden="true" tabindex="-1"></a>map points as far apart as possible subject to the hard constraints</span>
-<span id="cb6-1215"><a href="#cb6-1215" aria-hidden="true" tabindex="-1"></a>so, unlike t-SNE, it cannot be expected to produce sensible</span>
-<span id="cb6-1216"><a href="#cb6-1216" aria-hidden="true" tabindex="-1"></a>large-scale structure in the map.</span>
-<span id="cb6-1217"><a href="#cb6-1217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1218"><a href="#cb6-1218" aria-hidden="true" tabindex="-1"></a>For Laplacian Eigenmaps, the poor results relative to t-SNE may be</span>
-<span id="cb6-1219"><a href="#cb6-1219" aria-hidden="true" tabindex="-1"></a>explained by the fact that Laplacian Eigenmaps have the same</span>
-<span id="cb6-1220"><a href="#cb6-1220" aria-hidden="true" tabindex="-1"></a>covariance constraint as LLE, and it is easy to cheat on this</span>
-<span id="cb6-1221"><a href="#cb6-1221" aria-hidden="true" tabindex="-1"></a>constraint.</span>
-<span id="cb6-1222"><a href="#cb6-1222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1223"><a href="#cb6-1223" aria-hidden="true" tabindex="-1"></a><span class="fu">## Weakness {#sec-weakness}</span></span>
-<span id="cb6-1224"><a href="#cb6-1224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1225"><a href="#cb6-1225" aria-hidden="true" tabindex="-1"></a>Although we have shown that t-SNE comparesfavorably to other</span>
-<span id="cb6-1226"><a href="#cb6-1226" aria-hidden="true" tabindex="-1"></a>techniquesfor data visualization, tSNE has three potential weaknesses:</span>
-<span id="cb6-1227"><a href="#cb6-1227" aria-hidden="true" tabindex="-1"></a>(1) it is unclear how t-SNE performs on general dimensionality</span>
-<span id="cb6-1228"><a href="#cb6-1228" aria-hidden="true" tabindex="-1"></a>reduction tasks, (2) the relatively local nature of t-SNE makes it</span>
-<span id="cb6-1229"><a href="#cb6-1229" aria-hidden="true" tabindex="-1"></a>sensitive to the curse of the intrinsic dimensionality of the data,</span>
-<span id="cb6-1230"><a href="#cb6-1230" aria-hidden="true" tabindex="-1"></a>and (3) t-SNE is not guaranteed to converge to a global optimum of its</span>
-<span id="cb6-1231"><a href="#cb6-1231" aria-hidden="true" tabindex="-1"></a>cost function. Below, we discuss the three weaknesses in more detail.</span>
-<span id="cb6-1232"><a href="#cb6-1232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1233"><a href="#cb6-1233" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>*Dimensionality reduction for other purposes.* It is not obvious</span>
-<span id="cb6-1234"><a href="#cb6-1234" aria-hidden="true" tabindex="-1"></a>how t-SNE will perform on the more general task of dimensionality</span>
-<span id="cb6-1235"><a href="#cb6-1235" aria-hidden="true" tabindex="-1"></a>reduction (i.e., when the dimensionality of the data is not reduced to</span>
-<span id="cb6-1236"><a href="#cb6-1236" aria-hidden="true" tabindex="-1"></a>two or three, but to $d &gt; 3$ dimensions). To simplify evaluation issues,</span>
-<span id="cb6-1237"><a href="#cb6-1237" aria-hidden="true" tabindex="-1"></a>this paper only considers the use of t-SNE for data visualization. The</span>
-<span id="cb6-1238"><a href="#cb6-1238" aria-hidden="true" tabindex="-1"></a>behavior of t-SNE when reducing data to two or three dimensions cannot</span>
-<span id="cb6-1239"><a href="#cb6-1239" aria-hidden="true" tabindex="-1"></a>readily be extrapolated to $d &gt; 3$ dimensions because of the heavy tails</span>
-<span id="cb6-1240"><a href="#cb6-1240" aria-hidden="true" tabindex="-1"></a>of the Student-t distribution. In high-dimensional spaces, the heavy</span>
-<span id="cb6-1241"><a href="#cb6-1241" aria-hidden="true" tabindex="-1"></a>tails comprise a relatively large portion of the probability mass</span>
-<span id="cb6-1242"><a href="#cb6-1242" aria-hidden="true" tabindex="-1"></a>under the Student-t distribution, which might lead to d-dimensional</span>
-<span id="cb6-1243"><a href="#cb6-1243" aria-hidden="true" tabindex="-1"></a>data representations that do not preserve the local structure of the</span>
-<span id="cb6-1244"><a href="#cb6-1244" aria-hidden="true" tabindex="-1"></a>data as well. Hence, for tasks in which the dimensionality of the data</span>
-<span id="cb6-1245"><a href="#cb6-1245" aria-hidden="true" tabindex="-1"></a>needs to be reduced to a dimensionality higher than three, Student</span>
-<span id="cb6-1246"><a href="#cb6-1246" aria-hidden="true" tabindex="-1"></a>t-distributions with more than one degree of freedom10 are likely to</span>
-<span id="cb6-1247"><a href="#cb6-1247" aria-hidden="true" tabindex="-1"></a>be more appropriate.</span>
-<span id="cb6-1248"><a href="#cb6-1248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1249"><a href="#cb6-1249" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>*Curse of intrinsic dimensionality.* t-SNE reduces the</span>
-<span id="cb6-1250"><a href="#cb6-1250" aria-hidden="true" tabindex="-1"></a>dimensionality of data mainly based on local properties of the data,</span>
-<span id="cb6-1251"><a href="#cb6-1251" aria-hidden="true" tabindex="-1"></a>which makes t-SNE sensitive to the curse of the intrinsic</span>
-<span id="cb6-1252"><a href="#cb6-1252" aria-hidden="true" tabindex="-1"></a>dimensionality of the data @bengio:learning. In data sets with</span>
-<span id="cb6-1253"><a href="#cb6-1253" aria-hidden="true" tabindex="-1"></a>a high intrinsic dimensionality and an underlying manifold that is</span>
-<span id="cb6-1254"><a href="#cb6-1254" aria-hidden="true" tabindex="-1"></a>highly varying, the local linearity assumption on the manifold that</span>
-<span id="cb6-1255"><a href="#cb6-1255" aria-hidden="true" tabindex="-1"></a>t-SNE implicitly makes (by employing Euclidean distances between near</span>
-<span id="cb6-1256"><a href="#cb6-1256" aria-hidden="true" tabindex="-1"></a>neighbors) may be violated. As a result, t-SNE might be less</span>
-<span id="cb6-1257"><a href="#cb6-1257" aria-hidden="true" tabindex="-1"></a>successful if it is applied on data sets with a very high intrinsic</span>
-<span id="cb6-1258"><a href="#cb6-1258" aria-hidden="true" tabindex="-1"></a>dimensionality (for instance, a recent study by @meytlis:face</span>
-<span id="cb6-1259"><a href="#cb6-1259" aria-hidden="true" tabindex="-1"></a>estimates the space of images of faces to be constituted of</span>
-<span id="cb6-1260"><a href="#cb6-1260" aria-hidden="true" tabindex="-1"></a>approximately 100 dimensions). Manifold learners such as Isomap and</span>
-<span id="cb6-1261"><a href="#cb6-1261" aria-hidden="true" tabindex="-1"></a>LLE suffer from exactly the same problems (see, e.g.,</span>
-<span id="cb6-1262"><a href="#cb6-1262" aria-hidden="true" tabindex="-1"></a>@bengio:learning; @vandermaaten:comparison ).  A</span>
-<span id="cb6-1263"><a href="#cb6-1263" aria-hidden="true" tabindex="-1"></a>possible way to (partially) address this issue is by performing t-SNE</span>
-<span id="cb6-1264"><a href="#cb6-1264" aria-hidden="true" tabindex="-1"></a>on a data representation obtained from a model that represents the</span>
-<span id="cb6-1265"><a href="#cb6-1265" aria-hidden="true" tabindex="-1"></a>highly varying data manifold efficiently in a number of nonlinear</span>
-<span id="cb6-1266"><a href="#cb6-1266" aria-hidden="true" tabindex="-1"></a>layers such as an autoencoder @hinton:reducing. Such deep-layer</span>
-<span id="cb6-1267"><a href="#cb6-1267" aria-hidden="true" tabindex="-1"></a>architectures can represent complex nonlinear functions in a much</span>
-<span id="cb6-1268"><a href="#cb6-1268" aria-hidden="true" tabindex="-1"></a>simpler way, and as a result, require fewer datapoints to learn an</span>
-<span id="cb6-1269"><a href="#cb6-1269" aria-hidden="true" tabindex="-1"></a>appropriate solution (as is illustrated for a d-bits parity task by</span>
-<span id="cb6-1270"><a href="#cb6-1270" aria-hidden="true" tabindex="-1"></a>@bengio:learning). Performing t-SNE on a data representation</span>
-<span id="cb6-1271"><a href="#cb6-1271" aria-hidden="true" tabindex="-1"></a>produced by, for example, an autoencoder is likely to improve the</span>
-<span id="cb6-1272"><a href="#cb6-1272" aria-hidden="true" tabindex="-1"></a>quality of the constructed visualizations, because autoencoders can</span>
-<span id="cb6-1273"><a href="#cb6-1273" aria-hidden="true" tabindex="-1"></a>identify highly-varying manifolds better than a local method such as</span>
-<span id="cb6-1274"><a href="#cb6-1274" aria-hidden="true" tabindex="-1"></a>t-SNE. However, the reader should note that it is by definition</span>
-<span id="cb6-1275"><a href="#cb6-1275" aria-hidden="true" tabindex="-1"></a>impossible to fully represent the structure of intrinsically</span>
-<span id="cb6-1276"><a href="#cb6-1276" aria-hidden="true" tabindex="-1"></a>high-dimensional data in two or three dimensions.</span>
-<span id="cb6-1277"><a href="#cb6-1277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1278"><a href="#cb6-1278" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>*Non-convexity of the t-SNE cost function.* A nice property of most</span>
-<span id="cb6-1279"><a href="#cb6-1279" aria-hidden="true" tabindex="-1"></a>state-of-the-art dimensionality reduction techniques (such as</span>
-<span id="cb6-1280"><a href="#cb6-1280" aria-hidden="true" tabindex="-1"></a>classical scaling, Isomap, LLE, and diffusion maps) is the convexity</span>
-<span id="cb6-1281"><a href="#cb6-1281" aria-hidden="true" tabindex="-1"></a>of their cost functions. A major weakness of t-SNE is that the cost</span>
-<span id="cb6-1282"><a href="#cb6-1282" aria-hidden="true" tabindex="-1"></a>function is not convex, as a result of which several optimization</span>
-<span id="cb6-1283"><a href="#cb6-1283" aria-hidden="true" tabindex="-1"></a>parameters need to be chosen. The constructed solutions depend on</span>
-<span id="cb6-1284"><a href="#cb6-1284" aria-hidden="true" tabindex="-1"></a>these choices of optimization parameters and may be different each</span>
-<span id="cb6-1285"><a href="#cb6-1285" aria-hidden="true" tabindex="-1"></a>time t-SNE is run from an initial random configuration of map</span>
-<span id="cb6-1286"><a href="#cb6-1286" aria-hidden="true" tabindex="-1"></a>points. We have demonstrated that the same choice of optimization</span>
-<span id="cb6-1287"><a href="#cb6-1287" aria-hidden="true" tabindex="-1"></a>parameters can be used for a variety of different visualization tasks,</span>
-<span id="cb6-1288"><a href="#cb6-1288" aria-hidden="true" tabindex="-1"></a>and we found that the quality of the optima does not vary much from</span>
-<span id="cb6-1289"><a href="#cb6-1289" aria-hidden="true" tabindex="-1"></a>run to run. Therefore, we think that the weakness of the optimization</span>
-<span id="cb6-1290"><a href="#cb6-1290" aria-hidden="true" tabindex="-1"></a>method is insufficient reason to reject t-SNE in favor of methods that</span>
-<span id="cb6-1291"><a href="#cb6-1291" aria-hidden="true" tabindex="-1"></a>lead to convex optimization problems but produce noticeably worse</span>
-<span id="cb6-1292"><a href="#cb6-1292" aria-hidden="true" tabindex="-1"></a>visualizations. A local optimum of a cost function that accurately</span>
-<span id="cb6-1293"><a href="#cb6-1293" aria-hidden="true" tabindex="-1"></a>captures what we want in a visualization is often preferable to the</span>
-<span id="cb6-1294"><a href="#cb6-1294" aria-hidden="true" tabindex="-1"></a>global optimum of a cost function that fails to capture important</span>
-<span id="cb6-1295"><a href="#cb6-1295" aria-hidden="true" tabindex="-1"></a>aspects of what we want. Moreover, the convexity of cost functions can</span>
-<span id="cb6-1296"><a href="#cb6-1296" aria-hidden="true" tabindex="-1"></a>be misleading, because their optimization is often computationally</span>
-<span id="cb6-1297"><a href="#cb6-1297" aria-hidden="true" tabindex="-1"></a>infeasible for large real-world data sets, prompting the use of</span>
-<span id="cb6-1298"><a href="#cb6-1298" aria-hidden="true" tabindex="-1"></a>approximation techniques @desilva:global;</span>
-<span id="cb6-1299"><a href="#cb6-1299" aria-hidden="true" tabindex="-1"></a>@weinberger:graph. Even for LLE and Laplacian Eigenmaps, the</span>
-<span id="cb6-1300"><a href="#cb6-1300" aria-hidden="true" tabindex="-1"></a>optimization is performed using iterative Arnoldi</span>
-<span id="cb6-1301"><a href="#cb6-1301" aria-hidden="true" tabindex="-1"></a>@arnoldi:principle or Jacobi-Davidson @fokkema:jacobi</span>
-<span id="cb6-1302"><a href="#cb6-1302" aria-hidden="true" tabindex="-1"></a>methods, which may fail to find the global optimum due to convergence</span>
-<span id="cb6-1303"><a href="#cb6-1303" aria-hidden="true" tabindex="-1"></a>problems.</span>
-<span id="cb6-1304"><a href="#cb6-1304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1305"><a href="#cb6-1305" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusions {#sec-conclusion}</span></span>
-<span id="cb6-1306"><a href="#cb6-1306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1307"><a href="#cb6-1307" aria-hidden="true" tabindex="-1"></a>The paper presents a new technique for the visualization of similarity</span>
-<span id="cb6-1308"><a href="#cb6-1308" aria-hidden="true" tabindex="-1"></a>data that is capable of retaining the local structure of the data</span>
-<span id="cb6-1309"><a href="#cb6-1309" aria-hidden="true" tabindex="-1"></a>while also revealing some important global structure (such as clusters</span>
-<span id="cb6-1310"><a href="#cb6-1310" aria-hidden="true" tabindex="-1"></a>at multiple scales). Both the computational and the memory complexity</span>
-<span id="cb6-1311"><a href="#cb6-1311" aria-hidden="true" tabindex="-1"></a>of t-SNE are $\mathcal{O}(n^2)$, but we present a landmark approach</span>
-<span id="cb6-1312"><a href="#cb6-1312" aria-hidden="true" tabindex="-1"></a>that makes it possible to successfully visualize large real-world data</span>
-<span id="cb6-1313"><a href="#cb6-1313" aria-hidden="true" tabindex="-1"></a>sets with limited computational demands. Our experiments on a variety</span>
-<span id="cb6-1314"><a href="#cb6-1314" aria-hidden="true" tabindex="-1"></a>of data sets show that t-SNE outperforms existing state-of-the-art</span>
-<span id="cb6-1315"><a href="#cb6-1315" aria-hidden="true" tabindex="-1"></a>techniques for visualizing a variety of real-world data sets. Matlab</span>
-<span id="cb6-1316"><a href="#cb6-1316" aria-hidden="true" tabindex="-1"></a>implementations of both the normal and the random walk version of</span>
-<span id="cb6-1317"><a href="#cb6-1317" aria-hidden="true" tabindex="-1"></a>t-SNE are available for download at</span>
-<span id="cb6-1318"><a href="#cb6-1318" aria-hidden="true" tabindex="-1"></a><span class="ot">&lt;https://lvdmaaten.github.io/tsne/&gt;</span>.  In future work we plan to</span>
-<span id="cb6-1319"><a href="#cb6-1319" aria-hidden="true" tabindex="-1"></a>investigate the optimization of the number of degrees of freedom of</span>
-<span id="cb6-1320"><a href="#cb6-1320" aria-hidden="true" tabindex="-1"></a>the Student-t distribution used in t-SNE. This may be helpful for</span>
-<span id="cb6-1321"><a href="#cb6-1321" aria-hidden="true" tabindex="-1"></a>dimensionality reduction when the low-dimensional representation has</span>
-<span id="cb6-1322"><a href="#cb6-1322" aria-hidden="true" tabindex="-1"></a>many dimensions. We will also investigate the extension of t-SNE to</span>
-<span id="cb6-1323"><a href="#cb6-1323" aria-hidden="true" tabindex="-1"></a>models in which each high-dimensional datapoint is modeled by several</span>
-<span id="cb6-1324"><a href="#cb6-1324" aria-hidden="true" tabindex="-1"></a>low-dimensional map points as in @cook:visualizing. Also, we</span>
-<span id="cb6-1325"><a href="#cb6-1325" aria-hidden="true" tabindex="-1"></a>aim to develop a parametric version of t-SNE that allows for</span>
-<span id="cb6-1326"><a href="#cb6-1326" aria-hidden="true" tabindex="-1"></a>generalization to held-out test data by using the t-SNE objective</span>
-<span id="cb6-1327"><a href="#cb6-1327" aria-hidden="true" tabindex="-1"></a>function to train a multilayer neural network that provides an</span>
-<span id="cb6-1328"><a href="#cb6-1328" aria-hidden="true" tabindex="-1"></a>explicit mapping to the low-dimensional space</span>
-<span id="cb6-1329"><a href="#cb6-1329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1330"><a href="#cb6-1330" aria-hidden="true" tabindex="-1"></a><span class="fu"># Acknowledgments {.unnumbered}</span></span>
-<span id="cb6-1331"><a href="#cb6-1331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1332"><a href="#cb6-1332" aria-hidden="true" tabindex="-1"></a>The authors thank Sam Roweis for many helpful discussions, Andriy Mnih</span>
-<span id="cb6-1333"><a href="#cb6-1333" aria-hidden="true" tabindex="-1"></a>for supplying the wordfeatures data set, Ruslan Salakhutdinov for help</span>
-<span id="cb6-1334"><a href="#cb6-1334" aria-hidden="true" tabindex="-1"></a>with the Netflix data set (results for these data sets are presented</span>
-<span id="cb6-1335"><a href="#cb6-1335" aria-hidden="true" tabindex="-1"></a>in the supplemental material), and Guido de Croon for pointing us to</span>
-<span id="cb6-1336"><a href="#cb6-1336" aria-hidden="true" tabindex="-1"></a>the analytical solution of the random walk probabilities.</span>
+<span id="cb6-1056"><a href="#cb6-1056" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1057"><a href="#cb6-1057" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Note of the editor</span><span class="co">]</span> Please note that this dataset is too large for the code</span>
+<span id="cb6-1058"><a href="#cb6-1058" aria-hidden="true" tabindex="-1"></a>to be processed through continuous integration. You can find the code to</span>
+<span id="cb6-1059"><a href="#cb6-1059" aria-hidden="true" tabindex="-1"></a>reproduce this plot on</span>
+<span id="cb6-1060"><a href="#cb6-1060" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">github</span><span class="co">](https://github.com/computorg/published-paper-tsne/tree/main/scripts)</span></span>
+<span id="cb6-1061"><a href="#cb6-1061" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1062"><a href="#cb6-1062" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-1063"><a href="#cb6-1063" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1064"><a href="#cb6-1064" aria-hidden="true" tabindex="-1"></a>@fig-random_walk_tsne shows the results of an experiment, in which we</span>
+<span id="cb6-1065"><a href="#cb6-1065" aria-hidden="true" tabindex="-1"></a>applied the random walk version of t-SNE to 6,000 randomly selected</span>
+<span id="cb6-1066"><a href="#cb6-1066" aria-hidden="true" tabindex="-1"></a>digits from the MNIST data set, using all 60,000 digits to compute the</span>
+<span id="cb6-1067"><a href="#cb6-1067" aria-hidden="true" tabindex="-1"></a>pairwise affinities $p_{j|i}$. In the experiment, we used a</span>
+<span id="cb6-1068"><a href="#cb6-1068" aria-hidden="true" tabindex="-1"></a>neighborhood graph that was constructed using a value of $k = 20$</span>
+<span id="cb6-1069"><a href="#cb6-1069" aria-hidden="true" tabindex="-1"></a>nearest neighbors.<span class="ot">[^knn]</span> The inset of the figure shows the same</span>
+<span id="cb6-1070"><a href="#cb6-1070" aria-hidden="true" tabindex="-1"></a>visualization as a scatterplot in which the colors represent the</span>
+<span id="cb6-1071"><a href="#cb6-1071" aria-hidden="true" tabindex="-1"></a>labels of the digits. In the t-SNE map, all classes are clearly</span>
+<span id="cb6-1072"><a href="#cb6-1072" aria-hidden="true" tabindex="-1"></a>separated and the "continental" sevens form a small separate cluster.</span>
+<span id="cb6-1073"><a href="#cb6-1073" aria-hidden="true" tabindex="-1"></a>Moreover, t-SNE reveals the main dimensions of variation within each</span>
+<span id="cb6-1074"><a href="#cb6-1074" aria-hidden="true" tabindex="-1"></a>class, such as the orientation of the ones, fours, sevens, and nines,</span>
+<span id="cb6-1075"><a href="#cb6-1075" aria-hidden="true" tabindex="-1"></a>or the "loopiness" of the twos. The strong performance of t-SNE is</span>
+<span id="cb6-1076"><a href="#cb6-1076" aria-hidden="true" tabindex="-1"></a>also reflected in the generalization error of nearest neighbor</span>
+<span id="cb6-1077"><a href="#cb6-1077" aria-hidden="true" tabindex="-1"></a>classifiers that are trained on the low-dimensional</span>
+<span id="cb6-1078"><a href="#cb6-1078" aria-hidden="true" tabindex="-1"></a>representation. Whereas the generalization error (measured using</span>
+<span id="cb6-1079"><a href="#cb6-1079" aria-hidden="true" tabindex="-1"></a>10-fold cross validation) of a 1-nearest neighbor classifier trained</span>
+<span id="cb6-1080"><a href="#cb6-1080" aria-hidden="true" tabindex="-1"></a>on the original 784-dimensional datapoints is 5.75%, the</span>
+<span id="cb6-1081"><a href="#cb6-1081" aria-hidden="true" tabindex="-1"></a>generalization error of a 1-nearest neighbor classifier trained on the</span>
+<span id="cb6-1082"><a href="#cb6-1082" aria-hidden="true" tabindex="-1"></a>two-dimensional data representation produced by t-SNE is only</span>
+<span id="cb6-1083"><a href="#cb6-1083" aria-hidden="true" tabindex="-1"></a>5.13%. The computational requirements of random walk t-SNE are</span>
+<span id="cb6-1084"><a href="#cb6-1084" aria-hidden="true" tabindex="-1"></a>reasonable: it took only one hour of CPU time to construct the map in</span>
+<span id="cb6-1085"><a href="#cb6-1085" aria-hidden="true" tabindex="-1"></a>@fig-random_walk_tsne.</span>
+<span id="cb6-1086"><a href="#cb6-1086" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1087"><a href="#cb6-1087" aria-hidden="true" tabindex="-1"></a><span class="ot">[^knn]: </span>In preliminary experiments, we found the performance of random</span>
+<span id="cb6-1088"><a href="#cb6-1088" aria-hidden="true" tabindex="-1"></a>    walk t-SNE to be very robust under changes of $k$.</span>
+<span id="cb6-1089"><a href="#cb6-1089" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1090"><a href="#cb6-1090" aria-hidden="true" tabindex="-1"></a><span class="fu"># Discussion {#sec-discussion}</span></span>
+<span id="cb6-1091"><a href="#cb6-1091" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1092"><a href="#cb6-1092" aria-hidden="true" tabindex="-1"></a>The results in the previous two sections (and those in the</span>
+<span id="cb6-1093"><a href="#cb6-1093" aria-hidden="true" tabindex="-1"></a>supplemental material) demonstrate the performance of t-SNE on a wide</span>
+<span id="cb6-1094"><a href="#cb6-1094" aria-hidden="true" tabindex="-1"></a>variety of data sets. In this section, we discuss the differences</span>
+<span id="cb6-1095"><a href="#cb6-1095" aria-hidden="true" tabindex="-1"></a>between t-SNE and other non-parametric techniques</span>
+<span id="cb6-1096"><a href="#cb6-1096" aria-hidden="true" tabindex="-1"></a>(<span class="co">[</span><span class="ot"> 6.1</span><span class="co">](sec-comparison)</span>), and we also discuss a number of</span>
+<span id="cb6-1097"><a href="#cb6-1097" aria-hidden="true" tabindex="-1"></a>weaknesses and possible improvements of t-SNE</span>
+<span id="cb6-1098"><a href="#cb6-1098" aria-hidden="true" tabindex="-1"></a>(<span class="co">[</span><span class="ot"> 6.2</span><span class="co">](sec-weakness)</span>).</span>
+<span id="cb6-1099"><a href="#cb6-1099" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1100"><a href="#cb6-1100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparison with Related Techniques {#sec-comparison}</span></span>
+<span id="cb6-1101"><a href="#cb6-1101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1102"><a href="#cb6-1102" aria-hidden="true" tabindex="-1"></a>Classical scaling @torgerson:multidimensional, which is closely</span>
+<span id="cb6-1103"><a href="#cb6-1103" aria-hidden="true" tabindex="-1"></a>related to PCA @mardia:multivariate</span>
+<span id="cb6-1104"><a href="#cb6-1104" aria-hidden="true" tabindex="-1"></a>@williams:connection, finds a linear transformation of the data</span>
+<span id="cb6-1105"><a href="#cb6-1105" aria-hidden="true" tabindex="-1"></a>that minimizes the sum of the squared errors between high-dimensional</span>
+<span id="cb6-1106"><a href="#cb6-1106" aria-hidden="true" tabindex="-1"></a>pairwise distances and their low-dimensional representatives. A linear</span>
+<span id="cb6-1107"><a href="#cb6-1107" aria-hidden="true" tabindex="-1"></a>method such as classical scaling is not good at modeling curved</span>
+<span id="cb6-1108"><a href="#cb6-1108" aria-hidden="true" tabindex="-1"></a>manifolds and it focuses on preserving the distances between widely</span>
+<span id="cb6-1109"><a href="#cb6-1109" aria-hidden="true" tabindex="-1"></a>separated datapoints rather than on preserving the distances between</span>
+<span id="cb6-1110"><a href="#cb6-1110" aria-hidden="true" tabindex="-1"></a>nearby datapoints. An important approach that attempts to address the</span>
+<span id="cb6-1111"><a href="#cb6-1111" aria-hidden="true" tabindex="-1"></a>problems of classical scaling is the Sammon mapping</span>
+<span id="cb6-1112"><a href="#cb6-1112" aria-hidden="true" tabindex="-1"></a>@sammon:nonlinear which alters the cost function of classical</span>
+<span id="cb6-1113"><a href="#cb6-1113" aria-hidden="true" tabindex="-1"></a>scaling by dividing the squared error in the representation of each</span>
+<span id="cb6-1114"><a href="#cb6-1114" aria-hidden="true" tabindex="-1"></a>pairwise Euclidean distance by the original Euclidean distance in the</span>
+<span id="cb6-1115"><a href="#cb6-1115" aria-hidden="true" tabindex="-1"></a>high-dimensional space. The resulting cost function is given by</span>
+<span id="cb6-1116"><a href="#cb6-1116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1117"><a href="#cb6-1117" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1118"><a href="#cb6-1118" aria-hidden="true" tabindex="-1"></a>    C = \frac{1}{\sum_{ij} \|x_i - x_j\|} \sum_{i \neq j} \frac{\left(\|x_i - x_j\| - \|x_i - x_j\|\right)^2}{\|x_i - x_j\|}\,</span>
+<span id="cb6-1119"><a href="#cb6-1119" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1120"><a href="#cb6-1120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1121"><a href="#cb6-1121" aria-hidden="true" tabindex="-1"></a>where the constant outside of the sum is added in order to simplify</span>
+<span id="cb6-1122"><a href="#cb6-1122" aria-hidden="true" tabindex="-1"></a>the derivation of the gradient.  The main weakness of the Sammon cost</span>
+<span id="cb6-1123"><a href="#cb6-1123" aria-hidden="true" tabindex="-1"></a>function is that the importance of retaining small pairwise distances</span>
+<span id="cb6-1124"><a href="#cb6-1124" aria-hidden="true" tabindex="-1"></a>in the map is largely dependent on small differences in these pairwise</span>
+<span id="cb6-1125"><a href="#cb6-1125" aria-hidden="true" tabindex="-1"></a>distances. In particular, a small error in the model of two</span>
+<span id="cb6-1126"><a href="#cb6-1126" aria-hidden="true" tabindex="-1"></a>high-dimensional points that are extremely close together results in a</span>
+<span id="cb6-1127"><a href="#cb6-1127" aria-hidden="true" tabindex="-1"></a>large contribution to the cost function. Since all small pairwise</span>
+<span id="cb6-1128"><a href="#cb6-1128" aria-hidden="true" tabindex="-1"></a>distances constitute the local structure of the data, it seems more</span>
+<span id="cb6-1129"><a href="#cb6-1129" aria-hidden="true" tabindex="-1"></a>appropriate to aim to assign approximately equal importance to all</span>
+<span id="cb6-1130"><a href="#cb6-1130" aria-hidden="true" tabindex="-1"></a>small pairwise distances.</span>
+<span id="cb6-1131"><a href="#cb6-1131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1132"><a href="#cb6-1132" aria-hidden="true" tabindex="-1"></a>In contrast to Sammon mapping, the Gaussian kernel employed in the</span>
+<span id="cb6-1133"><a href="#cb6-1133" aria-hidden="true" tabindex="-1"></a>high-dimensional space by t-SNE defines a soft border between the</span>
+<span id="cb6-1134"><a href="#cb6-1134" aria-hidden="true" tabindex="-1"></a>local and global structure of the data and for pairs of datapoints</span>
+<span id="cb6-1135"><a href="#cb6-1135" aria-hidden="true" tabindex="-1"></a>that are close together relative to the standard deviation of the</span>
+<span id="cb6-1136"><a href="#cb6-1136" aria-hidden="true" tabindex="-1"></a>Gaussian, the importance of modeling their separations is almost</span>
+<span id="cb6-1137"><a href="#cb6-1137" aria-hidden="true" tabindex="-1"></a>independent of the magnitudes of those separations. Moreover, t-SNE</span>
+<span id="cb6-1138"><a href="#cb6-1138" aria-hidden="true" tabindex="-1"></a>determines the local neighborhood size for each datapoint separately</span>
+<span id="cb6-1139"><a href="#cb6-1139" aria-hidden="true" tabindex="-1"></a>based on the local density of the data (by forcing each conditional</span>
+<span id="cb6-1140"><a href="#cb6-1140" aria-hidden="true" tabindex="-1"></a>probability distribution $P_i$ to have the same perplexity).</span>
+<span id="cb6-1141"><a href="#cb6-1141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1142"><a href="#cb6-1142" aria-hidden="true" tabindex="-1"></a>The strong performance of t-SNE compared to Isomap is partly explained</span>
+<span id="cb6-1143"><a href="#cb6-1143" aria-hidden="true" tabindex="-1"></a>by Isomap’s susceptibility to “short-circuiting”. Also, Isomap mainly</span>
+<span id="cb6-1144"><a href="#cb6-1144" aria-hidden="true" tabindex="-1"></a>focuses on modeling large geodesic distances rather than small ones.</span>
+<span id="cb6-1145"><a href="#cb6-1145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1146"><a href="#cb6-1146" aria-hidden="true" tabindex="-1"></a>The strong performance of t-SNE compared to LLE is mainly due to a</span>
+<span id="cb6-1147"><a href="#cb6-1147" aria-hidden="true" tabindex="-1"></a>basic weakness of LLE: the only thing that prevents all datapoints</span>
+<span id="cb6-1148"><a href="#cb6-1148" aria-hidden="true" tabindex="-1"></a>from collapsing onto a single point is a constraint on the covariance</span>
+<span id="cb6-1149"><a href="#cb6-1149" aria-hidden="true" tabindex="-1"></a>of the low-dimensional representation. In practice, this constraint is</span>
+<span id="cb6-1150"><a href="#cb6-1150" aria-hidden="true" tabindex="-1"></a>often satisfied by placing most of the map points near the center of</span>
+<span id="cb6-1151"><a href="#cb6-1151" aria-hidden="true" tabindex="-1"></a>the map and using a few widely scattered points to create large</span>
+<span id="cb6-1152"><a href="#cb6-1152" aria-hidden="true" tabindex="-1"></a>covariance (see Figure FIXME). For neighborhood graphs that are almost</span>
+<span id="cb6-1153"><a href="#cb6-1153" aria-hidden="true" tabindex="-1"></a>disconnected, the covariance constraint can also be satisfied by a</span>
+<span id="cb6-1154"><a href="#cb6-1154" aria-hidden="true" tabindex="-1"></a>“curdled” map in which there are a few widely separated, collapsed</span>
+<span id="cb6-1155"><a href="#cb6-1155" aria-hidden="true" tabindex="-1"></a>subsets corresponding to the almost disconnected components.</span>
+<span id="cb6-1156"><a href="#cb6-1156" aria-hidden="true" tabindex="-1"></a>Furthermore, neighborhood-graph based techniques (such as Isomap and</span>
+<span id="cb6-1157"><a href="#cb6-1157" aria-hidden="true" tabindex="-1"></a>LLE) are not capable of visualizing data that consists of two or more</span>
+<span id="cb6-1158"><a href="#cb6-1158" aria-hidden="true" tabindex="-1"></a>widely separated submanifolds, because such data does not give rise to</span>
+<span id="cb6-1159"><a href="#cb6-1159" aria-hidden="true" tabindex="-1"></a>a connected neighborhood graph. It is possible to produce a separate</span>
+<span id="cb6-1160"><a href="#cb6-1160" aria-hidden="true" tabindex="-1"></a>map for each connected component, but this loses information about the</span>
+<span id="cb6-1161"><a href="#cb6-1161" aria-hidden="true" tabindex="-1"></a>relative similarities of the separate components.</span>
+<span id="cb6-1162"><a href="#cb6-1162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1163"><a href="#cb6-1163" aria-hidden="true" tabindex="-1"></a>Like Isomap and LLE, the random walk version of t-SNE employs</span>
+<span id="cb6-1164"><a href="#cb6-1164" aria-hidden="true" tabindex="-1"></a>neighborhood graphs, but it does not suffer from short-circuiting</span>
+<span id="cb6-1165"><a href="#cb6-1165" aria-hidden="true" tabindex="-1"></a>problems because the pairwise similarities between the highdimensional</span>
+<span id="cb6-1166"><a href="#cb6-1166" aria-hidden="true" tabindex="-1"></a>datapoints are computed by integrating over all paths through the</span>
+<span id="cb6-1167"><a href="#cb6-1167" aria-hidden="true" tabindex="-1"></a>neighborhood graph.  Because of the diffusion-based interpretation of</span>
+<span id="cb6-1168"><a href="#cb6-1168" aria-hidden="true" tabindex="-1"></a>the conditional probabilities underlying the random walk version of</span>
+<span id="cb6-1169"><a href="#cb6-1169" aria-hidden="true" tabindex="-1"></a>t-SNE, it is useful to compare t-SNE to diffusion maps. Diffusion maps</span>
+<span id="cb6-1170"><a href="#cb6-1170" aria-hidden="true" tabindex="-1"></a>define a "diffusion distance" on the high-dimensional datapoints that</span>
+<span id="cb6-1171"><a href="#cb6-1171" aria-hidden="true" tabindex="-1"></a>is given by</span>
+<span id="cb6-1172"><a href="#cb6-1172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1173"><a href="#cb6-1173" aria-hidden="true" tabindex="-1"></a>$$ </span>
+<span id="cb6-1174"><a href="#cb6-1174" aria-hidden="true" tabindex="-1"></a>D^{(t)}(x_i,x_j) = \sqrt{ \sum_{k} \frac{\left(p^{(t)}_{ik} -</span>
+<span id="cb6-1175"><a href="#cb6-1175" aria-hidden="true" tabindex="-1"></a>p^{(t)}_{jk}\right)^2)}{\psi(x_k)^{(0)}} }\,</span>
+<span id="cb6-1176"><a href="#cb6-1176" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1177"><a href="#cb6-1177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1178"><a href="#cb6-1178" aria-hidden="true" tabindex="-1"></a>where $p^{(t)}_{ij}$ represents the probability of a particle</span>
+<span id="cb6-1179"><a href="#cb6-1179" aria-hidden="true" tabindex="-1"></a>traveling from $x_i$ to $x_j$ in $t$ timesteps through a graph on the</span>
+<span id="cb6-1180"><a href="#cb6-1180" aria-hidden="true" tabindex="-1"></a>data with Gaussian emission probabilities. The term $\psi(x_k)^{(0)}$</span>
+<span id="cb6-1181"><a href="#cb6-1181" aria-hidden="true" tabindex="-1"></a>is a measure for the local density of the points, and serves a similar</span>
+<span id="cb6-1182"><a href="#cb6-1182" aria-hidden="true" tabindex="-1"></a>purpose to the fixed perplexity Gaussian kernel that is employed in</span>
+<span id="cb6-1183"><a href="#cb6-1183" aria-hidden="true" tabindex="-1"></a>SNE. The diffusion map is formed by the principal non-trivial</span>
+<span id="cb6-1184"><a href="#cb6-1184" aria-hidden="true" tabindex="-1"></a>eigenvectors of the Markov matrix of the random walks of length</span>
+<span id="cb6-1185"><a href="#cb6-1185" aria-hidden="true" tabindex="-1"></a>$t$. It can be shown that when all $(n−1)$ non-trivial eigenvectors</span>
+<span id="cb6-1186"><a href="#cb6-1186" aria-hidden="true" tabindex="-1"></a>are employed, the Euclidean distances in the diffusion map are equal</span>
+<span id="cb6-1187"><a href="#cb6-1187" aria-hidden="true" tabindex="-1"></a>to the diffusion distances in the high-dimensional data representation</span>
+<span id="cb6-1188"><a href="#cb6-1188" aria-hidden="true" tabindex="-1"></a>@lafon:diffusion. Mathematically, diffusion maps minimize</span>
+<span id="cb6-1189"><a href="#cb6-1189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1190"><a href="#cb6-1190" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1191"><a href="#cb6-1191" aria-hidden="true" tabindex="-1"></a>C = \sum_i \sum_j \left(D^{(t)}(x_i,x_j) - \|y_i-y_j\|\right)^2</span>
+<span id="cb6-1192"><a href="#cb6-1192" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1193"><a href="#cb6-1193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1194"><a href="#cb6-1194" aria-hidden="true" tabindex="-1"></a>As a result, diffusion maps are susceptible to the same problems as</span>
+<span id="cb6-1195"><a href="#cb6-1195" aria-hidden="true" tabindex="-1"></a>classical scaling: they assign much higher importance to modeling the</span>
+<span id="cb6-1196"><a href="#cb6-1196" aria-hidden="true" tabindex="-1"></a>large pairwise diffusion distances than the small ones and as a</span>
+<span id="cb6-1197"><a href="#cb6-1197" aria-hidden="true" tabindex="-1"></a>result, they are not good at retaining the local structure of the</span>
+<span id="cb6-1198"><a href="#cb6-1198" aria-hidden="true" tabindex="-1"></a>data. Moreover, in contrast to the random walk version of t-SNE,</span>
+<span id="cb6-1199"><a href="#cb6-1199" aria-hidden="true" tabindex="-1"></a>diffusion maps do not have a natural way of selecting the length, $t$,</span>
+<span id="cb6-1200"><a href="#cb6-1200" aria-hidden="true" tabindex="-1"></a>of the random walks.</span>
+<span id="cb6-1201"><a href="#cb6-1201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1202"><a href="#cb6-1202" aria-hidden="true" tabindex="-1"></a>In the supplemental material, we present results that reveal that</span>
+<span id="cb6-1203"><a href="#cb6-1203" aria-hidden="true" tabindex="-1"></a>t-SNE outperforms CCA @demartines:curvilinear, MVU</span>
+<span id="cb6-1204"><a href="#cb6-1204" aria-hidden="true" tabindex="-1"></a>@weinberger:learning, and Laplacian Eigenmaps</span>
+<span id="cb6-1205"><a href="#cb6-1205" aria-hidden="true" tabindex="-1"></a>@belkin:laplacian as well. For CCA and the closely related CDA</span>
+<span id="cb6-1206"><a href="#cb6-1206" aria-hidden="true" tabindex="-1"></a>@lee:robust, these results can be partially explained by the</span>
+<span id="cb6-1207"><a href="#cb6-1207" aria-hidden="true" tabindex="-1"></a>hard border $\lambda$ that these techniques define between local and global</span>
+<span id="cb6-1208"><a href="#cb6-1208" aria-hidden="true" tabindex="-1"></a>structure, as opposed to the soft border of t-SNE. Moreover, within</span>
+<span id="cb6-1209"><a href="#cb6-1209" aria-hidden="true" tabindex="-1"></a>the range $\lambda$, CCA suffers from the same weakness as Sammon mapping: it</span>
+<span id="cb6-1210"><a href="#cb6-1210" aria-hidden="true" tabindex="-1"></a>assigns extremely high importance to modeling the distance between two</span>
+<span id="cb6-1211"><a href="#cb6-1211" aria-hidden="true" tabindex="-1"></a>datapoints that are extremely close.</span>
+<span id="cb6-1212"><a href="#cb6-1212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1213"><a href="#cb6-1213" aria-hidden="true" tabindex="-1"></a>Like t-SNE, MVU @weinberger:learning tries to model all of the</span>
+<span id="cb6-1214"><a href="#cb6-1214" aria-hidden="true" tabindex="-1"></a>small separations well but MVU insists on modeling them perfectly</span>
+<span id="cb6-1215"><a href="#cb6-1215" aria-hidden="true" tabindex="-1"></a>(i.e., it treats them as constraints) and a single erroneous</span>
+<span id="cb6-1216"><a href="#cb6-1216" aria-hidden="true" tabindex="-1"></a>constraint may severely affect the performance of MVU. This can occur</span>
+<span id="cb6-1217"><a href="#cb6-1217" aria-hidden="true" tabindex="-1"></a>when there is a short-circuit between two parts of a curved manifold</span>
+<span id="cb6-1218"><a href="#cb6-1218" aria-hidden="true" tabindex="-1"></a>that are far apart in the intrinsic manifold coordinates. Also, MVU</span>
+<span id="cb6-1219"><a href="#cb6-1219" aria-hidden="true" tabindex="-1"></a>makes no attempt to model longer range structure: It simply pulls the</span>
+<span id="cb6-1220"><a href="#cb6-1220" aria-hidden="true" tabindex="-1"></a>map points as far apart as possible subject to the hard constraints</span>
+<span id="cb6-1221"><a href="#cb6-1221" aria-hidden="true" tabindex="-1"></a>so, unlike t-SNE, it cannot be expected to produce sensible</span>
+<span id="cb6-1222"><a href="#cb6-1222" aria-hidden="true" tabindex="-1"></a>large-scale structure in the map.</span>
+<span id="cb6-1223"><a href="#cb6-1223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1224"><a href="#cb6-1224" aria-hidden="true" tabindex="-1"></a>For Laplacian Eigenmaps, the poor results relative to t-SNE may be</span>
+<span id="cb6-1225"><a href="#cb6-1225" aria-hidden="true" tabindex="-1"></a>explained by the fact that Laplacian Eigenmaps have the same</span>
+<span id="cb6-1226"><a href="#cb6-1226" aria-hidden="true" tabindex="-1"></a>covariance constraint as LLE, and it is easy to cheat on this</span>
+<span id="cb6-1227"><a href="#cb6-1227" aria-hidden="true" tabindex="-1"></a>constraint.</span>
+<span id="cb6-1228"><a href="#cb6-1228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1229"><a href="#cb6-1229" aria-hidden="true" tabindex="-1"></a><span class="fu">## Weakness {#sec-weakness}</span></span>
+<span id="cb6-1230"><a href="#cb6-1230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1231"><a href="#cb6-1231" aria-hidden="true" tabindex="-1"></a>Although we have shown that t-SNE comparesfavorably to other</span>
+<span id="cb6-1232"><a href="#cb6-1232" aria-hidden="true" tabindex="-1"></a>techniquesfor data visualization, tSNE has three potential weaknesses:</span>
+<span id="cb6-1233"><a href="#cb6-1233" aria-hidden="true" tabindex="-1"></a>(1) it is unclear how t-SNE performs on general dimensionality</span>
+<span id="cb6-1234"><a href="#cb6-1234" aria-hidden="true" tabindex="-1"></a>reduction tasks, (2) the relatively local nature of t-SNE makes it</span>
+<span id="cb6-1235"><a href="#cb6-1235" aria-hidden="true" tabindex="-1"></a>sensitive to the curse of the intrinsic dimensionality of the data,</span>
+<span id="cb6-1236"><a href="#cb6-1236" aria-hidden="true" tabindex="-1"></a>and (3) t-SNE is not guaranteed to converge to a global optimum of its</span>
+<span id="cb6-1237"><a href="#cb6-1237" aria-hidden="true" tabindex="-1"></a>cost function. Below, we discuss the three weaknesses in more detail.</span>
+<span id="cb6-1238"><a href="#cb6-1238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1239"><a href="#cb6-1239" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>*Dimensionality reduction for other purposes.* It is not obvious</span>
+<span id="cb6-1240"><a href="#cb6-1240" aria-hidden="true" tabindex="-1"></a>how t-SNE will perform on the more general task of dimensionality</span>
+<span id="cb6-1241"><a href="#cb6-1241" aria-hidden="true" tabindex="-1"></a>reduction (i.e., when the dimensionality of the data is not reduced to</span>
+<span id="cb6-1242"><a href="#cb6-1242" aria-hidden="true" tabindex="-1"></a>two or three, but to $d &gt; 3$ dimensions). To simplify evaluation issues,</span>
+<span id="cb6-1243"><a href="#cb6-1243" aria-hidden="true" tabindex="-1"></a>this paper only considers the use of t-SNE for data visualization. The</span>
+<span id="cb6-1244"><a href="#cb6-1244" aria-hidden="true" tabindex="-1"></a>behavior of t-SNE when reducing data to two or three dimensions cannot</span>
+<span id="cb6-1245"><a href="#cb6-1245" aria-hidden="true" tabindex="-1"></a>readily be extrapolated to $d &gt; 3$ dimensions because of the heavy tails</span>
+<span id="cb6-1246"><a href="#cb6-1246" aria-hidden="true" tabindex="-1"></a>of the Student-t distribution. In high-dimensional spaces, the heavy</span>
+<span id="cb6-1247"><a href="#cb6-1247" aria-hidden="true" tabindex="-1"></a>tails comprise a relatively large portion of the probability mass</span>
+<span id="cb6-1248"><a href="#cb6-1248" aria-hidden="true" tabindex="-1"></a>under the Student-t distribution, which might lead to d-dimensional</span>
+<span id="cb6-1249"><a href="#cb6-1249" aria-hidden="true" tabindex="-1"></a>data representations that do not preserve the local structure of the</span>
+<span id="cb6-1250"><a href="#cb6-1250" aria-hidden="true" tabindex="-1"></a>data as well. Hence, for tasks in which the dimensionality of the data</span>
+<span id="cb6-1251"><a href="#cb6-1251" aria-hidden="true" tabindex="-1"></a>needs to be reduced to a dimensionality higher than three, Student</span>
+<span id="cb6-1252"><a href="#cb6-1252" aria-hidden="true" tabindex="-1"></a>t-distributions with more than one degree of freedom10 are likely to</span>
+<span id="cb6-1253"><a href="#cb6-1253" aria-hidden="true" tabindex="-1"></a>be more appropriate.</span>
+<span id="cb6-1254"><a href="#cb6-1254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1255"><a href="#cb6-1255" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>*Curse of intrinsic dimensionality.* t-SNE reduces the</span>
+<span id="cb6-1256"><a href="#cb6-1256" aria-hidden="true" tabindex="-1"></a>dimensionality of data mainly based on local properties of the data,</span>
+<span id="cb6-1257"><a href="#cb6-1257" aria-hidden="true" tabindex="-1"></a>which makes t-SNE sensitive to the curse of the intrinsic</span>
+<span id="cb6-1258"><a href="#cb6-1258" aria-hidden="true" tabindex="-1"></a>dimensionality of the data @bengio:learning. In data sets with</span>
+<span id="cb6-1259"><a href="#cb6-1259" aria-hidden="true" tabindex="-1"></a>a high intrinsic dimensionality and an underlying manifold that is</span>
+<span id="cb6-1260"><a href="#cb6-1260" aria-hidden="true" tabindex="-1"></a>highly varying, the local linearity assumption on the manifold that</span>
+<span id="cb6-1261"><a href="#cb6-1261" aria-hidden="true" tabindex="-1"></a>t-SNE implicitly makes (by employing Euclidean distances between near</span>
+<span id="cb6-1262"><a href="#cb6-1262" aria-hidden="true" tabindex="-1"></a>neighbors) may be violated. As a result, t-SNE might be less</span>
+<span id="cb6-1263"><a href="#cb6-1263" aria-hidden="true" tabindex="-1"></a>successful if it is applied on data sets with a very high intrinsic</span>
+<span id="cb6-1264"><a href="#cb6-1264" aria-hidden="true" tabindex="-1"></a>dimensionality (for instance, a recent study by @meytlis:face</span>
+<span id="cb6-1265"><a href="#cb6-1265" aria-hidden="true" tabindex="-1"></a>estimates the space of images of faces to be constituted of</span>
+<span id="cb6-1266"><a href="#cb6-1266" aria-hidden="true" tabindex="-1"></a>approximately 100 dimensions). Manifold learners such as Isomap and</span>
+<span id="cb6-1267"><a href="#cb6-1267" aria-hidden="true" tabindex="-1"></a>LLE suffer from exactly the same problems (see, e.g.,</span>
+<span id="cb6-1268"><a href="#cb6-1268" aria-hidden="true" tabindex="-1"></a>@bengio:learning; @vandermaaten:comparison ).  A</span>
+<span id="cb6-1269"><a href="#cb6-1269" aria-hidden="true" tabindex="-1"></a>possible way to (partially) address this issue is by performing t-SNE</span>
+<span id="cb6-1270"><a href="#cb6-1270" aria-hidden="true" tabindex="-1"></a>on a data representation obtained from a model that represents the</span>
+<span id="cb6-1271"><a href="#cb6-1271" aria-hidden="true" tabindex="-1"></a>highly varying data manifold efficiently in a number of nonlinear</span>
+<span id="cb6-1272"><a href="#cb6-1272" aria-hidden="true" tabindex="-1"></a>layers such as an autoencoder @hinton:reducing. Such deep-layer</span>
+<span id="cb6-1273"><a href="#cb6-1273" aria-hidden="true" tabindex="-1"></a>architectures can represent complex nonlinear functions in a much</span>
+<span id="cb6-1274"><a href="#cb6-1274" aria-hidden="true" tabindex="-1"></a>simpler way, and as a result, require fewer datapoints to learn an</span>
+<span id="cb6-1275"><a href="#cb6-1275" aria-hidden="true" tabindex="-1"></a>appropriate solution (as is illustrated for a d-bits parity task by</span>
+<span id="cb6-1276"><a href="#cb6-1276" aria-hidden="true" tabindex="-1"></a>@bengio:learning). Performing t-SNE on a data representation</span>
+<span id="cb6-1277"><a href="#cb6-1277" aria-hidden="true" tabindex="-1"></a>produced by, for example, an autoencoder is likely to improve the</span>
+<span id="cb6-1278"><a href="#cb6-1278" aria-hidden="true" tabindex="-1"></a>quality of the constructed visualizations, because autoencoders can</span>
+<span id="cb6-1279"><a href="#cb6-1279" aria-hidden="true" tabindex="-1"></a>identify highly-varying manifolds better than a local method such as</span>
+<span id="cb6-1280"><a href="#cb6-1280" aria-hidden="true" tabindex="-1"></a>t-SNE. However, the reader should note that it is by definition</span>
+<span id="cb6-1281"><a href="#cb6-1281" aria-hidden="true" tabindex="-1"></a>impossible to fully represent the structure of intrinsically</span>
+<span id="cb6-1282"><a href="#cb6-1282" aria-hidden="true" tabindex="-1"></a>high-dimensional data in two or three dimensions.</span>
+<span id="cb6-1283"><a href="#cb6-1283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1284"><a href="#cb6-1284" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>*Non-convexity of the t-SNE cost function.* A nice property of most</span>
+<span id="cb6-1285"><a href="#cb6-1285" aria-hidden="true" tabindex="-1"></a>state-of-the-art dimensionality reduction techniques (such as</span>
+<span id="cb6-1286"><a href="#cb6-1286" aria-hidden="true" tabindex="-1"></a>classical scaling, Isomap, LLE, and diffusion maps) is the convexity</span>
+<span id="cb6-1287"><a href="#cb6-1287" aria-hidden="true" tabindex="-1"></a>of their cost functions. A major weakness of t-SNE is that the cost</span>
+<span id="cb6-1288"><a href="#cb6-1288" aria-hidden="true" tabindex="-1"></a>function is not convex, as a result of which several optimization</span>
+<span id="cb6-1289"><a href="#cb6-1289" aria-hidden="true" tabindex="-1"></a>parameters need to be chosen. The constructed solutions depend on</span>
+<span id="cb6-1290"><a href="#cb6-1290" aria-hidden="true" tabindex="-1"></a>these choices of optimization parameters and may be different each</span>
+<span id="cb6-1291"><a href="#cb6-1291" aria-hidden="true" tabindex="-1"></a>time t-SNE is run from an initial random configuration of map</span>
+<span id="cb6-1292"><a href="#cb6-1292" aria-hidden="true" tabindex="-1"></a>points. We have demonstrated that the same choice of optimization</span>
+<span id="cb6-1293"><a href="#cb6-1293" aria-hidden="true" tabindex="-1"></a>parameters can be used for a variety of different visualization tasks,</span>
+<span id="cb6-1294"><a href="#cb6-1294" aria-hidden="true" tabindex="-1"></a>and we found that the quality of the optima does not vary much from</span>
+<span id="cb6-1295"><a href="#cb6-1295" aria-hidden="true" tabindex="-1"></a>run to run. Therefore, we think that the weakness of the optimization</span>
+<span id="cb6-1296"><a href="#cb6-1296" aria-hidden="true" tabindex="-1"></a>method is insufficient reason to reject t-SNE in favor of methods that</span>
+<span id="cb6-1297"><a href="#cb6-1297" aria-hidden="true" tabindex="-1"></a>lead to convex optimization problems but produce noticeably worse</span>
+<span id="cb6-1298"><a href="#cb6-1298" aria-hidden="true" tabindex="-1"></a>visualizations. A local optimum of a cost function that accurately</span>
+<span id="cb6-1299"><a href="#cb6-1299" aria-hidden="true" tabindex="-1"></a>captures what we want in a visualization is often preferable to the</span>
+<span id="cb6-1300"><a href="#cb6-1300" aria-hidden="true" tabindex="-1"></a>global optimum of a cost function that fails to capture important</span>
+<span id="cb6-1301"><a href="#cb6-1301" aria-hidden="true" tabindex="-1"></a>aspects of what we want. Moreover, the convexity of cost functions can</span>
+<span id="cb6-1302"><a href="#cb6-1302" aria-hidden="true" tabindex="-1"></a>be misleading, because their optimization is often computationally</span>
+<span id="cb6-1303"><a href="#cb6-1303" aria-hidden="true" tabindex="-1"></a>infeasible for large real-world data sets, prompting the use of</span>
+<span id="cb6-1304"><a href="#cb6-1304" aria-hidden="true" tabindex="-1"></a>approximation techniques @desilva:global;</span>
+<span id="cb6-1305"><a href="#cb6-1305" aria-hidden="true" tabindex="-1"></a>@weinberger:graph. Even for LLE and Laplacian Eigenmaps, the</span>
+<span id="cb6-1306"><a href="#cb6-1306" aria-hidden="true" tabindex="-1"></a>optimization is performed using iterative Arnoldi</span>
+<span id="cb6-1307"><a href="#cb6-1307" aria-hidden="true" tabindex="-1"></a>@arnoldi:principle or Jacobi-Davidson @fokkema:jacobi</span>
+<span id="cb6-1308"><a href="#cb6-1308" aria-hidden="true" tabindex="-1"></a>methods, which may fail to find the global optimum due to convergence</span>
+<span id="cb6-1309"><a href="#cb6-1309" aria-hidden="true" tabindex="-1"></a>problems.</span>
+<span id="cb6-1310"><a href="#cb6-1310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1311"><a href="#cb6-1311" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusions {#sec-conclusion}</span></span>
+<span id="cb6-1312"><a href="#cb6-1312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1313"><a href="#cb6-1313" aria-hidden="true" tabindex="-1"></a>The paper presents a new technique for the visualization of similarity</span>
+<span id="cb6-1314"><a href="#cb6-1314" aria-hidden="true" tabindex="-1"></a>data that is capable of retaining the local structure of the data</span>
+<span id="cb6-1315"><a href="#cb6-1315" aria-hidden="true" tabindex="-1"></a>while also revealing some important global structure (such as clusters</span>
+<span id="cb6-1316"><a href="#cb6-1316" aria-hidden="true" tabindex="-1"></a>at multiple scales). Both the computational and the memory complexity</span>
+<span id="cb6-1317"><a href="#cb6-1317" aria-hidden="true" tabindex="-1"></a>of t-SNE are $\mathcal{O}(n^2)$, but we present a landmark approach</span>
+<span id="cb6-1318"><a href="#cb6-1318" aria-hidden="true" tabindex="-1"></a>that makes it possible to successfully visualize large real-world data</span>
+<span id="cb6-1319"><a href="#cb6-1319" aria-hidden="true" tabindex="-1"></a>sets with limited computational demands. Our experiments on a variety</span>
+<span id="cb6-1320"><a href="#cb6-1320" aria-hidden="true" tabindex="-1"></a>of data sets show that t-SNE outperforms existing state-of-the-art</span>
+<span id="cb6-1321"><a href="#cb6-1321" aria-hidden="true" tabindex="-1"></a>techniques for visualizing a variety of real-world data sets. Matlab</span>
+<span id="cb6-1322"><a href="#cb6-1322" aria-hidden="true" tabindex="-1"></a>implementations of both the normal and the random walk version of</span>
+<span id="cb6-1323"><a href="#cb6-1323" aria-hidden="true" tabindex="-1"></a>t-SNE are available for download at</span>
+<span id="cb6-1324"><a href="#cb6-1324" aria-hidden="true" tabindex="-1"></a><span class="ot">&lt;https://lvdmaaten.github.io/tsne/&gt;</span>.  In future work we plan to</span>
+<span id="cb6-1325"><a href="#cb6-1325" aria-hidden="true" tabindex="-1"></a>investigate the optimization of the number of degrees of freedom of</span>
+<span id="cb6-1326"><a href="#cb6-1326" aria-hidden="true" tabindex="-1"></a>the Student-t distribution used in t-SNE. This may be helpful for</span>
+<span id="cb6-1327"><a href="#cb6-1327" aria-hidden="true" tabindex="-1"></a>dimensionality reduction when the low-dimensional representation has</span>
+<span id="cb6-1328"><a href="#cb6-1328" aria-hidden="true" tabindex="-1"></a>many dimensions. We will also investigate the extension of t-SNE to</span>
+<span id="cb6-1329"><a href="#cb6-1329" aria-hidden="true" tabindex="-1"></a>models in which each high-dimensional datapoint is modeled by several</span>
+<span id="cb6-1330"><a href="#cb6-1330" aria-hidden="true" tabindex="-1"></a>low-dimensional map points as in @cook:visualizing. Also, we</span>
+<span id="cb6-1331"><a href="#cb6-1331" aria-hidden="true" tabindex="-1"></a>aim to develop a parametric version of t-SNE that allows for</span>
+<span id="cb6-1332"><a href="#cb6-1332" aria-hidden="true" tabindex="-1"></a>generalization to held-out test data by using the t-SNE objective</span>
+<span id="cb6-1333"><a href="#cb6-1333" aria-hidden="true" tabindex="-1"></a>function to train a multilayer neural network that provides an</span>
+<span id="cb6-1334"><a href="#cb6-1334" aria-hidden="true" tabindex="-1"></a>explicit mapping to the low-dimensional space</span>
+<span id="cb6-1335"><a href="#cb6-1335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1336"><a href="#cb6-1336" aria-hidden="true" tabindex="-1"></a><span class="fu"># Acknowledgments {.unnumbered}</span></span>
 <span id="cb6-1337"><a href="#cb6-1337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1338"><a href="#cb6-1338" aria-hidden="true" tabindex="-1"></a>Laurens van der Maaten is supported by the CATCH-programme of the Dutch Scientific </span>
-<span id="cb6-1339"><a href="#cb6-1339" aria-hidden="true" tabindex="-1"></a>Organization (NWO), project RICH (grant 640.002.401), and cooperates with RACM.  </span>
-<span id="cb6-1340"><a href="#cb6-1340" aria-hidden="true" tabindex="-1"></a>Geoffrey Hinton is a fellow of the Canadian Institute for Advanced Research, and </span>
-<span id="cb6-1341"><a href="#cb6-1341" aria-hidden="true" tabindex="-1"></a>is also supported by grants from NSERC and CFI and gifts from Google and Microsoft.</span>
-<span id="cb6-1342"><a href="#cb6-1342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1338"><a href="#cb6-1338" aria-hidden="true" tabindex="-1"></a>The authors thank Sam Roweis for many helpful discussions, Andriy Mnih</span>
+<span id="cb6-1339"><a href="#cb6-1339" aria-hidden="true" tabindex="-1"></a>for supplying the wordfeatures data set, Ruslan Salakhutdinov for help</span>
+<span id="cb6-1340"><a href="#cb6-1340" aria-hidden="true" tabindex="-1"></a>with the Netflix data set (results for these data sets are presented</span>
+<span id="cb6-1341"><a href="#cb6-1341" aria-hidden="true" tabindex="-1"></a>in the supplemental material), and Guido de Croon for pointing us to</span>
+<span id="cb6-1342"><a href="#cb6-1342" aria-hidden="true" tabindex="-1"></a>the analytical solution of the random walk probabilities.</span>
 <span id="cb6-1343"><a href="#cb6-1343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1344"><a href="#cb6-1344" aria-hidden="true" tabindex="-1"></a><span class="fu"># References {.unnumbered}</span></span>
-<span id="cb6-1345"><a href="#cb6-1345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1346"><a href="#cb6-1346" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
-<span id="cb6-1347"><a href="#cb6-1347" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-1344"><a href="#cb6-1344" aria-hidden="true" tabindex="-1"></a>Laurens van der Maaten is supported by the CATCH-programme of the Dutch Scientific </span>
+<span id="cb6-1345"><a href="#cb6-1345" aria-hidden="true" tabindex="-1"></a>Organization (NWO), project RICH (grant 640.002.401), and cooperates with RACM.  </span>
+<span id="cb6-1346"><a href="#cb6-1346" aria-hidden="true" tabindex="-1"></a>Geoffrey Hinton is a fellow of the Canadian Institute for Advanced Research, and </span>
+<span id="cb6-1347"><a href="#cb6-1347" aria-hidden="true" tabindex="-1"></a>is also supported by grants from NSERC and CFI and gifts from Google and Microsoft.</span>
 <span id="cb6-1348"><a href="#cb6-1348" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-1349"><a href="#cb6-1349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1350"><a href="#cb6-1350" aria-hidden="true" tabindex="-1"></a><span class="fu"># Appendix A: Derivation of the t-SNE gradient {.appendix .unnumbered}</span></span>
+<span id="cb6-1350"><a href="#cb6-1350" aria-hidden="true" tabindex="-1"></a><span class="fu"># References {.unnumbered}</span></span>
 <span id="cb6-1351"><a href="#cb6-1351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1352"><a href="#cb6-1352" aria-hidden="true" tabindex="-1"></a>t-SNE minimizes the Kullback-Leibler divergence between the joint</span>
-<span id="cb6-1353"><a href="#cb6-1353" aria-hidden="true" tabindex="-1"></a>probabilities $p_{ij}$ in the highdimensional space and the joint</span>
-<span id="cb6-1354"><a href="#cb6-1354" aria-hidden="true" tabindex="-1"></a>probabilities $q_{ij}$ in the low-dimensional space. The values of</span>
-<span id="cb6-1355"><a href="#cb6-1355" aria-hidden="true" tabindex="-1"></a>$p_{ij}$ are defined to be the symmetrized conditional probabilities,</span>
-<span id="cb6-1356"><a href="#cb6-1356" aria-hidden="true" tabindex="-1"></a>whereas the values of $q_{ij}$ are obtained by means of a Student-t</span>
-<span id="cb6-1357"><a href="#cb6-1357" aria-hidden="true" tabindex="-1"></a>distribution with one degree of freedom</span>
-<span id="cb6-1358"><a href="#cb6-1358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1359"><a href="#cb6-1359" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1360"><a href="#cb6-1360" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb6-1361"><a href="#cb6-1361" aria-hidden="true" tabindex="-1"></a>p_{ij} &amp; = \frac{p_{j|i} + p_{i|j}}{2 n} <span class="sc">\\</span></span>
-<span id="cb6-1362"><a href="#cb6-1362" aria-hidden="true" tabindex="-1"></a>q_{ij} &amp; = \frac{\left(1 + \|y_i - y_j \|^2\right)^{-1}}{\sum_{k\neq \ell} \left(1 + \|y_k - y_\ell \|^2\right)^{-1}}</span>
-<span id="cb6-1363"><a href="#cb6-1363" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb6-1364"><a href="#cb6-1364" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1365"><a href="#cb6-1365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1366"><a href="#cb6-1366" aria-hidden="true" tabindex="-1"></a>where $p_{j|i}$ and $p_{i|j}$ are either obtained from Equation 1 or</span>
-<span id="cb6-1367"><a href="#cb6-1367" aria-hidden="true" tabindex="-1"></a>from the random walk procedure described in @sec-large-data. The values of $p_{ii}$ and $q_{ii}$ are set to</span>
-<span id="cb6-1368"><a href="#cb6-1368" aria-hidden="true" tabindex="-1"></a>zero. The Kullback-Leibler divergence between the two joint</span>
-<span id="cb6-1369"><a href="#cb6-1369" aria-hidden="true" tabindex="-1"></a>probability distributions $P$ and $Q$ is given by</span>
-<span id="cb6-1370"><a href="#cb6-1370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1371"><a href="#cb6-1371" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1372"><a href="#cb6-1372" aria-hidden="true" tabindex="-1"></a>C = KL(P \| Q) = \sum_i \sum_j p_{ij} \log \frac{p_{ij}}{q_{ij}}  = \sum_i \sum_j p_{ij} \log p_{ij} - p_{ij} \log q_{ij}.</span>
-<span id="cb6-1373"><a href="#cb6-1373" aria-hidden="true" tabindex="-1"></a>$$ {#eq-appendixa1}</span>
-<span id="cb6-1374"><a href="#cb6-1374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1375"><a href="#cb6-1375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1376"><a href="#cb6-1376" aria-hidden="true" tabindex="-1"></a>In order to make the derivation less cluttered, we define two</span>
-<span id="cb6-1377"><a href="#cb6-1377" aria-hidden="true" tabindex="-1"></a>auxiliary variables $d_{ij}$ and $Z$ as follows</span>
-<span id="cb6-1378"><a href="#cb6-1378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1379"><a href="#cb6-1379" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1380"><a href="#cb6-1380" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb6-1381"><a href="#cb6-1381" aria-hidden="true" tabindex="-1"></a>d_{ij} &amp; = \|y_i - y_j\|, <span class="sc">\\</span></span>
-<span id="cb6-1382"><a href="#cb6-1382" aria-hidden="true" tabindex="-1"></a>Z &amp; = \sum_{k\neq \ell} \left(1 + d_{k\ell}^2 \right)^{-1}.</span>
-<span id="cb6-1383"><a href="#cb6-1383" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb6-1384"><a href="#cb6-1384" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1385"><a href="#cb6-1385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1386"><a href="#cb6-1386" aria-hidden="true" tabindex="-1"></a>Note that if $y_i$ changes, the only pairwise distances that change</span>
-<span id="cb6-1387"><a href="#cb6-1387" aria-hidden="true" tabindex="-1"></a>are $d_{ij}$ and $d_{ji}$ for all $j$. Hence, the gradient of the cost</span>
-<span id="cb6-1388"><a href="#cb6-1388" aria-hidden="true" tabindex="-1"></a>function $C$ with respect to $y_i$ is given by</span>
-<span id="cb6-1389"><a href="#cb6-1389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1352"><a href="#cb6-1352" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb6-1353"><a href="#cb6-1353" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-1354"><a href="#cb6-1354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1355"><a href="#cb6-1355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1356"><a href="#cb6-1356" aria-hidden="true" tabindex="-1"></a><span class="fu"># Appendix A: Derivation of the t-SNE gradient {.appendix .unnumbered}</span></span>
+<span id="cb6-1357"><a href="#cb6-1357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1358"><a href="#cb6-1358" aria-hidden="true" tabindex="-1"></a>t-SNE minimizes the Kullback-Leibler divergence between the joint</span>
+<span id="cb6-1359"><a href="#cb6-1359" aria-hidden="true" tabindex="-1"></a>probabilities $p_{ij}$ in the highdimensional space and the joint</span>
+<span id="cb6-1360"><a href="#cb6-1360" aria-hidden="true" tabindex="-1"></a>probabilities $q_{ij}$ in the low-dimensional space. The values of</span>
+<span id="cb6-1361"><a href="#cb6-1361" aria-hidden="true" tabindex="-1"></a>$p_{ij}$ are defined to be the symmetrized conditional probabilities,</span>
+<span id="cb6-1362"><a href="#cb6-1362" aria-hidden="true" tabindex="-1"></a>whereas the values of $q_{ij}$ are obtained by means of a Student-t</span>
+<span id="cb6-1363"><a href="#cb6-1363" aria-hidden="true" tabindex="-1"></a>distribution with one degree of freedom</span>
+<span id="cb6-1364"><a href="#cb6-1364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1365"><a href="#cb6-1365" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1366"><a href="#cb6-1366" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb6-1367"><a href="#cb6-1367" aria-hidden="true" tabindex="-1"></a>p_{ij} &amp; = \frac{p_{j|i} + p_{i|j}}{2 n} <span class="sc">\\</span></span>
+<span id="cb6-1368"><a href="#cb6-1368" aria-hidden="true" tabindex="-1"></a>q_{ij} &amp; = \frac{\left(1 + \|y_i - y_j \|^2\right)^{-1}}{\sum_{k\neq \ell} \left(1 + \|y_k - y_\ell \|^2\right)^{-1}}</span>
+<span id="cb6-1369"><a href="#cb6-1369" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb6-1370"><a href="#cb6-1370" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1371"><a href="#cb6-1371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1372"><a href="#cb6-1372" aria-hidden="true" tabindex="-1"></a>where $p_{j|i}$ and $p_{i|j}$ are either obtained from Equation 1 or</span>
+<span id="cb6-1373"><a href="#cb6-1373" aria-hidden="true" tabindex="-1"></a>from the random walk procedure described in @sec-large-data. The values of $p_{ii}$ and $q_{ii}$ are set to</span>
+<span id="cb6-1374"><a href="#cb6-1374" aria-hidden="true" tabindex="-1"></a>zero. The Kullback-Leibler divergence between the two joint</span>
+<span id="cb6-1375"><a href="#cb6-1375" aria-hidden="true" tabindex="-1"></a>probability distributions $P$ and $Q$ is given by</span>
+<span id="cb6-1376"><a href="#cb6-1376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1377"><a href="#cb6-1377" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1378"><a href="#cb6-1378" aria-hidden="true" tabindex="-1"></a>C = KL(P \| Q) = \sum_i \sum_j p_{ij} \log \frac{p_{ij}}{q_{ij}}  = \sum_i \sum_j p_{ij} \log p_{ij} - p_{ij} \log q_{ij}.</span>
+<span id="cb6-1379"><a href="#cb6-1379" aria-hidden="true" tabindex="-1"></a>$$ {#eq-appendixa1}</span>
+<span id="cb6-1380"><a href="#cb6-1380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1381"><a href="#cb6-1381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1382"><a href="#cb6-1382" aria-hidden="true" tabindex="-1"></a>In order to make the derivation less cluttered, we define two</span>
+<span id="cb6-1383"><a href="#cb6-1383" aria-hidden="true" tabindex="-1"></a>auxiliary variables $d_{ij}$ and $Z$ as follows</span>
+<span id="cb6-1384"><a href="#cb6-1384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1385"><a href="#cb6-1385" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1386"><a href="#cb6-1386" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb6-1387"><a href="#cb6-1387" aria-hidden="true" tabindex="-1"></a>d_{ij} &amp; = \|y_i - y_j\|, <span class="sc">\\</span></span>
+<span id="cb6-1388"><a href="#cb6-1388" aria-hidden="true" tabindex="-1"></a>Z &amp; = \sum_{k\neq \ell} \left(1 + d_{k\ell}^2 \right)^{-1}.</span>
+<span id="cb6-1389"><a href="#cb6-1389" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
 <span id="cb6-1390"><a href="#cb6-1390" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1391"><a href="#cb6-1391" aria-hidden="true" tabindex="-1"></a>\frac{\partial C}{\partial y_i} = \sum_j \left(\frac{\partial C}{\partial d_{ij}} + \frac{\partial C}{\partial d_{ji}}\right) (y_i - y_j) = 2 \sum_j \frac{\partial C}{\partial d_{ij}} (y_i - y_j)</span>
-<span id="cb6-1392"><a href="#cb6-1392" aria-hidden="true" tabindex="-1"></a>$$ {#eq-appendixa2}</span>
-<span id="cb6-1393"><a href="#cb6-1393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1394"><a href="#cb6-1394" aria-hidden="true" tabindex="-1"></a>The gradient $\frac{\partial C}{\partial d_{ji}}$ is computed</span>
-<span id="cb6-1395"><a href="#cb6-1395" aria-hidden="true" tabindex="-1"></a>from the definition of the Kullback-Leibler divergence in @eq-appendixa1</span>
-<span id="cb6-1396"><a href="#cb6-1396" aria-hidden="true" tabindex="-1"></a>(note that he first part of this equation is a constant).</span>
-<span id="cb6-1397"><a href="#cb6-1397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1398"><a href="#cb6-1398" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1399"><a href="#cb6-1399" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb6-1400"><a href="#cb6-1400" aria-hidden="true" tabindex="-1"></a>\frac{\partial C}{\partial d_{ij}} </span>
-<span id="cb6-1401"><a href="#cb6-1401" aria-hidden="true" tabindex="-1"></a>&amp; = - \sum_{k\neq\ell} p_{k\ell} \frac{\partial \log q_{k\ell}}{\partial d_{ij}} <span class="sc">\\</span></span>
-<span id="cb6-1402"><a href="#cb6-1402" aria-hidden="true" tabindex="-1"></a>&amp; = - \sum_{k\neq\ell} p_{k\ell} \frac{\partial \log q_{k\ell}Q - \log Z}{\partial d_{ij}} <span class="sc">\\</span></span>
-<span id="cb6-1403"><a href="#cb6-1403" aria-hidden="true" tabindex="-1"></a>&amp; = - \sum_{k\neq\ell} p_{k\ell} \left(\frac{1}{q_{k\ell}Z} \frac{\partial ((1 - d_{k\ell}^2)^{-1})}{\partial d_{ij}} - \frac{1}{Z}\frac{\partial Z}{\partial d_{ij}} \right) ) </span>
-<span id="cb6-1404"><a href="#cb6-1404" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb6-1405"><a href="#cb6-1405" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1406"><a href="#cb6-1406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1407"><a href="#cb6-1407" aria-hidden="true" tabindex="-1"></a>The gradient $\frac{\partial ((1 - d_{k\ell}^2)^{-1})}{\partial d_{ij}}$ is only onzero when $k=i$ and $\ell = j$. Hence, the gradient $\frac{\partial C}{\partial d_{ij}}$ is given by</span>
-<span id="cb6-1408"><a href="#cb6-1408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1409"><a href="#cb6-1409" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1410"><a href="#cb6-1410" aria-hidden="true" tabindex="-1"></a>\frac{\partial C}{\partial d_{ij}} + 2 \frac{p{ij}}{q_{ij}Z} (1 = d_{ij}^2)^{-2} - 2 \sum_{k\neq \ell} p_{k\ell} \frac{(1+d_{ij}^2)^{-2}}{Z}.</span>
+<span id="cb6-1391"><a href="#cb6-1391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1392"><a href="#cb6-1392" aria-hidden="true" tabindex="-1"></a>Note that if $y_i$ changes, the only pairwise distances that change</span>
+<span id="cb6-1393"><a href="#cb6-1393" aria-hidden="true" tabindex="-1"></a>are $d_{ij}$ and $d_{ji}$ for all $j$. Hence, the gradient of the cost</span>
+<span id="cb6-1394"><a href="#cb6-1394" aria-hidden="true" tabindex="-1"></a>function $C$ with respect to $y_i$ is given by</span>
+<span id="cb6-1395"><a href="#cb6-1395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1396"><a href="#cb6-1396" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1397"><a href="#cb6-1397" aria-hidden="true" tabindex="-1"></a>\frac{\partial C}{\partial y_i} = \sum_j \left(\frac{\partial C}{\partial d_{ij}} + \frac{\partial C}{\partial d_{ji}}\right) (y_i - y_j) = 2 \sum_j \frac{\partial C}{\partial d_{ij}} (y_i - y_j)</span>
+<span id="cb6-1398"><a href="#cb6-1398" aria-hidden="true" tabindex="-1"></a>$$ {#eq-appendixa2}</span>
+<span id="cb6-1399"><a href="#cb6-1399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1400"><a href="#cb6-1400" aria-hidden="true" tabindex="-1"></a>The gradient $\frac{\partial C}{\partial d_{ji}}$ is computed</span>
+<span id="cb6-1401"><a href="#cb6-1401" aria-hidden="true" tabindex="-1"></a>from the definition of the Kullback-Leibler divergence in @eq-appendixa1</span>
+<span id="cb6-1402"><a href="#cb6-1402" aria-hidden="true" tabindex="-1"></a>(note that he first part of this equation is a constant).</span>
+<span id="cb6-1403"><a href="#cb6-1403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1404"><a href="#cb6-1404" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1405"><a href="#cb6-1405" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb6-1406"><a href="#cb6-1406" aria-hidden="true" tabindex="-1"></a>\frac{\partial C}{\partial d_{ij}} </span>
+<span id="cb6-1407"><a href="#cb6-1407" aria-hidden="true" tabindex="-1"></a>&amp; = - \sum_{k\neq\ell} p_{k\ell} \frac{\partial \log q_{k\ell}}{\partial d_{ij}} <span class="sc">\\</span></span>
+<span id="cb6-1408"><a href="#cb6-1408" aria-hidden="true" tabindex="-1"></a>&amp; = - \sum_{k\neq\ell} p_{k\ell} \frac{\partial \log q_{k\ell}Q - \log Z}{\partial d_{ij}} <span class="sc">\\</span></span>
+<span id="cb6-1409"><a href="#cb6-1409" aria-hidden="true" tabindex="-1"></a>&amp; = - \sum_{k\neq\ell} p_{k\ell} \left(\frac{1}{q_{k\ell}Z} \frac{\partial ((1 - d_{k\ell}^2)^{-1})}{\partial d_{ij}} - \frac{1}{Z}\frac{\partial Z}{\partial d_{ij}} \right) ) </span>
+<span id="cb6-1410"><a href="#cb6-1410" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
 <span id="cb6-1411"><a href="#cb6-1411" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb6-1412"><a href="#cb6-1412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1413"><a href="#cb6-1413" aria-hidden="true" tabindex="-1"></a>Noting that $\sum_{k\neq \ell} p_{k\ell} = 1$, we see that the gradients simplifies to</span>
+<span id="cb6-1413"><a href="#cb6-1413" aria-hidden="true" tabindex="-1"></a>The gradient $\frac{\partial ((1 - d_{k\ell}^2)^{-1})}{\partial d_{ij}}$ is only onzero when $k=i$ and $\ell = j$. Hence, the gradient $\frac{\partial C}{\partial d_{ij}}$ is given by</span>
 <span id="cb6-1414"><a href="#cb6-1414" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-1415"><a href="#cb6-1415" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1416"><a href="#cb6-1416" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb6-1417"><a href="#cb6-1417" aria-hidden="true" tabindex="-1"></a>\frac{\partial C}{\partial d_{ij}} &amp; = 2 p{ij} (1 + d_{ij}^2)^{-1} - 2 q_{ij}(1 + d_{ij}^2)^{-1} <span class="sc">\\</span></span>
-<span id="cb6-1418"><a href="#cb6-1418" aria-hidden="true" tabindex="-1"></a>&amp; = 2 (p{ij} - q_{ij}) (1 + d_{ij}^2)^{-1}.</span>
-<span id="cb6-1419"><a href="#cb6-1419" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb6-1420"><a href="#cb6-1420" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1421"><a href="#cb6-1421" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1422"><a href="#cb6-1422" aria-hidden="true" tabindex="-1"></a>Substituting this term into @eq-appendixa2, we obtain the gradient</span>
-<span id="cb6-1423"><a href="#cb6-1423" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1424"><a href="#cb6-1424" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1425"><a href="#cb6-1425" aria-hidden="true" tabindex="-1"></a>\frac{\partial C}{\partial y_i} = 4 \sum_j (p{ij} - q_{ij}) (1 + \|y_i - y_j\|^2)^{-1} (y_i - y_j).</span>
+<span id="cb6-1416"><a href="#cb6-1416" aria-hidden="true" tabindex="-1"></a>\frac{\partial C}{\partial d_{ij}} + 2 \frac{p{ij}}{q_{ij}Z} (1 = d_{ij}^2)^{-2} - 2 \sum_{k\neq \ell} p_{k\ell} \frac{(1+d_{ij}^2)^{-2}}{Z}.</span>
+<span id="cb6-1417"><a href="#cb6-1417" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1418"><a href="#cb6-1418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1419"><a href="#cb6-1419" aria-hidden="true" tabindex="-1"></a>Noting that $\sum_{k\neq \ell} p_{k\ell} = 1$, we see that the gradients simplifies to</span>
+<span id="cb6-1420"><a href="#cb6-1420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1421"><a href="#cb6-1421" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1422"><a href="#cb6-1422" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb6-1423"><a href="#cb6-1423" aria-hidden="true" tabindex="-1"></a>\frac{\partial C}{\partial d_{ij}} &amp; = 2 p{ij} (1 + d_{ij}^2)^{-1} - 2 q_{ij}(1 + d_{ij}^2)^{-1} <span class="sc">\\</span></span>
+<span id="cb6-1424"><a href="#cb6-1424" aria-hidden="true" tabindex="-1"></a>&amp; = 2 (p{ij} - q_{ij}) (1 + d_{ij}^2)^{-1}.</span>
+<span id="cb6-1425"><a href="#cb6-1425" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
 <span id="cb6-1426"><a href="#cb6-1426" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb6-1427"><a href="#cb6-1427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1428"><a href="#cb6-1428" aria-hidden="true" tabindex="-1"></a><span class="fu"># Appendix B: Analytical Solution to Random Walk Probabilities {.appendix .unnumbered}</span></span>
+<span id="cb6-1428"><a href="#cb6-1428" aria-hidden="true" tabindex="-1"></a>Substituting this term into @eq-appendixa2, we obtain the gradient</span>
 <span id="cb6-1429"><a href="#cb6-1429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1430"><a href="#cb6-1430" aria-hidden="true" tabindex="-1"></a>Below, we describe the analytical solution to the random walk</span>
-<span id="cb6-1431"><a href="#cb6-1431" aria-hidden="true" tabindex="-1"></a>probabilities that are employed in the random walk version of t-SNE</span>
-<span id="cb6-1432"><a href="#cb6-1432" aria-hidden="true" tabindex="-1"></a>(@sec-large-data). The solution is described in more</span>
-<span id="cb6-1433"><a href="#cb6-1433" aria-hidden="true" tabindex="-1"></a>detail @grady:random.</span>
-<span id="cb6-1434"><a href="#cb6-1434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1435"><a href="#cb6-1435" aria-hidden="true" tabindex="-1"></a>It can be shown that computing the probability that a random walk</span>
-<span id="cb6-1436"><a href="#cb6-1436" aria-hidden="true" tabindex="-1"></a>initiated from a non-landmark point (on a graph that is specified by</span>
-<span id="cb6-1437"><a href="#cb6-1437" aria-hidden="true" tabindex="-1"></a>adjacency matrix W) first reaches a specific landmark point is equal</span>
-<span id="cb6-1438"><a href="#cb6-1438" aria-hidden="true" tabindex="-1"></a>to computing the solution to the combinatorial Dirichlet problem in</span>
-<span id="cb6-1439"><a href="#cb6-1439" aria-hidden="true" tabindex="-1"></a>which the boundary conditions are at the locations of the landmark</span>
-<span id="cb6-1440"><a href="#cb6-1440" aria-hidden="true" tabindex="-1"></a>points, the considered landmark point is fixed to unity, and the other</span>
-<span id="cb6-1441"><a href="#cb6-1441" aria-hidden="true" tabindex="-1"></a>landmarks points are set to zero @kakutani:dirichlet ;</span>
-<span id="cb6-1442"><a href="#cb6-1442" aria-hidden="true" tabindex="-1"></a>@doyle:random.  In practice, the solution can thus be obtained</span>
-<span id="cb6-1443"><a href="#cb6-1443" aria-hidden="true" tabindex="-1"></a>by minimizing the combinatorial formulation of the Dirichlet integral</span>
-<span id="cb6-1444"><a href="#cb6-1444" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1445"><a href="#cb6-1445" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1446"><a href="#cb6-1446" aria-hidden="true" tabindex="-1"></a>D<span class="co">[</span><span class="ot">x</span><span class="co">]</span> = \frac12 x^\top L x,</span>
-<span id="cb6-1447"><a href="#cb6-1447" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1448"><a href="#cb6-1448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1449"><a href="#cb6-1449" aria-hidden="true" tabindex="-1"></a>where $L$ represents the graph Laplacian. Mathematically, the graph</span>
-<span id="cb6-1450"><a href="#cb6-1450" aria-hidden="true" tabindex="-1"></a>Laplacian is given by $L = D−W$, where $D = \mathrm{diag} (\sum_j</span>
-<span id="cb6-1451"><a href="#cb6-1451" aria-hidden="true" tabindex="-1"></a>w_{1j}, \sum_j w_{2j}, \dots, \sum_j w_{nj} )$. Without loss of</span>
-<span id="cb6-1452"><a href="#cb6-1452" aria-hidden="true" tabindex="-1"></a>generality, we may reorder the landmark points such that the landmark</span>
-<span id="cb6-1453"><a href="#cb6-1453" aria-hidden="true" tabindex="-1"></a>points come first. As a result, the combinatorial Dirichlet integral</span>
-<span id="cb6-1454"><a href="#cb6-1454" aria-hidden="true" tabindex="-1"></a>decomposes into</span>
-<span id="cb6-1455"><a href="#cb6-1455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1456"><a href="#cb6-1456" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1457"><a href="#cb6-1457" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb6-1458"><a href="#cb6-1458" aria-hidden="true" tabindex="-1"></a>D_{x_N} &amp; = \frac12 </span>
-<span id="cb6-1459"><a href="#cb6-1459" aria-hidden="true" tabindex="-1"></a>\left[\begin{array}{cc}</span>
-<span id="cb6-1460"><a href="#cb6-1460" aria-hidden="true" tabindex="-1"></a>x_L^\top &amp; x_N^\top \end{array}\right] \, </span>
-<span id="cb6-1461"><a href="#cb6-1461" aria-hidden="true" tabindex="-1"></a>\left<span class="co">[</span><span class="ot">\begin{array}{cc}  L_L &amp; B \\ B^\top &amp; L_N \end{array}\right</span><span class="co">]</span> \, </span>
-<span id="cb6-1462"><a href="#cb6-1462" aria-hidden="true" tabindex="-1"></a>\left[\begin{array}{c}</span>
-<span id="cb6-1463"><a href="#cb6-1463" aria-hidden="true" tabindex="-1"></a>x_L <span class="sc">\\</span> x_N \end{array}\right] <span class="sc">\\</span></span>
-<span id="cb6-1464"><a href="#cb6-1464" aria-hidden="true" tabindex="-1"></a>&amp; = \frac12 (x_L^\top L_L x_L + 2 x_N^\top B^\top x_L + x_N^\top L_N x_N),</span>
-<span id="cb6-1465"><a href="#cb6-1465" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb6-1466"><a href="#cb6-1466" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1467"><a href="#cb6-1467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1468"><a href="#cb6-1468" aria-hidden="true" tabindex="-1"></a>where we use the subscript ${\cdot}_L$ to indicate the landmark points, and the</span>
-<span id="cb6-1469"><a href="#cb6-1469" aria-hidden="true" tabindex="-1"></a>subscript ${\cdot}_N$ to indicate the non-landmark points. Differentiating</span>
-<span id="cb6-1470"><a href="#cb6-1470" aria-hidden="true" tabindex="-1"></a>$D<span class="co">[</span><span class="ot">x_N</span><span class="co">]</span>$ with respect to $x_N$ and finding its critical points amounts to</span>
-<span id="cb6-1471"><a href="#cb6-1471" aria-hidden="true" tabindex="-1"></a>solving the linear systems </span>
-<span id="cb6-1472"><a href="#cb6-1472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1473"><a href="#cb6-1473" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-1474"><a href="#cb6-1474" aria-hidden="true" tabindex="-1"></a>L_N x_N = −B^\top.</span>
-<span id="cb6-1475"><a href="#cb6-1475" aria-hidden="true" tabindex="-1"></a>$$ {#eq-appendixb1}</span>
-<span id="cb6-1476"><a href="#cb6-1476" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1477"><a href="#cb6-1477" aria-hidden="true" tabindex="-1"></a>Please note that in this linear system, $B^\top$ is a matrix</span>
-<span id="cb6-1478"><a href="#cb6-1478" aria-hidden="true" tabindex="-1"></a>containing the columns from the graph Laplacian $L$ that correspond to</span>
-<span id="cb6-1479"><a href="#cb6-1479" aria-hidden="true" tabindex="-1"></a>the landmark points (excluding the rows that correspond to landmark</span>
-<span id="cb6-1480"><a href="#cb6-1480" aria-hidden="true" tabindex="-1"></a>points). After normalization of the solutions to the systems $X_N$,</span>
-<span id="cb6-1481"><a href="#cb6-1481" aria-hidden="true" tabindex="-1"></a>the column vectors of $X_N$ contain the probability that a random walk</span>
-<span id="cb6-1482"><a href="#cb6-1482" aria-hidden="true" tabindex="-1"></a>initiated from a non-landmark point terminates in a landmark</span>
-<span id="cb6-1483"><a href="#cb6-1483" aria-hidden="true" tabindex="-1"></a>point. One should note that the linear system in </span>
-<span id="cb6-1484"><a href="#cb6-1484" aria-hidden="true" tabindex="-1"></a>@eq-appendixb1 is only nonsingular if the graph is completely</span>
-<span id="cb6-1485"><a href="#cb6-1485" aria-hidden="true" tabindex="-1"></a>connected, or if each connected component in the graph contains at</span>
-<span id="cb6-1486"><a href="#cb6-1486" aria-hidden="true" tabindex="-1"></a>least one landmark point @biggs:algebraic.</span>
-<span id="cb6-1487"><a href="#cb6-1487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-1488"><a href="#cb6-1488" aria-hidden="true" tabindex="-1"></a>Because we are interested in the probability of a random walk</span>
-<span id="cb6-1489"><a href="#cb6-1489" aria-hidden="true" tabindex="-1"></a>initiated from a landmark point terminating at another landmark point,</span>
-<span id="cb6-1490"><a href="#cb6-1490" aria-hidden="true" tabindex="-1"></a>we duplicate all landmark points in the neighborhood graph, and</span>
-<span id="cb6-1491"><a href="#cb6-1491" aria-hidden="true" tabindex="-1"></a>initiate the random walks from the duplicate landmarks. Because of</span>
-<span id="cb6-1492"><a href="#cb6-1492" aria-hidden="true" tabindex="-1"></a>memory constraints, it is not possible to store the entire matrix</span>
-<span id="cb6-1493"><a href="#cb6-1493" aria-hidden="true" tabindex="-1"></a>$X_N$ into memory (note that we are only interested in a small number</span>
-<span id="cb6-1494"><a href="#cb6-1494" aria-hidden="true" tabindex="-1"></a>of rows from this matrix, viz., in the rows corresponding to the</span>
-<span id="cb6-1495"><a href="#cb6-1495" aria-hidden="true" tabindex="-1"></a>duplicate landmark points).  Hence, we solve the linear systems</span>
-<span id="cb6-1496"><a href="#cb6-1496" aria-hidden="true" tabindex="-1"></a>defined by the columns of $−B^\top$ one-by-one, and store only the</span>
-<span id="cb6-1497"><a href="#cb6-1497" aria-hidden="true" tabindex="-1"></a>parts of the solutions that correspond to the duplicate landmark</span>
-<span id="cb6-1498"><a href="#cb6-1498" aria-hidden="true" tabindex="-1"></a>points. For computational reasons, we first perform a Cholesky</span>
-<span id="cb6-1499"><a href="#cb6-1499" aria-hidden="true" tabindex="-1"></a>factorization of $L_N$, such that $L_N = C C^\top$, where $C$ is an</span>
-<span id="cb6-1500"><a href="#cb6-1500" aria-hidden="true" tabindex="-1"></a>upper-triangular matrix. Subsequently, the solution to the linear</span>
-<span id="cb6-1501"><a href="#cb6-1501" aria-hidden="true" tabindex="-1"></a>system in Equation @eq-appendixb1 is obtained by solving the</span>
-<span id="cb6-1502"><a href="#cb6-1502" aria-hidden="true" tabindex="-1"></a>linear systems $Cy = −B^\top$ and $C x_N = y$ using a fast</span>
-<span id="cb6-1503"><a href="#cb6-1503" aria-hidden="true" tabindex="-1"></a>backsubstitution method.</span>
+<span id="cb6-1430"><a href="#cb6-1430" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1431"><a href="#cb6-1431" aria-hidden="true" tabindex="-1"></a>\frac{\partial C}{\partial y_i} = 4 \sum_j (p{ij} - q_{ij}) (1 + \|y_i - y_j\|^2)^{-1} (y_i - y_j).</span>
+<span id="cb6-1432"><a href="#cb6-1432" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1433"><a href="#cb6-1433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1434"><a href="#cb6-1434" aria-hidden="true" tabindex="-1"></a><span class="fu"># Appendix B: Analytical Solution to Random Walk Probabilities {.appendix .unnumbered}</span></span>
+<span id="cb6-1435"><a href="#cb6-1435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1436"><a href="#cb6-1436" aria-hidden="true" tabindex="-1"></a>Below, we describe the analytical solution to the random walk</span>
+<span id="cb6-1437"><a href="#cb6-1437" aria-hidden="true" tabindex="-1"></a>probabilities that are employed in the random walk version of t-SNE</span>
+<span id="cb6-1438"><a href="#cb6-1438" aria-hidden="true" tabindex="-1"></a>(@sec-large-data). The solution is described in more</span>
+<span id="cb6-1439"><a href="#cb6-1439" aria-hidden="true" tabindex="-1"></a>detail @grady:random.</span>
+<span id="cb6-1440"><a href="#cb6-1440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1441"><a href="#cb6-1441" aria-hidden="true" tabindex="-1"></a>It can be shown that computing the probability that a random walk</span>
+<span id="cb6-1442"><a href="#cb6-1442" aria-hidden="true" tabindex="-1"></a>initiated from a non-landmark point (on a graph that is specified by</span>
+<span id="cb6-1443"><a href="#cb6-1443" aria-hidden="true" tabindex="-1"></a>adjacency matrix W) first reaches a specific landmark point is equal</span>
+<span id="cb6-1444"><a href="#cb6-1444" aria-hidden="true" tabindex="-1"></a>to computing the solution to the combinatorial Dirichlet problem in</span>
+<span id="cb6-1445"><a href="#cb6-1445" aria-hidden="true" tabindex="-1"></a>which the boundary conditions are at the locations of the landmark</span>
+<span id="cb6-1446"><a href="#cb6-1446" aria-hidden="true" tabindex="-1"></a>points, the considered landmark point is fixed to unity, and the other</span>
+<span id="cb6-1447"><a href="#cb6-1447" aria-hidden="true" tabindex="-1"></a>landmarks points are set to zero @kakutani:dirichlet ;</span>
+<span id="cb6-1448"><a href="#cb6-1448" aria-hidden="true" tabindex="-1"></a>@doyle:random.  In practice, the solution can thus be obtained</span>
+<span id="cb6-1449"><a href="#cb6-1449" aria-hidden="true" tabindex="-1"></a>by minimizing the combinatorial formulation of the Dirichlet integral</span>
+<span id="cb6-1450"><a href="#cb6-1450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1451"><a href="#cb6-1451" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1452"><a href="#cb6-1452" aria-hidden="true" tabindex="-1"></a>D<span class="co">[</span><span class="ot">x</span><span class="co">]</span> = \frac12 x^\top L x,</span>
+<span id="cb6-1453"><a href="#cb6-1453" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1454"><a href="#cb6-1454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1455"><a href="#cb6-1455" aria-hidden="true" tabindex="-1"></a>where $L$ represents the graph Laplacian. Mathematically, the graph</span>
+<span id="cb6-1456"><a href="#cb6-1456" aria-hidden="true" tabindex="-1"></a>Laplacian is given by $L = D−W$, where $D = \mathrm{diag} (\sum_j</span>
+<span id="cb6-1457"><a href="#cb6-1457" aria-hidden="true" tabindex="-1"></a>w_{1j}, \sum_j w_{2j}, \dots, \sum_j w_{nj} )$. Without loss of</span>
+<span id="cb6-1458"><a href="#cb6-1458" aria-hidden="true" tabindex="-1"></a>generality, we may reorder the landmark points such that the landmark</span>
+<span id="cb6-1459"><a href="#cb6-1459" aria-hidden="true" tabindex="-1"></a>points come first. As a result, the combinatorial Dirichlet integral</span>
+<span id="cb6-1460"><a href="#cb6-1460" aria-hidden="true" tabindex="-1"></a>decomposes into</span>
+<span id="cb6-1461"><a href="#cb6-1461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1462"><a href="#cb6-1462" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1463"><a href="#cb6-1463" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb6-1464"><a href="#cb6-1464" aria-hidden="true" tabindex="-1"></a>D_{x_N} &amp; = \frac12 </span>
+<span id="cb6-1465"><a href="#cb6-1465" aria-hidden="true" tabindex="-1"></a>\left[\begin{array}{cc}</span>
+<span id="cb6-1466"><a href="#cb6-1466" aria-hidden="true" tabindex="-1"></a>x_L^\top &amp; x_N^\top \end{array}\right] \, </span>
+<span id="cb6-1467"><a href="#cb6-1467" aria-hidden="true" tabindex="-1"></a>\left<span class="co">[</span><span class="ot">\begin{array}{cc}  L_L &amp; B \\ B^\top &amp; L_N \end{array}\right</span><span class="co">]</span> \, </span>
+<span id="cb6-1468"><a href="#cb6-1468" aria-hidden="true" tabindex="-1"></a>\left[\begin{array}{c}</span>
+<span id="cb6-1469"><a href="#cb6-1469" aria-hidden="true" tabindex="-1"></a>x_L <span class="sc">\\</span> x_N \end{array}\right] <span class="sc">\\</span></span>
+<span id="cb6-1470"><a href="#cb6-1470" aria-hidden="true" tabindex="-1"></a>&amp; = \frac12 (x_L^\top L_L x_L + 2 x_N^\top B^\top x_L + x_N^\top L_N x_N),</span>
+<span id="cb6-1471"><a href="#cb6-1471" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb6-1472"><a href="#cb6-1472" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1473"><a href="#cb6-1473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1474"><a href="#cb6-1474" aria-hidden="true" tabindex="-1"></a>where we use the subscript ${\cdot}_L$ to indicate the landmark points, and the</span>
+<span id="cb6-1475"><a href="#cb6-1475" aria-hidden="true" tabindex="-1"></a>subscript ${\cdot}_N$ to indicate the non-landmark points. Differentiating</span>
+<span id="cb6-1476"><a href="#cb6-1476" aria-hidden="true" tabindex="-1"></a>$D<span class="co">[</span><span class="ot">x_N</span><span class="co">]</span>$ with respect to $x_N$ and finding its critical points amounts to</span>
+<span id="cb6-1477"><a href="#cb6-1477" aria-hidden="true" tabindex="-1"></a>solving the linear systems </span>
+<span id="cb6-1478"><a href="#cb6-1478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1479"><a href="#cb6-1479" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-1480"><a href="#cb6-1480" aria-hidden="true" tabindex="-1"></a>L_N x_N = −B^\top.</span>
+<span id="cb6-1481"><a href="#cb6-1481" aria-hidden="true" tabindex="-1"></a>$$ {#eq-appendixb1}</span>
+<span id="cb6-1482"><a href="#cb6-1482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1483"><a href="#cb6-1483" aria-hidden="true" tabindex="-1"></a>Please note that in this linear system, $B^\top$ is a matrix</span>
+<span id="cb6-1484"><a href="#cb6-1484" aria-hidden="true" tabindex="-1"></a>containing the columns from the graph Laplacian $L$ that correspond to</span>
+<span id="cb6-1485"><a href="#cb6-1485" aria-hidden="true" tabindex="-1"></a>the landmark points (excluding the rows that correspond to landmark</span>
+<span id="cb6-1486"><a href="#cb6-1486" aria-hidden="true" tabindex="-1"></a>points). After normalization of the solutions to the systems $X_N$,</span>
+<span id="cb6-1487"><a href="#cb6-1487" aria-hidden="true" tabindex="-1"></a>the column vectors of $X_N$ contain the probability that a random walk</span>
+<span id="cb6-1488"><a href="#cb6-1488" aria-hidden="true" tabindex="-1"></a>initiated from a non-landmark point terminates in a landmark</span>
+<span id="cb6-1489"><a href="#cb6-1489" aria-hidden="true" tabindex="-1"></a>point. One should note that the linear system in </span>
+<span id="cb6-1490"><a href="#cb6-1490" aria-hidden="true" tabindex="-1"></a>@eq-appendixb1 is only nonsingular if the graph is completely</span>
+<span id="cb6-1491"><a href="#cb6-1491" aria-hidden="true" tabindex="-1"></a>connected, or if each connected component in the graph contains at</span>
+<span id="cb6-1492"><a href="#cb6-1492" aria-hidden="true" tabindex="-1"></a>least one landmark point @biggs:algebraic.</span>
+<span id="cb6-1493"><a href="#cb6-1493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-1494"><a href="#cb6-1494" aria-hidden="true" tabindex="-1"></a>Because we are interested in the probability of a random walk</span>
+<span id="cb6-1495"><a href="#cb6-1495" aria-hidden="true" tabindex="-1"></a>initiated from a landmark point terminating at another landmark point,</span>
+<span id="cb6-1496"><a href="#cb6-1496" aria-hidden="true" tabindex="-1"></a>we duplicate all landmark points in the neighborhood graph, and</span>
+<span id="cb6-1497"><a href="#cb6-1497" aria-hidden="true" tabindex="-1"></a>initiate the random walks from the duplicate landmarks. Because of</span>
+<span id="cb6-1498"><a href="#cb6-1498" aria-hidden="true" tabindex="-1"></a>memory constraints, it is not possible to store the entire matrix</span>
+<span id="cb6-1499"><a href="#cb6-1499" aria-hidden="true" tabindex="-1"></a>$X_N$ into memory (note that we are only interested in a small number</span>
+<span id="cb6-1500"><a href="#cb6-1500" aria-hidden="true" tabindex="-1"></a>of rows from this matrix, viz., in the rows corresponding to the</span>
+<span id="cb6-1501"><a href="#cb6-1501" aria-hidden="true" tabindex="-1"></a>duplicate landmark points).  Hence, we solve the linear systems</span>
+<span id="cb6-1502"><a href="#cb6-1502" aria-hidden="true" tabindex="-1"></a>defined by the columns of $−B^\top$ one-by-one, and store only the</span>
+<span id="cb6-1503"><a href="#cb6-1503" aria-hidden="true" tabindex="-1"></a>parts of the solutions that correspond to the duplicate landmark</span>
+<span id="cb6-1504"><a href="#cb6-1504" aria-hidden="true" tabindex="-1"></a>points. For computational reasons, we first perform a Cholesky</span>
+<span id="cb6-1505"><a href="#cb6-1505" aria-hidden="true" tabindex="-1"></a>factorization of $L_N$, such that $L_N = C C^\top$, where $C$ is an</span>
+<span id="cb6-1506"><a href="#cb6-1506" aria-hidden="true" tabindex="-1"></a>upper-triangular matrix. Subsequently, the solution to the linear</span>
+<span id="cb6-1507"><a href="#cb6-1507" aria-hidden="true" tabindex="-1"></a>system in Equation @eq-appendixb1 is obtained by solving the</span>
+<span id="cb6-1508"><a href="#cb6-1508" aria-hidden="true" tabindex="-1"></a>linear systems $Cy = −B^\top$ and $C x_N = y$ using a fast</span>
+<span id="cb6-1509"><a href="#cb6-1509" aria-hidden="true" tabindex="-1"></a>backsubstitution method.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
