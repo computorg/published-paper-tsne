@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.156">
+<meta name="generator" content="quarto-1.4.169">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -190,7 +190,7 @@ ISSN 2824-7795</p>
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">June 20, 2023</p>
+        <p class="date-modified">June 25, 2023</p>
       </div>
     </div>
       
@@ -916,19 +916,7 @@ Zhu, Xiaojin, Zoubin Ghahramani, and John D Lafferty. 2003. <span>“Semi-Superv
 </section>
 
 
-<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>SNE can also be applied to data sets that consist of pairwise similarities between objects rather than high-dimensional vector representations of each object, provided these similarities can be interpreted as conditional probabilities. For example, human word associations data consists of the probability of producing each possible word in response to a given word, as a result of which it is already in the form required by SNE.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Setting the variance in the low-dimensional Gaussians to another value only results in a rescaled version of the final map. Note that by using the same variance for every datapoint in the low-dimensional map, we lose the property that the data is a perfect model of itself if we embed it in a space of the same dimensionality, because in the high-dimensional space, we used a different variance <span class="math inline">\sigma_i</span> in each Gaussian.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Note that the perplexity increases monotonically with the variance <span class="math inline">\sigma_i</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Picking the best map after several runs as visualization of the data is not nearly as problematic as picking the model that does best on a test set during supervised learning. In visualization, the aim is to see the structure in the training data, not to generalize to held out test data.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>The MNIST data set is publicly available from <a href="http://yann.lecun.com/exdb/mnist/index.html" class="uri">http://yann.lecun.com/exdb/mnist/index.html</a>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>The Olivetti data set is publicly available from <a href="http://mambo.ucsc.edu/psl/olivetti.html" class="uri">http://mambo.ucsc.edu/psl/olivetti.html</a>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>Isomap and LLE require data that gives rise to a neighborhood graph that is connected.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>In preliminary experiments, we found the performance of random walk t-SNE to be very robust under changes of <span class="math inline">k</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</aside>
+
 
 <div id="quarto-appendix" class="default"><section id="appendix-a-derivation-of-the-t-sne-gradient" class="level1 appendix unnumbered"><h2 class="anchored quarto-appendix-heading">Appendix A: Derivation of the t-SNE gradient</h2><div class="quarto-appendix-contents">
 
@@ -1005,7 +993,19 @@ L_N x_N = −B^\top.
 <p>Because we are interested in the probability of a random walk initiated from a landmark point terminating at another landmark point, we duplicate all landmark points in the neighborhood graph, and initiate the random walks from the duplicate landmarks. Because of memory constraints, it is not possible to store the entire matrix <span class="math inline">X_N</span> into memory (note that we are only interested in a small number of rows from this matrix, viz., in the rows corresponding to the duplicate landmark points). Hence, we solve the linear systems defined by the columns of <span class="math inline">−B^\top</span> one-by-one, and store only the parts of the solutions that correspond to the duplicate landmark points. For computational reasons, we first perform a Cholesky factorization of <span class="math inline">L_N</span>, such that <span class="math inline">L_N = C C^\top</span>, where <span class="math inline">C</span> is an upper-triangular matrix. Subsequently, the solution to the linear system in Equation <a href="#eq-appendixb1" class="quarto-xref">Equation&nbsp;8</a> is obtained by solving the linear systems <span class="math inline">Cy = −B^\top</span> and <span class="math inline">C x_N = y</span> using a fast backsubstitution method.</p>
 <!-- -->
 
-</div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@article{van der maaten2008,
+</div></section><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>SNE can also be applied to data sets that consist of pairwise similarities between objects rather than high-dimensional vector representations of each object, provided these similarities can be interpreted as conditional probabilities. For example, human word associations data consists of the probability of producing each possible word in response to a given word, as a result of which it is already in the form required by SNE.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Setting the variance in the low-dimensional Gaussians to another value only results in a rescaled version of the final map. Note that by using the same variance for every datapoint in the low-dimensional map, we lose the property that the data is a perfect model of itself if we embed it in a space of the same dimensionality, because in the high-dimensional space, we used a different variance <span class="math inline">\sigma_i</span> in each Gaussian.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Note that the perplexity increases monotonically with the variance <span class="math inline">\sigma_i</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Picking the best map after several runs as visualization of the data is not nearly as problematic as picking the model that does best on a test set during supervised learning. In visualization, the aim is to see the structure in the training data, not to generalize to held out test data.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>The MNIST data set is publicly available from <a href="http://yann.lecun.com/exdb/mnist/index.html" class="uri">http://yann.lecun.com/exdb/mnist/index.html</a>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>The Olivetti data set is publicly available from <a href="http://mambo.ucsc.edu/psl/olivetti.html" class="uri">http://mambo.ucsc.edu/psl/olivetti.html</a>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Isomap and LLE require data that gives rise to a neighborhood graph that is connected.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>In preliminary experiments, we found the performance of random walk t-SNE to be very robust under changes of <span class="math inline">k</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@article{van der maaten2008,
   author = {van der Maaten, Laurens and Hinton, Geoffrey},
   publisher = {Société Française de Statistique},
   title = {Visualizing {Data} Using {t-SNE:} A Practical Computo Example
