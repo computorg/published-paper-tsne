@@ -583,7 +583,8 @@ Geoffrey Hinton is a fellow of the Canadian Institute for Advanced Research, and
 ::: {#refs}
 :::
 
-<!-- FIXME: crossref appendices not working, see https://github.com/quarto-dev/quarto-cli/discussions/4581  -->
+<!-- FIXME: crossref appendices not working, see https://github.com/quarto-dev/quarto-cli/discussions/4581  and https://github.com/quarto-dev/quarto-cli/discussions/5169 
+The whole crossref code will be rewritten in quarto for 4.* -->
 # Appendix A: Derivation of the t-SNE gradient {#sec-appendixa} 
 
 t-SNE minimizes the Kullback-Leibler divergence between the joint probabilities $p_{ij}$ in the highdimensional space and the joint probabilities $q_{ij}$ in the low-dimensional space. The values of $p_{ij}$ are defined to be the symmetrized conditional probabilities, whereas the values of $q_{ij}$ are obtained by means of a Student-t distribution with one degree of freedom
