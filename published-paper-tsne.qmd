@@ -947,7 +947,7 @@ tSNE constructs a map in which the separation between the digit
 classes is almost perfect. Moreover, detailed inspection of the t-SNE
 map reveals that much of the local structure of the data (such as the
 orientation of the ones) is captured as well. This is illustrated in
-more detail in @sec-large-data (see @fig-random_walk_tsne). The map produced by t-SNE
+more detail in @sec-large-data (see @fig-random-walk-tsne). The map produced by t-SNE
 contains some points that are clustered with the wrong class, but most
 of these points correspond to distorted digits many of which are
 difficult to identify. @fig-olivetti shows the results of applying t-SNE,
@@ -1001,7 +1001,7 @@ datapoints (so-called landmark points) in a way that uses information
 from the entire (possibly very large) data set.
 
 ![An illustration of the advantage of the random walk version of t-SNE over a standard
-landmark approach. The shaded points A, B, and C are three (almost) equidistant landmark points, whereas the non-shaded datapoints are non-landmark points. The arrows represent a directed neighborhood graph where $k = 3$. In a standard landmark approach, the pairwise affinity between A and B is approximately equal to the pairwise affinity between A and C. In the random walk version of t-SNE, the pairwise affinity between A and B is much larger than the pairwise affinity between A and C, and therefore, it reflects the structure of the data much better.](figures/random_walk.png){#fig-random-walk}
+landmark approach. The shaded points A, B, and C are three (almost) equidistant landmark points, whereas the non-shaded datapoints are non-landmark points. The arrows represent a directed neighborhood graph where $k = 3$. In a standard landmark approach, the pairwise affinity between A and B is approximately equal to the pairwise affinity between A and C. In the random walk version of t-SNE, the pairwise affinity between A and B is much larger than the pairwise affinity between A and C, and therefore, it reflects the structure of the data much better.](figures/random-walk.png){#fig-random-walk}
 
 We start by choosing a desired number of neighbors and creating a
 neighborhood graph for all of the datapoints. Although this is
@@ -1041,9 +1041,9 @@ less expensive. However, for very large data sets in which the
 landmark points are very sparse, the analytical solution may be more
 appropriate.
 
-::: {#fig-random_walk_tsne} 
+::: {#fig-random-walk-tsne} 
 
-![](figures/random_walk_tSNE.png)
+![](figures/random-walk-tSNE.png)
 
 Visualization of 6,000 digits from the MNIST data set produced by the random walk
 version of t-SNE (employing all 60,000 digit images).
@@ -1055,7 +1055,7 @@ reproduce this plot on
 
 :::
 
-@fig-random_walk_tsne shows the results of an experiment, in which we
+@fig-random-walk-tsne shows the results of an experiment, in which we
 applied the random walk version of t-SNE to 6,000 randomly selected
 digits from the MNIST data set, using all 60,000 digits to compute the
 pairwise affinities $p_{j|i}$. In the experiment, we used a
@@ -1076,7 +1076,7 @@ generalization error of a 1-nearest neighbor classifier trained on the
 two-dimensional data representation produced by t-SNE is only
 5.13%. The computational requirements of random walk t-SNE are
 reasonable: it took only one hour of CPU time to construct the map in
-@fig-random_walk_tsne.
+@fig-random-walk-tsne.
 
 [^knn]: In preliminary experiments, we found the performance of random
     walk t-SNE to be very robust under changes of $k$.
