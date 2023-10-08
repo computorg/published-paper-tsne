@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.398">
+<meta name="generator" content="quarto-1.4.404">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -191,7 +191,7 @@ ISSN 2824-7795</p>
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">October 5, 2023</p>
+        <p class="date-modified">October 8, 2023</p>
       </div>
     </div>
       
@@ -752,7 +752,8 @@ Figure&nbsp;5: An illustration of the advantage of the random walk version of t-
 <div id="fig-random-walk-tsne" class="quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-random-walk-tsne-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/random-walk-tSNE.png" class="img-fluid figure-img">
+<p><img src="figures/random-walk-tSNE.png" class="img-fluid figure-img"></p>
+<p>Visualization of 6,000 digits from the MNIST data set produced by the random walk version of t-SNE (employing all 60,000 digit images).</p>
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-random-walk-tsne-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6: [Note of the editor] Please note that this dataset is too large for the code to be processed through continuous integration. You can find the code to reproduce this plot on <a href="https://github.com/computorg/published-paper-tsne/tree/main/scripts">github</a>
@@ -1512,6 +1513,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (!isInternal(link.href)) {
           // target, if specified
           link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
 });
