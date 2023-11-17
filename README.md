@@ -10,7 +10,7 @@ by
 
 [![build status](https://github.com/computorg/published-paper-tsne/workflows/build/badge.svg)](https://github.com/computorg/published-paper-tsne/)
 [![](https://img.shields.io/github/last-commit/computorg/published-paper-tsne.svg)](https://github.com/computorg/published-paper-tsne/commits/main)
-[![DOI:xxx/xxx-xxx ](https://img.shields.io/badge/DOI-xxx%2Fxxx-034E79.svg)](https://doi.org/xxx/xxx-xxx)
+[![DOI:xxx/xxx-xxx ](https://img.shields.io/badge/DOI-xxx%2Fxxx--034E79.svg)](https://doi.org/xxx/xxx-xxx)
 [![HTML](https://img.shields.io/badge/article-HTML-034E79)](https://computo.sfds.asso.fr/published-paper-tsne/)
 [![PDF](https://img.shields.io/badge/article-PDF-034E79)](https://computo.sfds.asso.fr/published-paper-tsne/published-paper-tsne.pdf)
 [![review 1](https://img.shields.io/badge/review-report%201-blue)](https://github.com/computorg/published-paper-tsne/issues/4)
