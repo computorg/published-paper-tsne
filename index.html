@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.510">
+<meta name="generator" content="quarto-1.4.515">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -191,7 +191,7 @@ ISSN 2824-7795</p>
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">November 26, 2023</p>
+        <p class="date-modified">December 3, 2023</p>
       </div>
     </div>
       
@@ -361,7 +361,7 @@ y_j)(1+\|y_i - y_j\|^2)^{-1}\,.
 <div aria-describedby="fig-gradients-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figures/gradients.png" class="img-fluid figure-img">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-gradients-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gradients-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Gradients of three types of SNE as a function of the pairwise Euclidean distance between two points in the high-dimensional and the pairwise distance between the points in the low-dimensional data representation.
 </figcaption>
 </figure>
@@ -370,7 +370,7 @@ Figure&nbsp;1: Gradients of three types of SNE as a function of the pairwise Euc
 <p>First, the t-SNE gradient strongly repels dissimilar datapoints that are modeled by a small pairwise distance in the low-dimensional representation. SNE has such repulsion as well, but its effect is minimal compared to the strong attractions elsewhere in the gradient (the largest attraction in our graphical representation of the gradient is approximately 19, whereas the largest repulsion is approximately 1). In UNI-SNE, the amount of repulsion between dissimilar datapoints is slightly larger, however, this repulsion is only strong when the pairwise distance between the points in the low-dimensional representation is already large (which is often not the case, since the low-dimensional representation is initialized by sampling from a Gaussian with a very small variance that is centered around the origin).</p>
 <p>Second, although t-SNE introduces strong repulsions between dissimilar datapoints that are modeled by small pairwise distances, these repulsions do not go to infinity. In this respect, t-SNE differs from UNI-SNE, in which the strength of the repulsion between very dissimilar datapoints is proportional to their pairwise distance in the low-dimensional map, which may cause dissimilar datapoints to move much too far away from each other.</p>
 <p>Taken together, t-SNE puts emphasis on (1) modeling dissimilar datapoints by means of large pairwise distances, and (2) modeling similar datapoints by means of small pairwise distances. Moreover, as a result of these characteristics of the t-SNE cost function (and as a result of the approximate scale invariance of the Student t-distribution), the optimization of the t-SNE cost function is much easier than the optimization of the cost functions of SNE and UNI-SNE. Specifically, t-SNE introduces long-range forces in the low-dimensional map that can pull back together two (clusters of) similar points that get separated early on in the optimization. SNE and UNI-SNE do not have such long-range forces, as a result of which SNE and UNI-SNE need to use simulated annealing to obtain reasonable solutions. Instead, the long-range forces in t-SNE facilitate the identification of good local optima without resorting to simulated annealing</p>
-<div class="pseudocode-container" data-pseudocode-index="1" data-alg-title="Algorithm">
+<div class="pseudocode-container" data-alg-title="Algorithm" data-pseudocode-index="1">
 <div class="pseudocode">
 \begin{algorithm} \caption{Simple version of t-Distributed Stochastic Neighbor Embeding} \begin{algorithmic} \State \textbf{Data}: high-dimensional representation $\mathcal{X} = \{x_1, \dots, x_n\}$ \State cost function parameters: perplexity $Perp$ \State optimization parameters: number of iterations $T$, learning rate $\eta$, momentum $\alpha(t)$ \State \textbf{Result}: low-dimensional data representation $\mathcal{Y}^{(T)} = \{y_1, \dots, y_n\}$ \Procedure{t-sne}{$Perp, T, \eta, \alpha(t)$} \State compute pairwise affinities $p_{j|i}$ with perplexity $Perp$ (using Equation 1) \State set $p_{ij} = \frac{1}{2n} (p_{j|i} + p_{i|j})$ \State sample initial solution $\mathcal{Y}^{(0)} = \{y_1,\dots,y_n\}$ from $\mathcal{N}(0,1e^{-4} I)$ \For{$t = 0$\dots$T$} \State compute low-dimensional affinities $q_{ij}$ (using Equation 4) \State compute gradient $\frac{\partial C}{\partial \mathcal{Y}}$ (using Equation 5) \State et $\mathcal{Y}^{t} = \mathcal{Y}^{t-1} + \eta \frac{\partial C}{\partial \mathcal{Y}} + \alpha(t) \left(\mathcal{Y}^{t-1} - \mathcal{Y}^{t-2}\right)$ \EndFor \EndProcedure \end{algorithmic} \end{algorithm}
 </div>
@@ -399,7 +399,7 @@ Figure&nbsp;1: Gradients of three types of SNE as a function of the pairwise Euc
 <p>The cost function parameter settings we employed in our experiments are listed in <a href="#tbl-cost-function-parameters" class="quarto-xref">Table&nbsp;1</a>. In the table, <span class="math inline">Perp</span> represents the perplexity of the conditional probability distribution induced by a Gaussian kernel and <span class="math inline">k</span> represents the number of nearest neighbors employed in a neighborhood graph. In the experiments with Isomap and LLE, we only visualize datapoints that correspond to vertices in the largest connected component of the neighborhood graph. <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> For the Sammon mapping optimization, we performed Newton’s method for 500 iterations.</p>
 <div id="tbl-cost-function-parameters" class="anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-cost-function-parameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cost-function-parameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Cost function parameter settings for the experiments
 </figcaption>
 <div aria-describedby="tbl-cost-function-parameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -437,7 +437,7 @@ Table&nbsp;1: Cost function parameter settings for the experiments
 <h2 data-number="4.3" class="anchored" data-anchor-id="sec-results"><span class="header-section-number">4.3</span> Results</h2>
 <div id="cell-fig-tsne-sammon" class="cell" data-execution_count="1">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Hide/Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">###############################################################################</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure 2. Visualization by t-SNE and Sammon mapping</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">###############################################################################</span></span>
@@ -526,7 +526,7 @@ Table&nbsp;1: Cost function parameter settings for the experiments
 <div aria-describedby="fig-tsne-sammon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="published-paper-tsne_files/figure-html/fig-tsne-sammon-output-1.svg" class="img-fluid figure-img">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-tsne-sammon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tsne-sammon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Visualization by t-SNE and Sammon mapping
 </figcaption>
 </figure>
@@ -535,7 +535,7 @@ Figure&nbsp;2: Visualization by t-SNE and Sammon mapping
 </div>
 <div id="cell-fig-isomap-lle" class="cell" data-execution_count="2">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Hide/Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">###############################################################################</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure 3. Visualization by Isomap and LLE</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">###############################################################################</span></span>
@@ -593,7 +593,7 @@ Figure&nbsp;2: Visualization by t-SNE and Sammon mapping
 <div aria-describedby="fig-isomap-lle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="published-paper-tsne_files/figure-html/fig-isomap-lle-output-1.svg" class="img-fluid figure-img">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-isomap-lle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-isomap-lle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Visualization by Isomap and LLE
 </figcaption>
 </figure>
@@ -602,7 +602,7 @@ Figure&nbsp;3: Visualization by Isomap and LLE
 </div>
 <div id="cell-fig-olivetti" class="cell" data-execution_count="3">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Hide/Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">###############################################################################</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure 4. Visualization of the Olivetti faces data set</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">###############################################################################</span></span>
@@ -723,7 +723,7 @@ Figure&nbsp;3: Visualization by Isomap and LLE
 <div aria-describedby="fig-olivetti-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="published-paper-tsne_files/figure-html/fig-olivetti-output-2.svg" class="img-fluid figure-img">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-olivetti-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-olivetti-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4: Visualization of the Olivetti faces data set
 </figcaption>
 </figure>
@@ -742,7 +742,7 @@ Figure&nbsp;4: Visualization of the Olivetti faces data set
 <div aria-describedby="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figures/random-walk.png" class="img-fluid figure-img">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5: An illustration of the advantage of the random walk version of t-SNE over a standard landmark approach. The shaded points A, B, and C are three (almost) equidistant landmark points, whereas the non-shaded datapoints are non-landmark points. The arrows represent a directed neighborhood graph where <span class="math inline">k = 3</span>. In a standard landmark approach, the pairwise affinity between A and B is approximately equal to the pairwise affinity between A and C. In the random walk version of t-SNE, the pairwise affinity between A and B is much larger than the pairwise affinity between A and C, and therefore, it reflects the structure of the data much better.
 </figcaption>
 </figure>
@@ -755,7 +755,7 @@ Figure&nbsp;5: An illustration of the advantage of the random walk version of t-
 <p><img src="figures/random-walk-tSNE.png" class="img-fluid figure-img"></p>
 <p>Visualization of 6,000 digits from the MNIST data set produced by the random walk version of t-SNE (employing all 60,000 digit images).</p>
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-random-walk-tsne-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-random-walk-tsne-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6: [Note of the editor] Please note that this dataset is too large for the code to be processed through continuous integration. You can find the code to reproduce this plot on <a href="https://github.com/computorg/published-paper-tsne/tree/main/scripts">github</a>
 </figcaption>
 </figure>
