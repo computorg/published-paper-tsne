@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.24">
+<meta name="generator" content="quarto-1.5.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -218,7 +218,7 @@ ISSN 2824-7795</p>
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">March 10, 2024</p>
+        <p class="date-modified">March 17, 2024</p>
       </div>
     </div>
       
@@ -402,7 +402,7 @@ Figure&nbsp;1: Gradients of three types of SNE as a function of the pairwise Euc
 <p>First, the t-SNE gradient strongly repels dissimilar datapoints that are modeled by a small pairwise distance in the low-dimensional representation. SNE has such repulsion as well, but its effect is minimal compared to the strong attractions elsewhere in the gradient (the largest attraction in our graphical representation of the gradient is approximately 19, whereas the largest repulsion is approximately 1). In UNI-SNE, the amount of repulsion between dissimilar datapoints is slightly larger, however, this repulsion is only strong when the pairwise distance between the points in the low-dimensional representation is already large (which is often not the case, since the low-dimensional representation is initialized by sampling from a Gaussian with a very small variance that is centered around the origin).</p>
 <p>Second, although t-SNE introduces strong repulsions between dissimilar datapoints that are modeled by small pairwise distances, these repulsions do not go to infinity. In this respect, t-SNE differs from UNI-SNE, in which the strength of the repulsion between very dissimilar datapoints is proportional to their pairwise distance in the low-dimensional map, which may cause dissimilar datapoints to move much too far away from each other.</p>
 <p>Taken together, t-SNE puts emphasis on (1) modeling dissimilar datapoints by means of large pairwise distances, and (2) modeling similar datapoints by means of small pairwise distances. Moreover, as a result of these characteristics of the t-SNE cost function (and as a result of the approximate scale invariance of the Student t-distribution), the optimization of the t-SNE cost function is much easier than the optimization of the cost functions of SNE and UNI-SNE. Specifically, t-SNE introduces long-range forces in the low-dimensional map that can pull back together two (clusters of) similar points that get separated early on in the optimization. SNE and UNI-SNE do not have such long-range forces, as a result of which SNE and UNI-SNE need to use simulated annealing to obtain reasonable solutions. Instead, the long-range forces in t-SNE facilitate the identification of good local optima without resorting to simulated annealing</p>
-<div class="pseudocode-container" data-pseudocode-index="1" data-alg-title="Algorithm">
+<div class="pseudocode-container" data-alg-title="Algorithm" data-pseudocode-index="1">
 <div class="pseudocode">
 \begin{algorithm} \caption{Simple version of t-Distributed Stochastic Neighbor Embeding} \begin{algorithmic} \State \textbf{Data}: high-dimensional representation $\mathcal{X} = \{x_1, \dots, x_n\}$ \State cost function parameters: perplexity $Perp$ \State optimization parameters: number of iterations $T$, learning rate $\eta$, momentum $\alpha(t)$ \State \textbf{Result}: low-dimensional data representation $\mathcal{Y}^{(T)} = \{y_1, \dots, y_n\}$ \Procedure{t-sne}{$Perp, T, \eta, \alpha(t)$} \State compute pairwise affinities $p_{j|i}$ with perplexity $Perp$ (using Equation 1) \State set $p_{ij} = \frac{1}{2n} (p_{j|i} + p_{i|j})$ \State sample initial solution $\mathcal{Y}^{(0)} = \{y_1,\dots,y_n\}$ from $\mathcal{N}(0,1e^{-4} I)$ \For{$t = 0$\dots$T$} \State compute low-dimensional affinities $q_{ij}$ (using Equation 4) \State compute gradient $\frac{\partial C}{\partial \mathcal{Y}}$ (using Equation 5) \State et $\mathcal{Y}^{t} = \mathcal{Y}^{t-1} + \eta \frac{\partial C}{\partial \mathcal{Y}} + \alpha(t) \left(\mathcal{Y}^{t-1} - \mathcal{Y}^{t-2}\right)$ \EndFor \EndProcedure \end{algorithmic} \end{algorithm}
 </div>
@@ -1057,7 +1057,7 @@ L_N x_N = −B^\top.
 <li id="fn7"><p>Isomap and LLE require data that gives rise to a neighborhood graph that is connected.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8"><p>In preliminary experiments, we found the performance of random walk t-SNE to be very robust under changes of <span class="math inline">k</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@article{van der maaten2008,
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@article{van_der_maaten2008,
   author = {van der Maaten, Laurens and Hinton, Geoffrey},
   publisher = {Société Française de Statistique},
   title = {Visualizing {Data} Using {t-SNE:} A Practical Computo Example
@@ -1089,7 +1089,7 @@ L_N x_N = −B^\top.
     techniques on almost all of the data sets. \textless
     br/\textgreater{}}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-van der maaten2008" class="csl-entry quarto-appendix-citeas" role="listitem">
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-van_der_maaten2008" class="csl-entry quarto-appendix-citeas" role="listitem">
 Maaten, Laurens van der, and Geoffrey Hinton. 2008. <span>“Visualizing
 Data Using t-SNE: A Practical Computo Example (Mock).”</span>
 <em>Computo</em>, August. <a href="https://computo.sfds.asso.fr/published-paper-tsne">https://computo.sfds.asso.fr/published-paper-tsne</a>.
@@ -1130,18 +1130,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1173,7 +1162,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -3063,7 +3074,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-1507"><a href="#cb5-1507" aria-hidden="true" tabindex="-1"></a>system in Equation @eq-appendixb1 is obtained by solving the</span>
 <span id="cb5-1508"><a href="#cb5-1508" aria-hidden="true" tabindex="-1"></a>linear systems $Cy = −B^\top$ and $C x_N = y$ using a fast</span>
 <span id="cb5-1509"><a href="#cb5-1509" aria-hidden="true" tabindex="-1"></a>backsubstitution method.</span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <script>
