@@ -2,3 +2,4 @@ jupyter
 matplotlib
 numpy
 scikit-learn
+jupyter-cache
