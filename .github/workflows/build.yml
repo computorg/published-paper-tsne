@@ -11,38 +11,39 @@ env:
 
 jobs:
   build-deploy:
-    if: "!contains(github.event.head_commit.message, 'skip build')"
     runs-on: ubuntu-latest
     permissions:
       contents: write   
     steps:
       - name: Checking out repository for Github action
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: mamba-org/setup-micromamba@v1
+      - name: Cache micromamba
+        uses: mamba-org/setup-micromamba@v1
         with:
-          # environment-file is not assumed anymore
           environment-file: environment.yml
-          # now called cache-environment
           cache-environment: true
-
-      - name: Installing quarto
+          
+      - name: Set up quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
-          
-      - name: Install Computo extension for Quarto
-        run: |
-            quarto add --no-prompt computorg/computo-quarto-extension
 
-      - name: inkscape
-        shell: bash -l {0}
+      - name: Set up quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
 
+      - name: register tinytex globally for diagram.lua
         run: |
           mkdir -p ~/.local/bin
           ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin
           ~/.TinyTeX/bin/x86_64-linux/tlmgr path add
-          sudo apt-get install -y inkscape
+          ~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts
+  
+      - name: Install Computo extension for Quarto
+        run: |
+            quarto add --no-prompt computorg/computo-quarto-extension
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
