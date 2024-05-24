@@ -4,6 +4,8 @@ channels:
 dependencies:
   - jupyter
   - matplotlib
+  - plotly
+  - pandas
   - numpy
   - scikit-learn
   - jupyter-cache

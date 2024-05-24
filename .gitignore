@@ -6,3 +6,6 @@ published-paper-tsne.ipynb
 published-paper-tsne.tex
 published-paper-tsne_files/
 .jupyter_cache/
+
+/.luarc.json
+/.micromamba

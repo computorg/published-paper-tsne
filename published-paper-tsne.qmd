@@ -17,8 +17,6 @@ author:
     affiliation: Department of Computer Science, University of Toronto
     affiliation-url: https://web.cs.toronto.edu/
     orcid: 0000-0002-8063-7209
-abstract: |
-  We present a new technique called "t-SNE" that visualizes high-dimensional data by giving each datapoint a location in a two or three-dimensional map.  The technique is a variation of Stochastic Neighbor Embedding hinton:stochastic that is much easier to optimize, and produces significantly better visualizations by reducing the tendency to crowd points together in the center of the map. t-SNE is better than existing techniques at creating a single map that reveals structure at many different scales. This is particularly important for high-dimensional data that lie on several different, but related, low-dimensional manifolds, such as images of objects from multiple classes seen from multiple viewpoints. For visualizing the structure of very large data sets, we show how t-SNE can use random walks on neighborhood graphs to allow the implicit structure of all the data to influence the way in which a subset of the data is displayed. We illustrate the performance of t-SNE on a wide variety of data sets and compare it with many other non-parametric visualization techniques, including Sammon mapping, Isomap, and Locally Linear Embedding. The visualization produced by t-SNE are significantly better than those produced by other techniques on almost all of the data sets. <br/>
 keywords: [visualization, dimensionality reduction, manifold learning, embedding algorithms, multidimensional scaling]
 bibliography: references.bib
 github-user: computorg
@@ -34,22 +32,27 @@ citation:
   issn: "2824-7795"
 format: 
   computo-html: default
-  computo-pdf: default
+  computo-pdf:
+    execute:
+      echo: false
 execute:
   warning: false
   cache: true 
 jupyter: python3
 ---
+# Abstract
+
+We present a new technique called "t-SNE" that visualizes high-dimensional data by giving each datapoint a location in a two or three-dimensional map.  The technique is a variation of Stochastic Neighbor Embedding [@hinton:stochastic] that is much easier to optimize, and produces significantly better visualizations by reducing the tendency to crowd points together in the center of the map. t-SNE is better than existing techniques at creating a single map that reveals structure at many different scales. This is particularly important for high-dimensional data that lie on several different, but related, low-dimensional manifolds, such as images of objects from multiple classes seen from multiple viewpoints. For visualizing the structure of very large data sets, we show how t-SNE can use random walks on neighborhood graphs to allow the implicit structure of all the data to influence the way in which a subset of the data is displayed. We illustrate the performance of t-SNE on a wide variety of data sets and compare it with many other non-parametric visualization techniques, including Sammon mapping, Isomap, and Locally Linear Embedding. The visualization produced by t-SNE are significantly better than those produced by other techniques on almost all of the data sets.
 
 # Introduction
 
 Visualization of high-dimensional data is an important problem in many different domains, and deals with data of widely varying dimensionality. Cell nuclei that are relevant to breast cancer, for example, are described by approximately 30 variables @street:nuclear, whereas the pixel intensity vectors used to represent images or the word-count vectors used to represent documents typically have thousands of dimensions. Over the last few decades, a variety of techniques for the visualization of such high-dimensional data have been proposed, many of which are reviewed by @ferreira:visual. Important techniques include iconographic displays such as Chernoff faces @chernoff:use, pixel-based techniques @keim:designing, and techniques that represent the dimensions in the data as vertices in a graph @battista:algorithms. Most of these techniques simply provide tools to display more than two data dimensions, and leave the interpretation of the data to the human observer. This severely limits the applicability of these techniques to real-world data sets that contain thousands of high-dimensional datapoints.
 
-In contrast to the visualization techniques discussed above, dimensionality reduction methods convert the high-dimensional data set $\mathcal{X} = {x_1, x_2, \dots, x_n}$ into two or three-dimensional data $\mathcal{Y} = {y_1, y_2, \dots, y_n}$ that can be displayed in a scatterplot. In the paper, we refer to the low-dimensional data representation $\mathcal{Y}$ as a map, and to the low-dimensional representations $y_i$ of individual datapoints as map points. The aim of dimensionality reduction is to preserve as much of the significant structure of the high-dimensional data as possible in the low-dimensional map. Various techniques for this problem have been proposed that differ in the type of structure they preserve. Traditional dimensionality reduction techniques such as Principal Components Analysis @hotelling:analysis  and classical multidimensional scaling @torgerson:multidimensional are linear techniques that focus on keeping the low-dimensional representations of dissimilar datapoints far apart. For high-dimensional data that lies on or near a low-dimensional, non-linear manifold it is usually more important to keep the low-dimensional representations of very similar datapoints close together, which is typically not possible with a linear mapping.
+In contrast to the visualization techniques discussed above, dimensionality reduction methods convert the high-dimensional data set $\mathcal{X} = \{x_1, x_2, \dots, x_n\}$ into two or three-dimensional data $\mathcal{Y} = \{y_1, y_2, \dots, y_n\}$ that can be displayed in a scatterplot. In the paper, we refer to the low-dimensional data representation $\mathcal{Y}$ as a map, and to the low-dimensional representations $y_i$ of individual datapoints as map points. The aim of dimensionality reduction is to preserve as much of the significant structure of the high-dimensional data as possible in the low-dimensional map. Various techniques for this problem have been proposed that differ in the type of structure they preserve. Traditional dimensionality reduction techniques such as Principal Components Analysis (PCA; @hotelling:analysis)and classical multidimensional scaling (MDS; @torgerson:multidimensional) are linear techniques that focus on keeping the low-dimensional representations of dissimilar datapoints far apart. For high-dimensional data that lies on or near a low-dimensional, non-linear manifold it is usually more important to keep the low-dimensional representations of very similar datapoints close together, which is typically not possible with a linear mapping.
 
-A large number of nonlinear dimensionality reduction techniques that aim to preserve the local structure of data have been proposed, many of which are reviewed by @lee:nonlinear. In particular, we mention the following seven techniques: (1) Sammon mapping @sammon:nonlinear, (2) curvilinear components analysis @demartines:curvilinear, (3) Stochastic Neighbor Embedding @hinton:stochastic; (4) Isomap @tenenbaum:global, (5) Maximum Variance Unfolding @weinberger:learning; (6) Locally Linear Embedding @roweis:nonlinear, and (7) Laplacian Eigenmaps @belkin:laplacian. Despite the strong performance of these techniques on artificial data sets, they are often not very successful at visualizing real, high-dimensional data. In particular, most of the techniques are not capable of retaining both the local and the global structure of the data in a single map. For instance, a recent study reveals that even a semi-supervised variant of MVU is not capable of separating handwritten digits into their natural clusters @song:colored.
+A large number of nonlinear dimensionality reduction techniques that aim to preserve the local structure of data have been proposed, many of which are reviewed by @lee:nonlinear. In particular, we mention the following seven techniques: (1) Sammon mapping [@sammon:nonlinear], (2) curvilinear components analysis (CCA; @demartines:curvilinear), (3) Stochastic Neighbor Embedding (SNE; @hinton:stochastic), (4) Isomap [@tenenbaum:global], (5) Maximum Variance Unfolding (MVU; @weinberger:learning), (6) Locally Linear Embedding (LLE; @roweis:nonlinear), and (7) Laplacian Eigenmaps @belkin:laplacian. Despite the strong performance of these techniques on artificial data sets, they are often not very successful at visualizing real, high-dimensional data. In particular, most of the techniques are not capable of retaining both the local and the global structure of the data in a single map. For instance, a recent study reveals that even a semi-supervised variant of MVU is not capable of separating handwritten digits into their natural clusters [@song:colored].
 
-In this paper, we describe a way of converting a high-dimensional data set into a matrix of pairwise similarities and we introduce a new technique, called "t-SNE", for visualizing the resulting similarity data. t-SNE is capable of capturing much of the local structure of the high-dimensional data very well, while also revealing global structure such as the presence of clusters at several scales. We illustrate the performance of t-SNE by comparing it to the seven dimensionality reduction techniques mentioned above on five data sets from a variety of domains. Because of space limitations, most of the $(7+1)\times5=40$ maps are presented in the supplemental material, but the maps that we present in the paper are sufficient to demonstrate the superiority of t-SNE.
+In this paper, we describe a way of converting a high-dimensional data set into a matrix of pairwise similarities and we introduce a new technique, called “t-SNE”, for visualizing the resulting similarity data. t-SNE is capable of capturing much of the local structure of the high-dimensional data very well, while also revealing global structure such as the presence of clusters at several scales. We illustrate the performance of t-SNE by comparing it to the seven dimensionality reduction techniques mentioned above on five data sets from a variety of domains. Because of space limitations, most of the $(7+1)\times5=40$ maps are presented in the supplemental material, but the maps that we present in the paper are sufficient to demonstrate the superiority of t-SNE.
 
 The outline of the paper is as follows. In  @sec-sne, we outline SNE as presented by @hinton:stochastic, which forms the basis for t-SNE. In  @sec-tsne, we present t-SNE, which has two important differences from SNE. In Section @sec-experiments, we describe the experimental setup and the results of our experiments.  Subsequently, @sec-large-data shows how t-SNE can be modified to visualize real-world data sets that contain many more than 10,000 datapoints. The results of our experiments are discussed in more detail in  @sec-discussion. Our conclusions and suggestions for future work are presented in  @sec-conclusion.
 
@@ -57,11 +60,15 @@ The outline of the paper is as follows. In  @sec-sne, we outline SNE as presente
 
 Stochastic Neighbor Embedding (SNE) starts by converting the high-dimensional Euclidean distances between datapoints into conditional probabilities that represent similarities.[^SNE] The similarity of datapoint $x_j$ to datapoint $x_i$ is the conditional probabilities, $p_{j|i}$, that $x_i$ would pick $x_j$ as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian centered at $x_i$. For nearby datapoints, $p_{j|i}$ is relatively high, whereas for widely separated datapoints, $p_{j|i}$ will be almost infinitesimal (for reasonable values of the variance of the Gaussian, $\sigma_i$). Mathematically, the conditional probability $p_{j|i}$ is given by
 
-$$ p_{j|i} = \frac{\exp(-\|x_i - x_j\|^2/(2\sigma_i^2))}{\sum_{k\neq i} \exp(-\|x_i - x_k\|^2 / 2 \sigma_i^2)}\,. $$ {#eq-sne_large_space}
+$$
+p_{j|i} = \frac{\exp(-\|x_i - x_j\|^2/(2\sigma_i^2))}{\sum_{k\neq i} \exp(-\|x_i - x_k\|^2 / 2 \sigma_i^2)}\,.
+$$ {#eq-sne_large_space}
 
 where $\sigma_i$ is the variance of the Gaussian that is centered on datapoint $x_i$. The method for determining the value of $\sigma_i$ is presented later in this section. Because we are only interested in modeling pairwise similarities, we set the value of $p_{i|i}$ to zero. For the low-dimensional counterparts $y_i$ and $y_j$ of the high-dimensional datapoints $x_i$ and $x_j$, it is possible to compute a similar conditional probability, which we denote by $q_{j|i}$. We set [^variance] the variance of the Gaussian that is employed in the computation of the conditional probabilities $q_{j|i}$ to $\frac{1}{\sqrt{2}}$. Hence, we model the similarity of a map point $y_j$ to map point $y_i$ by
 
-$$ q_{j|i} = \frac{\exp(-\|y_i - y_j\|^2)}{\sum_{k \neq i} \exp(-\|y_i -y_k\|^2)}\,. $$
+$$
+q_{j|i} = \frac{\exp(-\|y_i - y_j\|^2)}{\sum_{k \neq i} \exp(-\|y_i -y_k\|^2)}\,.
+$$
 
 [^SNE]: SNE can also be applied to data sets that consist of pairwise similarities between objects rather than high-dimensional vector representations of each object, provided these similarities can be interpreted as conditional probabilities. For example, human word associations data consists of the probability of producing each possible word in response to a given word, as a result of which it is already in the form required by SNE.
 
@@ -71,18 +78,24 @@ Again, since we are only interested in modeling pairwise similarities, we set $q
 
 If the map points $y_i$ and $y_j$ correctly model the similarity between the high-dimensional data-points $x_i$ and $x_j$, the conditional probabilities $p_{j|i}$ and $q_{j|i}$ will be equal. Motivated by this observation, SNE aims to find a low-dimensional data representation that minimizes the mismatch between $p_{j|i}$ and $q_{j|i}$. A natural measure of the faithfulness with which $q_{j|i}$ models $p_{j|i}$ is the Kullback-Leibler divergence (which is in the case equal to the cross-entropy up to an additive constant). SNE minimizes the sum of Kullback-Leibler divergences over all datapoints using a gradient descent method. The cost function $C$ is given by
 
-$$ C = \sum_i KL(P_i\|Q_i) = \sum_i \sum_j p_{j|i} \log \frac{p_{j|i}}{q_{j|i}}\,, $$ {#eq-sne_cost_function}
+$$
+C = \sum_i KL(P_i\|Q_i) = \sum_i \sum_j p_{j|i} \log \frac{p_{j|i}}{q_{j|i}}\,,
+$$ {#eq-sne_cost_function}
 
 in which $P_i$ represents the conditional probability distribution over all other datapoints given datapoint $x_i$, and $Q_i$ represents the conditional probability distribution over all other map points given map point $y_i$.  Because the Kullback-Liebler divergence is not symmetric, different types of error in the pairwise distances in the low-dimensional map are not weighted equally. In particular, there is a large cost for using widely separated map points to represent nearby datapoints (i.e, for using a small $q_{j|i}$ to model a large $p_{j|i}$), but there is only a small cost for using nearby map points to represent widely separated datapoints. This small cost comes from wasting some of the probability mass in the relevant $Q$ distributions. In other words, the SNE cost function focuses on retaining the local structure of the data in the map (for reasonable values of the variance of the Gaussian in the high-dimensional space, $\sigma_i$).
 
 
 The remaining parameter to be selected the variance $\sigma_i$ of the Gaussian that is centered over each high-dimensional datapoint, $x_i$. It is not likely that there is a single value of $\sigma_i$ that is optimal for all datapoints in the data set because the density of the data is likely to vary. In dense regions, a smaller value of $\sigma_i$ is usually more appropriate than in sparser regions. Any particular value of $\sigma_i$ induces a probability distribution, $P_i$, over all of the other datapoints. This distribution has an entropy which increases as $\sigma_i$ increases. SNE performs a binary search for the value of $\sigma_i$ that produces a $P_i$ with a fixed perplexity that is specified by the user[^perplexity]. The perplexity is defined as
 
-$$ Perp(P_i) = 2^{H(P_i)}\,, $$
+$$ 
+Perp(P_i) = 2^{H(P_i)}\,,
+$$
 
 where $H(P_i)$ is the Shannon entropy of $P_i$ measured in bits
 
-$$ H(P_i) = - \sum_j p_{j|i} \log_2 p_{j|i}\,. $$
+$$
+H(P_i) = - \sum_j p_{j|i} \log_2 p_{j|i}\,.
+$$
 
 
 [^perplexity]: Note that the perplexity increases monotonically with the variance $\sigma_i$.
@@ -91,13 +104,17 @@ The perplexity can be interpreted as a smooth measure of the effective number of
 
 The minimization of the cost function in @eq-sne_cost_function is performed using a gradient descent method. The gradient has a surprisingly simple form
 
-$$ \frac{\partial C}{\partial y_i} = 2 \sum_j (p_{j|i} - q_{j|i} + p_{i|j} - q_{i|j})(y_i - y_j)\,. $$
+$$
+\frac{\partial C}{\partial y_i} = 2 \sum_j (p_{j|i} - q_{j|i} + p_{i|j} - q_{i|j})(y_i - y_j)\,.
+$$
 
 Physically, the gradient may be interpreted as the resultant force created by a set of springs between the map point $y_i$ and all other map points $y_j$. All springs exert a force along the direction $(y_i - y_j)$. The spring between $y_i$ and $y_j$ repels or attracts the map points depending on whether the distance between the two in the map is too small or too large to represent the similarities between the two high-dimensional datapoints. The force exerted by the spring between $y_i$ and $y_j$ is proportional to its length, and also proportional to its stiffness, which is the mismatch $(p_{j|i} - q_{j|i} + p_{i|j} + q_{i|j})$ between the pairwise similarities of the data points.
 
 The gradient descent is initialized by sampling map points randomly from an isotropic Gaussian with small variance that is centered around the origin. In order to speed up the optimization and to avoid poor local minima, a relatively large momentum term is added to the gradient. In other words, the current gradient is added to an exponentially decaying sum of previous gradients in order to determine the changes in the coordinates of the map points at each iteration of the gradient search. Mathematically, the gradient update with a momentum term is given by
 
-$$ \mathcal{Y}^{(t)} = \mathcal{Y}^{(t-1)} + \eta \frac{\partial C}{\partial \mathcal{Y}} + \alpha(t) \left( \mathcal{Y}^{(t-1)} - \mathcal{Y}^{(t-2)}\right)\,, $$
+$$
+\mathcal{Y}^{(t)} = \mathcal{Y}^{(t-1)} + \eta \frac{\partial C}{\partial \mathcal{Y}} + \alpha(t) \left( \mathcal{Y}^{(t-1)} - \mathcal{Y}^{(t-2)}\right)\,,
+$$
 
 where $\mathcal{Y}^{(t)}$ indicates the solution at iteration $t$, $\eta$ indicates the learning rate, and $\alpha(t)$ represents the momentum at iteration $t$.
 
@@ -116,19 +133,27 @@ In this section, we first discuss the symmetric version of SNE (@sec-symmetric_s
 
 As an alternative to minimizing the sum of the Kullback-Leibler divergences between the conditional probabilities $p_{j|i}$ and $q_{j|i}$, it is also possible to minimize a single Kullback-Leibler divergence between a joint probability distribution, $P$, in the high-dimensional space and a joint probability distribution, $Q$, in the low-dimensional space:
 
-$$ C = KL(P\|Q) = \sum_i \sum_j p_{ij} \log \frac{p_{ij}}{q_{ij}}\,, $$
+$$
+C = KL(P\|Q) = \sum_i \sum_j p_{ij} \log \frac{p_{ij}}{q_{ij}}\,,
+$$
 
 where again, we set $p_{ij}$ and $q_{ii}$ to zero. We refer to this type of SNE as symmetric SNE, because it has the property that $p_{ij} = p_{ji}$ and $q_{ij} = q_{ji}$ for all $i, j$. In symmetric SNE, the pairwise similarities in the low-dimensional map $q_{ij}$ are given by
 
-$$ q_{ij} = \frac{\exp(-\|x_i - x_j\|^2)}{\sum_{k\neq l} \exp(-\|x_k - x_l\|^2)}\,. $$ {#eq-pairwise_similarities}
+$$
+ q_{ij} = \frac{\exp(-\|x_i - x_j\|^2)}{\sum_{k\neq l} \exp(-\|x_k - x_l\|^2)}\,. 
+$$ {#eq-pairwise_similarities}
 
 The obvious way to define the pairwise similarities in the high-dimensional space $p_{ij}$ is
 
-$$ p_{ij} = \frac{\exp(-\|x_i - x_j\|^2/2\sigma^2)}{\sum_{k\neq l} \exp(-\|x_k - x_l\|^2/2\sigma^2)}\, $$
+$$
+ p_{ij} = \frac{\exp(-\|x_i - x_j\|^2/2\sigma^2)}{\sum_{k\neq l} \exp(-\|x_k - x_l\|^2/2\sigma^2)}\, 
+$$
 
 but this causes problems when a high-dimensional datapoint $x_i$ is an outlier (i.e., all pairwise distances $\|x_i - x_j\|^2$ are large for $x_i$). For such an outlier, the values of $p_{ij}$ are extremely small for all $j$, so the location of its low-dimensional map point $y_i$ has very little effect on the cost function. As a result, the position of the map point is not well determined by the positions of the other map points. We circumvent this problem by defining the joint probabilities $p_{ij}$ in the high dimensional space to be symmetrized conditional probabilities, that is, we set $p_{ij} = \frac{p_{j|i} + p_{i|j}}{2n}$. This ensures that $\sum_j p_{ij} > \frac{1}{2n}$ for all datapoints $x_i$, as a result of which each datapoint $x_i$ makes a significant contribution to the cost function. In the low-dimensional space, symmetric SNE simply uses @eq-pairwise_similarities. The main advantage of the symmetric version of SNE is the simpler form of its gradient, which is faster to compute. The gradient of symmetric SNE is fairly similar to that of asymmetric SNE, and is given by
 
-$$ \frac{\partial C}{\partial y_i} = 4 \sum_j (p_{ij} - q_{ij})(y_i - y_j)\,. $$
+$$
+ \frac{\partial C}{\partial y_i} = 4 \sum_j (p_{ij} - q_{ij})(y_i - y_j)\,. 
+$$
 
 In preliminary experiments, we observed that symmetric SNE seems to produce maps that are just as good as asymmetric SNE, and sometimes even a little better.
 
@@ -144,13 +169,17 @@ Since symmetric SNE is actually matching the joint probabilities of pairs of dat
 
 In t-SNE, we employ a Student $t$-distribution with a single degree of freedom (which is the same as a Cauchy distribution) as the heavy-tailed distribution in the low-dimensional map.  Using this distribution, the joint probabilities $q_{ij}$ are defined as
 
-$$ q_{ij} = \frac{(1+\|y_i - y_j\|^2)^{-1}}{\sum_{k \neq l}(1+\|y_k - y_t\|^2)^{-1}} $$ {#eq-joint_probabilities}
+$$
+ q_{ij} = \frac{(1+\|y_i - y_j\|^2)^{-1}}{\sum_{k \neq l}(1+\|y_k - y_t\|^2)^{-1}} 
+$$ {#eq-joint_probabilities}
 
 We use a Student t-distribution with a single degree of freedom, because it has the particularly nice property that $\left(1+\|y_i - y_j\|^2\right)^{-1}$ approaches an inverse square law for large pairwise distances $\|y_i - y_j\|$ in the low-dimensional map. This makes the map's representation of joint probabilities (almost) invariant to changes in the scale of the map for map points that are far apart. It also means that large clusters of points that are far apart interact in just the same way as individual points, so the optimization operates in the same way at all but the finest scales. A theoretical justification for our selection of the Student $t$-distribution is that it is closely related to the Gaussian distribution, as the Student $t$-distribution is an infinite mixture of Gaussians. A computationally convenient property is that it is much faster to evaluate the density of a point under a Student $t$-distribution than under a Gaussian because it does not involve an exponential, even though the Student $t$-distribution is equivalent to an infinite mixture of Gaussians with different variances.
 
 The gradient of the Kullback-Leibler divergence between $P$ and the Student-$t$ based joint probability distribution $Q$ (computed using @eq-joint_probabilities) is derived in [Appendix -@sec-appendixa], and is given by
 
-$$ \frac{\partial C}{\partial y_i} = 4 \sum_j (p_{ij} - q_{ij})(y_i - y_j)(1+\|y_i - y_j\|^2)^{-1}\,. $$ {#eq-gradient-tsne}
+$$
+ \frac{\partial C}{\partial y_i} = 4 \sum_j (p_{ij} - q_{ij})(y_i - y_j)(1+\|y_i - y_j\|^2)^{-1}\,. 
+$$ {#eq-gradient-tsne}
 
 
 ![Gradients of three types of SNE as a function of the pairwise Euclidean distance between two points in the high-dimensional and the pairwise distance between the points in the low-dimensional data representation.](figures/gradients.png){#fig-gradients}
@@ -165,6 +194,13 @@ Taken together, t-SNE puts emphasis on (1) modeling dissimilar datapoints by mea
 
 ```pseudocode
 #| label: alg-tsne
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+#| pdf-placement: "htb!"
+#| pdf-line-number: true
 
 \begin{algorithm}
 \caption{Simple version of t-Distributed Stochastic Neighbor Embeding}
@@ -233,6 +269,35 @@ The cost function parameter settings we employed in our experiments are listed i
 ## Results {#sec-results}
 
 ```{python}
+from sklearn import manifold
+import joblib
+
+mem = joblib.Memory(".joblib", verbose = 0)
+
+n_components = 2
+tsne = manifold.TSNE(
+  n_components=n_components,
+  perplexity=40, 
+  init="pca",
+  random_state=42,
+  n_jobs=-1)
+
+sammon = manifold.MDS(
+  n_components=2,
+  n_jobs=-1)
+
+isomap = manifold.Isomap(
+  n_components=n_components,
+  n_neighbors=10,
+  n_jobs=-1)
+
+lle = manifold.LocallyLinearEmbedding(
+  n_components=n_components,
+  n_neighbors=10,
+  n_jobs=-1)
+```
+
+```{python}
 #| label: fig-mnist
 #| fig-cap: "Visualizations of 6,000 handwritten digits from the MNIST dataset."
 #| fig-subcap: 
@@ -242,133 +307,33 @@ The cost function parameter settings we employed in our experiments are listed i
 #|   - "Visualization by LLE."
 #| layout-ncol: 2
 
-###############################################################################
-# Figure 2. Visualization by t-SNE and Sammon mapping
-###############################################################################
-
-from sklearn.datasets import load_digits
 import numpy as np
-from sklearn import manifold
-import joblib
+from sklearn.datasets import fetch_openml
 
-import matplotlib.pyplot as plt
-
-mem = joblib.Memory(".joblib", verbose = 0)
-
-digits = load_digits()
+digits = fetch_openml("mnist_784", parser="auto")
 
 X = digits["data"]
 y = digits["target"]
+sorted_idx = np.argsort(y)
 
-n_components = 2
+def plot2d(X, y, manifold_method, indices=None):
+    X_transformed = mem.cache(manifold_method.fit_transform)(X)
+    if indices is None:
+        X_transformed = X_transformed[indices]
+    fig = px.scatter(x=X_transformed[:,0], y=X_transformed[:,1],
+            color=y)
+    fig.update_xaxes(visible=False)
+    fig.update_yaxes(visible=False)
+    fig.update_layout(legend= {'itemsizing': 'constant'},
+                      plot_bgcolor = "rgba(0, 0, 0, 0)")
+    return fig
 
-
-colors = {
-    0: "C0",
-    1: "C1",
-    2: "C2",
-    3: "C3",
-    4: "C4",
-    5: "C5",
-    6: "C6",
-    7: "C7",
-    8: "C8",
-    9: "C9",
-}
-
-###############################################################################
-# t-SNE manifold learning
-fig, ax = plt.subplots()
-
-tsne = manifold.TSNE(n_components=n_components, init="pca", random_state=42)
-X_transformed = mem.cache(tsne.fit_transform)(X)
-for label in np.unique(y):
-    mask = y == label
-    ax.scatter(
-        X_transformed[mask, 0],
-        X_transformed[mask, 1],
-        c=colors[label], marker=".",
-        label=label)
-
-ax.spines["left"].set_linewidth(0)
-ax.spines["right"].set_linewidth(0)
-ax.spines["top"].set_linewidth(0)
-ax.spines["bottom"].set_linewidth(0)
-ax.set_xticks([])
-ax.set_yticks([])
-ax.set_title("t-SNE")
-plt.show()
-
-###############################################################################
-# Sammon mapping
-
-# FIXME I think Sammon mapping has weights?
-fig, ax = plt.subplots()
-embedding = manifold.MDS(n_components=n_components)
-X_transformed = mem.cache(embedding.fit_transform)(X)
-for label in np.unique(y):
-    mask = y == label
-    ax.scatter(
-        X_transformed[mask, 0],
-        X_transformed[mask, 1],
-        c=colors[label], marker=".",
-        label=label)
-
-ax.spines["left"].set_linewidth(0)
-ax.spines["right"].set_linewidth(0)
-ax.spines["top"].set_linewidth(0)
-ax.spines["bottom"].set_linewidth(0)
-ax.set_xticks([])
-ax.set_yticks([])
-ax.set_title("Sammon mapping")
-plt.show()
-
-###############################################################################
-# ISOMAP
-fig, ax = plt.subplots()
-isomap = manifold.Isomap(n_components=n_components, n_neighbors=10)
-X_transformed = mem.cache(isomap.fit_transform)(X)
-for label in np.unique(y):
-    mask = y == label
-    ax.scatter(
-        X_transformed[mask, 0],
-        X_transformed[mask, 1],
-        c=colors[label], marker=".",
-        label=label)
-
-ax.spines["left"].set_linewidth(0)
-ax.spines["right"].set_linewidth(0)
-ax.spines["top"].set_linewidth(0)
-ax.spines["bottom"].set_linewidth(0)
-ax.set_xticks([])
-ax.set_yticks([])
-ax.set_title("Isomap")
-plt.show()
-
-###############################################################################
-# LLE
-fig, ax = plt.subplots()
-embedding = manifold.LocallyLinearEmbedding(
-    n_components=n_components,
-    n_neighbors=10)
-X_transformed = mem.cache(embedding.fit_transform)(X)
-for label in np.unique(y):
-    mask = y == label
-    ax.scatter(
-        X_transformed[mask, 0],
-        X_transformed[mask, 1],
-        c=colors[label], marker=".",
-        label=label)
-
-ax.spines["left"].set_linewidth(0)
-ax.spines["right"].set_linewidth(0)
-ax.spines["top"].set_linewidth(0)
-ax.spines["bottom"].set_linewidth(0)
-ax.set_xticks([])
-ax.set_yticks([])
-ax.set_title("LLE")
-plt.show()
+plot2d(X, y, tsne, sorted_idx).show()
+plot2d(X, y, sammon, sorted_idx).show()
+plot2d(X, y, isomap, sorted_idx).show()
+plot2d(X, y, lle, sorted_idx).show()
 ```
+
 
 ```{python}
 #| label: fig-olivetti
@@ -381,13 +346,7 @@ plt.show()
 #| layout-ncol: 2
 #| error: false
 
-###############################################################################
-# Figure 4. Visualization of the Olivetti faces data set
-###############################################################################
-
-# First, load the olivetti datasets
 from sklearn.datasets import fetch_olivetti_faces
-import itertools
 
 data = fetch_olivetti_faces()
 X = data["data"]
@@ -395,6 +354,18 @@ y = data["target"]
 
 markers = ["+", ".", "v", "^", ">", "<", "d", "*"]
 colors = ["black", "blue", "red", "pink"]
+
+def plot2d(X, y, manifold_method, indices=None):
+    X_transformed = mem.cache(manifold_method.fit_transform)(X)
+    if indices is None:
+        X_transformed = X_transformed[indices]
+    fig = px.scatter(x=X_transformed[:,0], y=X_transformed[:,1],
+            color=y,colors=colors, markers=markers)
+    fig.update_xaxes(visible=False)
+    fig.update_yaxes(visible=False)
+    fig.update_layout(legend= {'itemsizing': 'constant'},
+                      plot_bgcolor = "rgba(0, 0, 0, 0)")
+    return fig
 
 ###############################################################################
 # t-SNE manifold learning
@@ -542,11 +513,15 @@ The strong performance of t-SNE compared to LLE is mainly due to a basic weaknes
 
 Like Isomap and LLE, the random walk version of t-SNE employs neighborhood graphs, but it does not suffer from short-circuiting problems because the pairwise similarities between the highdimensional datapoints are computed by integrating over all paths through the neighborhood graph.  Because of the diffusion-based interpretation of the conditional probabilities underlying the random walk version of t-SNE, it is useful to compare t-SNE to diffusion maps. Diffusion maps define a "diffusion distance" on the high-dimensional datapoints that is given by
 
-$$ D^{(t)}(x_i,x_j) = \sqrt{ \sum_{k} \frac{\left(p^{(t)}_{ik} - p^{(t)}_{jk}\right)^2)}{\psi(x_k)^{(0)}} }\, $$
+$$
+ D^{(t)}(x_i,x_j) = \sqrt{ \sum_{k} \frac{\left(p^{(t)}_{ik} - p^{(t)}_{jk}\right)^2)}{\psi(x_k)^{(0)}} }\, 
+$$
 
 where $p^{(t)}_{ij}$ represents the probability of a particle traveling from $x_i$ to $x_j$ in $t$ timesteps through a graph on the data with Gaussian emission probabilities. The term $\psi(x_k)^{(0)}$ is a measure for the local density of the points, and serves a similar purpose to the fixed perplexity Gaussian kernel that is employed in SNE. The diffusion map is formed by the principal non-trivial eigenvectors of the Markov matrix of the random walks of length $t$. It can be shown that when all $(n−1)$ non-trivial eigenvectors are employed, the Euclidean distances in the diffusion map are equal to the diffusion distances in the high-dimensional data representation @lafon:diffusion. Mathematically, diffusion maps minimize
 
-$$ C = \sum_i \sum_j \left(D^{(t)}(x_i,x_j) - \|y_i-y_j\|\right)^2 $$
+$$
+ C = \sum_i \sum_j \left(D^{(t)}(x_i,x_j) - \|y_i-y_j\|\right)^2 
+$$
 
 As a result, diffusion maps are susceptible to the same problems as classical scaling: they assign much higher importance to modeling the large pairwise diffusion distances than the small ones and as a result, they are not good at retaining the local structure of the data. Moreover, in contrast to the random walk version of t-SNE, diffusion maps do not have a natural way of selecting the length, $t$, of the random walks.
 
@@ -585,7 +560,10 @@ Geoffrey Hinton is a fellow of the Canadian Institute for Advanced Research, and
 
 <!-- FIXME: crossref appendices not working, see https://github.com/quarto-dev/quarto-cli/discussions/4581  and https://github.com/quarto-dev/quarto-cli/discussions/5169 
 The whole crossref code will be rewritten in quarto for 4.* -->
-# Appendix A: Derivation of the t-SNE gradient {#sec-appendixa} 
+
+# Appendices {.appendix}
+
+## Appendix A: Derivation of the t-SNE gradient {#sec-appendixa} 
 
 t-SNE minimizes the Kullback-Leibler divergence between the joint probabilities $p_{ij}$ in the highdimensional space and the joint probabilities $q_{ij}$ in the low-dimensional space. The values of $p_{ij}$ are defined to be the symmetrized conditional probabilities, whereas the values of $q_{ij}$ are obtained by means of a Student-t distribution with one degree of freedom
 
@@ -649,7 +627,7 @@ $$
 \frac{\partial C}{\partial y_i} = 4 \sum_j (p{ij} - q_{ij}) (1 + \|y_i - y_j\|^2)^{-1} (y_i - y_j).
 $$
 
-# Appendix B: Analytical Solution to Random Walk Probabilities {#sec-appendixb}
+## Appendix B: Analytical Solution to Random Walk Probabilities {#sec-appendixb}
 
 Below, we describe the analytical solution to the random walk probabilities that are employed in the random walk version of t-SNE (@sec-large-data). The solution is described in more detail @grady:random.
 
