@@ -94,9 +94,9 @@ def plot_olivetti(X, y):
                             selector=dict(mode='markers'))
     fig = fig.update_layout(showlegend=False)
     return fig
-
+# get the plot for each methods
 for method in methods:
-   plot2d(X, y, plot_olivetti, method)
+    plot2d(X, y, plot_olivetti, method)
 # %%
 np.unique(y, return_counts=True)
 
