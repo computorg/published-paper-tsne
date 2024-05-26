@@ -271,7 +271,7 @@ The cost function parameter settings we employed in our experiments are listed i
 
 from scripts.plotutils import plot_dataset
 
-plot_dataset("compute/digits")
+plot_dataset("compute/mnist6000")
 ```
 
 
@@ -311,7 +311,7 @@ The most obvious way to compute the random walk-based similarities $p_{j|i}$ is 
 #| fig-cap: "Visualization of 6,000 digits from the MNIST data set produced by the random walk version of t-SNE (employing all 60,000 digit images)."
 #| error: false
 
-plot_dataset("compute/mnist", methods = ["tsne"], sample_size=6000)
+plot_dataset("compute/mnist", methods = ["tsne"])
 ```
 
 

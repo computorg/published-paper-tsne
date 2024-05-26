@@ -59,13 +59,20 @@ methods = {
 }
 
 # %%
+data = fetch_openml("mnist_784", parser="auto")
+X = data["data"][:6000]
+y = data["target"][:6000]
 
+save_results("mnist6000", X, y, methods=methods)
+
+# %%
 data = load_digits()
 X = data["data"]  # type: ignore
 y = data["target"]  # type: ignore
 
 save_results("digits", X, y, methods=methods)
 
+# %%
 data = fetch_olivetti_faces()
 X = data["data"]  # type: ignore
 y = data["target"]  # type: ignore
@@ -76,13 +83,13 @@ save_results("olivetti", X, y, methods=methods)
 # reproduce the fig for random walk from the original tsne paper
 
 data = fetch_openml("mnist_784", parser="auto")
-X = data["data"]
-y = data["target"]
+X = data["data"][:60000]
+y = data["target"][:60000]
 
 single_tsne = manifold.TSNE(
   n_components=3,
   verbose=True
 )
 
-save_results("mnist", X, y, n_components=3, methods={"tsne": single_tsne})
+save_results("mnistlarge", X, y, n_components=3, methods={"tsne": single_tsne})
 # %%
