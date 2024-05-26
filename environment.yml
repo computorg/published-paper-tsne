@@ -1,11 +1,10 @@
-name: computo
+name: tsne-paper
 channels:
   - conda-forge
 dependencies:
-  - jupyter
-  - matplotlib
-  - plotly
-  - pandas
   - numpy
+  - pandas
   - scikit-learn
+  - jupyter
   - jupyter-cache
+  - plotly

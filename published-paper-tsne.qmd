@@ -269,35 +269,6 @@ The cost function parameter settings we employed in our experiments are listed i
 ## Results {#sec-results}
 
 ```{python}
-from sklearn import manifold
-import joblib
-
-mem = joblib.Memory(".joblib", verbose = 0)
-
-n_components = 2
-tsne = manifold.TSNE(
-  n_components=n_components,
-  perplexity=40, 
-  init="pca",
-  random_state=42,
-  n_jobs=-1)
-
-sammon = manifold.MDS(
-  n_components=2,
-  n_jobs=-1)
-
-isomap = manifold.Isomap(
-  n_components=n_components,
-  n_neighbors=10,
-  n_jobs=-1)
-
-lle = manifold.LocallyLinearEmbedding(
-  n_components=n_components,
-  n_neighbors=10,
-  n_jobs=-1)
-```
-
-```{python}
 #| label: fig-mnist
 #| fig-cap: "Visualizations of 6,000 handwritten digits from the MNIST dataset."
 #| fig-subcap: 
@@ -307,31 +278,9 @@ lle = manifold.LocallyLinearEmbedding(
 #|   - "Visualization by LLE."
 #| layout-ncol: 2
 
-import numpy as np
-from sklearn.datasets import fetch_openml
+from scripts.plotutils import plot_dataset
 
-digits = fetch_openml("mnist_784", parser="auto")
-
-X = digits["data"]
-y = digits["target"]
-sorted_idx = np.argsort(y)
-
-def plot2d(X, y, manifold_method, indices=None):
-    X_transformed = mem.cache(manifold_method.fit_transform)(X)
-    if indices is None:
-        X_transformed = X_transformed[indices]
-    fig = px.scatter(x=X_transformed[:,0], y=X_transformed[:,1],
-            color=y)
-    fig.update_xaxes(visible=False)
-    fig.update_yaxes(visible=False)
-    fig.update_layout(legend= {'itemsizing': 'constant'},
-                      plot_bgcolor = "rgba(0, 0, 0, 0)")
-    return fig
-
-plot2d(X, y, tsne, sorted_idx).show()
-plot2d(X, y, sammon, sorted_idx).show()
-plot2d(X, y, isomap, sorted_idx).show()
-plot2d(X, y, lle, sorted_idx).show()
+plot_dataset("compute/digits")
 ```
 
 
@@ -346,120 +295,7 @@ plot2d(X, y, lle, sorted_idx).show()
 #| layout-ncol: 2
 #| error: false
 
-from sklearn.datasets import fetch_olivetti_faces
-
-data = fetch_olivetti_faces()
-X = data["data"]
-y = data["target"]
-
-markers = ["+", ".", "v", "^", ">", "<", "d", "*"]
-colors = ["black", "blue", "red", "pink"]
-
-def plot2d(X, y, manifold_method, indices=None):
-    X_transformed = mem.cache(manifold_method.fit_transform)(X)
-    if indices is None:
-        X_transformed = X_transformed[indices]
-    fig = px.scatter(x=X_transformed[:,0], y=X_transformed[:,1],
-            color=y,colors=colors, markers=markers)
-    fig.update_xaxes(visible=False)
-    fig.update_yaxes(visible=False)
-    fig.update_layout(legend= {'itemsizing': 'constant'},
-                      plot_bgcolor = "rgba(0, 0, 0, 0)")
-    return fig
-
-###############################################################################
-# t-SNE manifold learning
-fig, ax = plt.subplots()
-
-tsne = manifold.TSNE(n_components=n_components, init="pca", random_state=42)
-X_transformed = mem.cache(tsne.fit_transform)(X)
-for label, (m, c) in zip(np.unique(y), itertools.product(markers, colors)):
-    mask = y == label
-    ax.scatter(
-        X_transformed[mask, 0],
-        X_transformed[mask, 1],
-	marker=m, c=c,
-	s=8,
-        label=label)
-
-ax.spines["left"].set_linewidth(0)
-ax.spines["right"].set_linewidth(0)
-ax.spines["top"].set_linewidth(0)
-ax.spines["bottom"].set_linewidth(0)
-ax.set_xticks([])
-ax.set_yticks([])
-ax.set_title("t-SNE")
-plt.show()
-###############################################################################
-# Sammon mapping
-
-fig, ax = plt.subplots()
-embedding = manifold.MDS(n_components=n_components)
-X_transformed = mem.cache(embedding.fit_transform)(X)
-for label, (m, c) in zip(np.unique(y), itertools.product(markers, colors)):
-    mask = y == label
-    ax.scatter(
-        X_transformed[mask, 0],
-        X_transformed[mask, 1],
-	marker=m, c=c,
-	s=8,
-        label=label)
-
-ax.spines["left"].set_linewidth(0)
-ax.spines["right"].set_linewidth(0)
-ax.spines["top"].set_linewidth(0)
-ax.spines["bottom"].set_linewidth(0)
-ax.set_xticks([])
-ax.set_yticks([])
-ax.set_title("Sammon mapping")
-
-###############################################################################
-# ISOMAP
-fig, ax = plt.subplots()
-isomap = manifold.Isomap(n_components=n_components, n_neighbors=10)
-X_transformed = mem.cache(isomap.fit_transform)(X)
-for label, (m, c) in zip(np.unique(y), itertools.product(markers, colors)):
-    mask = y == label
-    ax.scatter(
-        X_transformed[mask, 0],
-        X_transformed[mask, 1],
-	marker=m, c=c,
-	s=8,
-        label=label)
-
-ax.spines["left"].set_linewidth(0)
-ax.spines["right"].set_linewidth(0)
-ax.spines["top"].set_linewidth(0)
-ax.spines["bottom"].set_linewidth(0)
-ax.set_xticks([])
-ax.set_yticks([])
-ax.set_title("Isomap")
-plt.show()
-###############################################################################
-# LLE
-fig, ax = plt.subplots()
-embedding = manifold.LocallyLinearEmbedding(
-    n_components=n_components,
-    n_neighbors=10)
-X_transformed = mem.cache(embedding.fit_transform)(X)
-
-for label, (m, c) in zip(np.unique(y), itertools.product(markers, colors)):
-    mask = y == label
-    ax.scatter(
-        X_transformed[mask, 0],
-        X_transformed[mask, 1],
-	marker=m, c=c,
-	s=8,
-        label=label)
-
-ax.spines["left"].set_linewidth(0)
-ax.spines["right"].set_linewidth(0)
-ax.spines["top"].set_linewidth(0)
-ax.spines["bottom"].set_linewidth(0)
-ax.set_xticks([])
-ax.set_yticks([])
-ax.set_title("LLE")
-plt.show()
+plot_dataset("compute/olivetti")
 ```
 
 In @fig-tsne-sammon and @fig-isomap-lle, we show the results of our experiments with t-SNE, Sammon mapping, Isomap, and LLE on the MNIST data set. The results reveal the strong performance of t-SNE compared to the other techniques. In particular, Sammon mapping constructs a "ball" in which only three classes (representing the digits 0, 1, and 7) are somewhat separated from the other classes. Isomap and LLE produce solutions in which there are large overlaps between the digit classes. In contrast, tSNE constructs a map in which the separation between the digit classes is almost perfect. Moreover, detailed inspection of the t-SNE map reveals that much of the local structure of the data (such as the orientation of the ones) is captured as well. This is illustrated in more detail in @sec-large-data (see @fig-random-walk-tsne). The map produced by t-SNE contains some points that are clustered with the wrong class, but most of these points correspond to distorted digits many of which are difficult to identify. @fig-olivetti shows the results of applying t-SNE, Sammon mapping, Isomap, and LLE to the Olivetti faces data set. Again, Isomap and LLE produce solutions that provide little insight into the class structure of the data. The map constructed by Sammon mapping is significantly better, since it models many of the members of each class fairly close together, but none of the classes are clearly separated in the Sammon map. In contrast, t-SNE does a much better job of revealing the natural classes in the data. Some individuals have their ten images split into two clusters, usually because a subset of the images have the head facing in a significantly different direction, or because they have a very different expression or glasses. For these individuals, it is not clear that their ten images form a natural class when using Euclidean distance in pixel space.
@@ -478,11 +314,18 @@ We start by choosing a desired number of neighbors and creating a neighborhood g
 
 The most obvious way to compute the random walk-based similarities $p_{j|i}$ is to explicitly perform the random walks on the neighborhood graph, which works very well in practice, given that one can easily perform one million random walks per second. Alternatively, @grady:random presents an analytical solution to compute the pairwise similarities $p_{j|i}$ that involves solving a sparse linear system. The analytical solution to compute the similarities $p_{j|i}$ is sketched in [Appendix -@sec-appendixb]. In preliminary experiments, we did not find significant differences between performing the random walks explicitly and the analytical solution. In the experiment we present below, we explicitly performed the random walks because this is computationally less expensive. However, for very large data sets in which the landmark points are very sparse, the analytical solution may be more appropriate.
 
+
+```{python}
+#| label: fig-random-walk-tsne
+#| fig-cap: "Visualization of 6,000 digits from the MNIST data set produced by the random walk version of t-SNE (employing all 60,000 digit images)."
+#| error: false
+
+plot_dataset("compute/mnist", methods = ["tsne"], sample_size=6000)
+```
+
 ::: {#fig-random-walk-tsne} 
 
-![](figures/random-walk-tSNE.png)
-
-Visualization of 6,000 digits from the MNIST data set produced by the random walk version of t-SNE (employing all 60,000 digit images).
+![Visualization of 6,000 digits from the MNIST data set produced by the random walk version of t-SNE (employing all 60,000 digit images).](figures/random-walk-tSNE.png)
 
 [Note of the editor] Please note that this dataset is too large for the code to be processed through continuous integration. You can find the code to reproduce this plot on [github](https://github.com/computorg/published-paper-tsne/tree/main/scripts)
 
