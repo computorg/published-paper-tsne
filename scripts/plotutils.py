@@ -58,5 +58,3 @@ def plot_dataset(datasetname, methods=methods, sample_size=None):
             plot2d(X[method].values, y, method, sorted_idx)
         elif X[method].shape[1] == 3:
             plot3d(X[method].values, y, method, sorted_idx)
-
-

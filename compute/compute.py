@@ -7,7 +7,10 @@ from sklearn.datasets import fetch_openml, fetch_olivetti_faces, load_digits
 
 def save_results(datasetname, X, y, n_components=2, methods={}):
     print(f"Computing for {datasetname}")
-    multicol = pd.MultiIndex.from_product([methods.keys(), range(n_components)])
+    multicol = pd.MultiIndex.from_product([
+        methods.keys(),
+        range(n_components)]
+      )
     pandas_df = pd.DataFrame(columns=multicol).sort_index(axis=1)
     for method in methods:
         print(f"Applying {method}")
