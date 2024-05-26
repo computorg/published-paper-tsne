@@ -8,7 +8,8 @@ def plot2d(X, y, manifold_method):
     fig = px.scatter(
         x=X[:, 0],  # type: ignore
         y=X[:, 1],  # type: ignore
-        color=y
+        color=y,
+        category_orders={"color": y.cat.categories},
     )
     fig.update_xaxes(visible=False)
     fig.update_yaxes(visible=False)
@@ -22,6 +23,11 @@ def plot3d(X, y, manifold_method):
         y=X[:, 1],  # type: ignore
         z=X[:, 2],  # type: ignore
         color=y,  # type: ignore
+        category_orders={"color": y.cat.categories},
+    )
+    fig.update_traces(
+        marker=dict(size=2, opacity=0.5),
+        selector=dict(mode="markers")
     )
     fig.update_scenes(
         xaxis_visible=False,
@@ -48,3 +54,15 @@ def plot_dataset(datasetname, methods=methods, sample_size=None):
             plot2d(X[method].values, y, method).show()
         elif X[method].shape[1] == 3:
             plot3d(X[method].values, y, method).show()
+
+
+# %%
+import pandas as pd
+
+pandas_df = pd.read_csv("compute/mnist6000.csv", header=[0, 1])
+# %%
+y = pandas_df["y"].iloc[:, 0].astype("category") # type: ignore
+
+# %%
+y.cat.categories
+# %%
