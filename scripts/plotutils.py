@@ -55,6 +55,6 @@ def plot_dataset(datasetname, methods=methods, sample_size=None):
 
     for method in methods:
         if X[method].shape[1] == 2:
-            plot2d(X[method].values, y, method, sorted_idx)
+            plot2d(X[method].values, y, method, sorted_idx).show()
         elif X[method].shape[1] == 3:
-            plot3d(X[method].values, y, method, sorted_idx)
+            plot3d(X[method].values, y, method, sorted_idx).show()
