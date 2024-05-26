@@ -1,7 +1,17 @@
 project:
   title: "published-paper-tsne"
+  render: 
+    - published-paper-tsne.qmd 
 
-format:
-  computo-html:
-    code-fold: true
-  
+execute:
+  warning: false
+  cache: true 
+
+format: 
+  computo-html: default
+  computo-pdf:
+    execute:
+      echo: false
+
+filters:
+  - abstract-section
