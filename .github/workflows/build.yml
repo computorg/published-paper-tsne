@@ -46,6 +46,7 @@ jobs:
             quarto add --no-prompt computorg/computo-quarto-extension
 
       - name: render
+        shell: micromamba-shell {0} 
         run: |
           quarto render --to computo-pdf
           quarto render --to computo-html
