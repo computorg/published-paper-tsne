@@ -24,10 +24,6 @@ jobs:
           environment-file: environment.yml
           cache-environment: true
 
-      - name: register micromamba python for quarto
-        shell: micromamba-shell {0}
-        run: echo "QUARTO_PYTHON=$(which python)" >> $GITHUB_ENV
-
       - name: Set up quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -39,9 +35,14 @@ jobs:
       - name: Install Computo extension for Quarto
         run: quarto add --no-prompt computorg/computo-quarto-extension
 
+      - name: run quarto in micromamba shell
+        shell: micromamba-shell {0}
+        run: quarto render
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
+          render: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
