@@ -44,18 +44,10 @@ jobs:
       - name: Install Computo extension for Quarto
         run: |
             quarto add --no-prompt computorg/computo-quarto-extension
-            quarto add --no-prompt pandoc-ext/abstract-section
-
-      - name: render
-        shell: micromamba-shell {0} 
-        run: |
-          quarto render --profile pdf
-          quarto render --profile html
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
-          render: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

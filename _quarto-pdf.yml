@@ -1,9 +1,0 @@
-project:
-  render:
-    - published-paper-tsne.qmd
-
-format:
-  computo-pdf:
-    keep-ipynb: true
-    execute:
-      echo: false

@@ -3,8 +3,11 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 import plotly.io as pio
+import os
 
 pio.templates.default = "plotly_white"
+if os.environ["QUARTO_FIG_FORMAT"] == "pdf":
+    pio.renderers.default = "pdf"
 
 def plot2d(X, y, manifold_method):
     fig = px.scatter(
