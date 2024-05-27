@@ -23,27 +23,17 @@ jobs:
         with:
           environment-file: environment.yml
           cache-environment: true
-          
-      - name: Set up quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          tinytex: true
 
       - name: Set up quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
 
-      - name: register tinytex globally for diagram.lua
-        run: |
-          mkdir -p ~/.local/bin
-          ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin
-          ~/.TinyTeX/bin/x86_64-linux/tlmgr path add
-          ~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts
+      - name: tinytex libertinus-fonts workaround
+        run: ~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts
   
       - name: Install Computo extension for Quarto
-        run: |
-            quarto add --no-prompt computorg/computo-quarto-extension
+        run: quarto add --no-prompt computorg/computo-quarto-extension
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
