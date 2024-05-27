@@ -1,17 +1,13 @@
-project:
-  title: "published-paper-tsne"
-  render: 
-    - published-paper-tsne.qmd 
+profile:
+  default: slides
 
-execute:
-  warning: false
-  cache: true 
+title: "published-paper-tsne"
+render: 
+  - published-paper-tsne.qmd 
 
-format: 
-  computo-html: default
-  computo-pdf:
-    execute:
-      echo: false
+# execute:
+#   warning: false
+#   cache: true 
 
 filters:
   - abstract-section

@@ -49,8 +49,8 @@ jobs:
       - name: render
         shell: micromamba-shell {0} 
         run: |
-          quarto render --to computo-pdf
-          quarto render --to computo-html
+          quarto render --profile pdf
+          quarto render --profile html
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
