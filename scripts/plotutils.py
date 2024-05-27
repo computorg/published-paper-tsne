@@ -2,7 +2,10 @@
 import plotly.express as px
 import pandas as pd
 import numpy as np
+import plotly.io as pio
 
+pio.renderers.default = "pdf+notebook"
+pio.templates.default = "plotly_white"
 
 def plot2d(X, y, manifold_method):
     fig = px.scatter(

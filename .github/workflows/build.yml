@@ -45,9 +45,15 @@ jobs:
         run: |
             quarto add --no-prompt computorg/computo-quarto-extension
 
+      - name: render
+        run: |
+          quarto render --to computo-pdf
+          quarto render --to computo-html
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
+          render: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
