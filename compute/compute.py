@@ -7,16 +7,17 @@ from sklearn.datasets import fetch_openml, fetch_olivetti_faces, load_digits
 
 def save_results(datasetname, X, y, n_components=2, methods={}):
     print(f"Computing for {datasetname}")
-    multicol = pd.MultiIndex.from_product([
-        methods.keys(),
-        range(n_components)]
-      )
-    pandas_df = pd.DataFrame(columns=multicol).sort_index(axis=1)
+    pandas_df = pd.DataFrame()
     for method in methods:
         print(f"Applying {method}")
         X_transformed = methods[method].fit_transform(X)
-        for i in range(n_components):
-            pandas_df[(method, i)] = X_transformed[:, i]
+        n_components = X_transformed.shape[1]
+        multicol = pd.MultiIndex.from_product([
+          [method],
+          range(n_components)]
+        )
+        df = pd.DataFrame(X_transformed, columns=multicol)
+        pandas_df = pd.concat([pandas_df, df], axis=1)
 
     pandas_df[("y", 0)] = y
     pandas_df.to_csv(f"{datasetname}.csv", index=False)
@@ -29,7 +30,8 @@ tsne = manifold.TSNE(
   perplexity=40,
   init="pca",
   random_state=42,
-  verbose=True
+  verbose=True,
+  n_jobs=-1
 )
 
 sammon = manifold.MDS(
@@ -86,10 +88,16 @@ data = fetch_openml("mnist_784", parser="auto")
 X = data["data"][:60000]
 y = data["target"][:60000]
 
-single_tsne = manifold.TSNE(
+single_tsne3d = manifold.TSNE(
   n_components=3,
-  verbose=True
+  verbose=True,
+  n_jobs=-1
 )
 
-save_results("mnistlarge", X, y, n_components=3, methods={"tsne": single_tsne})
+methodslarge = {
+    "tsne": tsne,
+    "tsne3d": single_tsne3d
+}
+
+save_results("mnistlarge", X, y, methods=methodslarge)
 # %%
