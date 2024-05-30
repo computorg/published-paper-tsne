@@ -1,12 +1,12 @@
 /.quarto/
 /.joblib
 /_extensions/
-published-paper-tsne.html
-published-paper-tsne.ipynb
-published-paper-tsne.tex
-published-paper-tsne_files/
+*.html
+*.ipynb
+*.tex
+*_files/
 .jupyter_cache/
-
+renv/
 /.luarc.json
 /.micromamba
 # Byte-compiled / optimized / DLL files
