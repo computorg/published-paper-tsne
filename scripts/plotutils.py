@@ -51,7 +51,6 @@ def plot_dataset(datasetname, methods=methods, sample_size=None):
     if sample_size is not None:
         pandas_df = pandas_df.sample(sample_size)
     y = pandas_df["y"].iloc[:, 0].astype("category") # type: ignore
-    sorted_idx = np.argsort(y)
     X = pandas_df.drop(columns=["y"])
 
     for method in methods:
@@ -59,15 +58,3 @@ def plot_dataset(datasetname, methods=methods, sample_size=None):
             plot2d(X[method].values, y, method).show()
         elif X[method].shape[1] == 3:
             plot3d(X[method].values, y, method).show()
-
-
-# %%
-import pandas as pd
-
-pandas_df = pd.read_csv("compute/mnist6000.csv", header=[0, 1])
-# %%
-y = pandas_df["y"].iloc[:, 0].astype("category") # type: ignore
-
-# %%
-y.cat.categories
-# %%

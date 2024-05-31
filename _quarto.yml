@@ -1,7 +1,43 @@
 project:
   render:
     - published-paper-tsne.qmd
+    - published-paper-tsne-R.qmd
+
+title: "Visualizing Data using t-SNE"
+subtitle: "A practical computo example"
+date: 2008-08-11
+date-modified: last-modified
+description: |
+  This page is a reworking of the original t-SNE article using the Computo template. It aims to help authors submitting to the journal by using some advanced formatting features. We warmly thank the authors of t-SNE and the editor of JMLR for allowing us to use their work to illustrate the Computo spirit.
+author: 
+  - name: Laurens van der Maaten
+    url: https://lvdmaaten.github.io/
+    affiliation: TiCC, Tilburg University
+    affiliation-url: https://www.tilburguniversity.edu/
+    orcid: 0000-0002-1931-6828
+      
+  - name: Geoffrey Hinton
+    url: https://www.cs.toronto.edu/~hinton/
+    affiliation: Department of Computer Science, University of Toronto
+    affiliation-url: https://web.cs.toronto.edu/
+    orcid: 0000-0002-8063-7209
+keywords: [visualization, dimensionality reduction, manifold learning, embedding algorithms, multidimensional scaling]
+bibliography: references.bib
+github-user: computorg
+repo: "published-paper-tsne"
+draft: false
+published: true
+citation:
+  title: "Visualizing Data using t-SNE: a practical computo example (mock)"
+  type: article-journal
+  container-title: "Computo"
+  publisher: "Société Française de Statistique"
+  url: https://computo.sfds.asso.fr/published-paper-tsne
+  issn: "2824-7795"
 
 format: 
   computo-html: default
   computo-pdf: default
+
+execute: 
+  warning: false

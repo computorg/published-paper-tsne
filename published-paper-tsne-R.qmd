@@ -226,7 +226,13 @@ The cost function parameter settings we employed in our experiments are listed i
 
 ## Results {#sec-results}
 
-```{python}
+```{r setup, include=FALSE}
+source("scripts/plotutils.R")
+methods <- c("tsne","sammon","isomap","lle")
+```
+
+
+```{r}
 #| label: fig-mnist
 #| fig-cap: "Visualizations of 6,000 handwritten digits from the MNIST dataset."
 #| fig-subcap: 
@@ -236,13 +242,15 @@ The cost function parameter settings we employed in our experiments are listed i
 #|   - "Visualization by LLE."
 #| layout-ncol: 2
 
-from scripts.plotutils import plot_dataset
-
-plot_dataset("compute/mnist6000")
+figlist <- plot_dataset("compute/mnist6000",methods)
+figlist[[1]]
+figlist[[2]]
+figlist[[3]]
+figlist[[4]]
 ```
 
 
-```{python}
+```{r}
 #| label: fig-olivetti
 #| fig-cap: "Visualization of the Olivetti faces data set"
 #| fig-subcap: 
@@ -251,9 +259,12 @@ plot_dataset("compute/mnist6000")
 #|   - "Visualization by Isomap."
 #|   - "Visualization by LLE."
 #| layout-ncol: 2
-#| warning: false
 
-plot_dataset("compute/olivetti")
+figlist <- plot_dataset("compute/olivetti",methods)
+figlist[[1]]
+figlist[[2]]
+figlist[[3]]
+figlist[[4]]
 ```
 
 In @fig-mnist, we show the results of our experiments with t-SNE, Sammon mapping, Isomap, and LLE on the MNIST data set. The results reveal the strong performance of t-SNE compared to the other techniques. In particular, Sammon mapping constructs a "ball" in which only three classes (representing the digits 0, 1, and 7) are somewhat separated from the other classes. Isomap and LLE produce solutions in which there are large overlaps between the digit classes. In contrast, tSNE constructs a map in which the separation between the digit classes is almost perfect. Moreover, detailed inspection of the t-SNE map reveals that much of the local structure of the data (such as the orientation of the ones) is captured as well. This is illustrated in more detail in @sec-large-data (see @fig-random-walk-tsne). The map produced by t-SNE contains some points that are clustered with the wrong class, but most of these points correspond to distorted digits many of which are difficult to identify. @fig-olivetti shows the results of applying t-SNE, Sammon mapping, Isomap, and LLE to the Olivetti faces data set. Again, Isomap and LLE produce solutions that provide little insight into the class structure of the data. The map constructed by Sammon mapping is significantly better, since it models many of the members of each class fairly close together, but none of the classes are clearly separated in the Sammon map. In contrast, t-SNE does a much better job of revealing the natural classes in the data. Some individuals have their ten images split into two clusters, usually because a subset of the images have the head facing in a significantly different direction, or because they have a very different expression or glasses. For these individuals, it is not clear that their ten images form a natural class when using Euclidean distance in pixel space.
@@ -273,19 +284,25 @@ We start by choosing a desired number of neighbors and creating a neighborhood g
 The most obvious way to compute the random walk-based similarities $p_{j|i}$ is to explicitly perform the random walks on the neighborhood graph, which works very well in practice, given that one can easily perform one million random walks per second. Alternatively, @grady:random presents an analytical solution to compute the pairwise similarities $p_{j|i}$ that involves solving a sparse linear system. The analytical solution to compute the similarities $p_{j|i}$ is sketched in [Appendix -@sec-appendixb]. In preliminary experiments, we did not find significant differences between performing the random walks explicitly and the analytical solution. In the experiment we present below, we explicitly performed the random walks because this is computationally less expensive. However, for very large data sets in which the landmark points are very sparse, the analytical solution may be more appropriate.
 
 
-```{python}
+```{r}
 #| label: fig-random-walk-tsne
 #| fig-cap: "Visualization of 6,000 digits from the MNIST data set produced by the random walk version of t-SNE (employing all 60,000 digit images)."
+#| error: false
+#| message: false
 
-plot_dataset("compute/mnistlarge", methods = ["tsne"])
+figlist <- plot_dataset("compute/mnistlarge", c("tsne"))
+figlist[[1]]
 ```
 
-:::{.content-visible when-format="html"}
-```{python}
+:::{ .content-visible when-format="html"}
+```{r}
 #| label: fig-random-walk-tsne3d
 #| fig-cap: "Visualization of 6,000 digits from the MNIST data set produced by the random walk version of t-SNE (employing all 60,000 digit images)."
+#| error: false
+#| message: false
 
-plot_dataset("compute/mnistlarge", methods = ["tsne3d"])
+figlist <- plot_dataset("compute/mnistlarge", c("tsne3d"))
+figlist[[1]]
 ```
 :::
 
