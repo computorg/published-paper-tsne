@@ -1,0 +1,3 @@
+[Python version](published-paper-tsne.qmd)
+
+[R version](published-paper-tsne-R.qmd)

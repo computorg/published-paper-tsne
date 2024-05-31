@@ -11,7 +11,7 @@ plot2d <- function(X, y, manifold_method) {
 
 plot3d <- function(X, y, manifold_method) {
     fig <- plot_ly() %>%
-        add_trace(x = X[, 1], y = X[, 2], z = X[, 3], color = y, colors = "Paired", type="scatter3d", mode = "markers", marker = list(size = 3)) %>%
+        add_trace(x = X[, 1], y = X[, 2], z = X[, 3], color = y, colors = "Paired", type="scatter3d", mode = "markers", marker = list(size = 3, opacity = 0.5)) %>%
         layout(scene = list(xaxis = list(visible = FALSE), yaxis = list(visible = FALSE), zaxis = list(visible = FALSE)), legend = list(itemsizing = "constant"))
     return(fig)
 }
