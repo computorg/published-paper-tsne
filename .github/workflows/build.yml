@@ -22,6 +22,7 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
+          version: pre-release
           tinytex: true
 
       - name: register tinytex globally for diagram.lua
