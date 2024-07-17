@@ -24,7 +24,6 @@ jobs:
           environment-file: environment.yml
           cache-environment: true
 
-
       - name: register quarto in micromamba shell
         shell: micromamba-shell {0}
         run: |
@@ -48,4 +47,3 @@ jobs:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          QUARTO_PROFILE: python
