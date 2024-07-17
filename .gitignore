@@ -7,6 +7,7 @@
 *_files/
 .jupyter_cache/
 renv/
+.Rprofile
 /.luarc.json
 /.micromamba
 _site/
