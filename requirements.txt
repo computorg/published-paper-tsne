@@ -1,4 +1,5 @@
 jupyter
-matplotlib
+plotly
 numpy
 scikit-learn
+jupyter-cache

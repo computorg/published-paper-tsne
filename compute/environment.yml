@@ -1,0 +1,7 @@
+name: tsne-paper-compute
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - pandas
+  - scikit-learn
