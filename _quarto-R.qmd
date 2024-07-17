@@ -1,4 +1,0 @@
-project:
-  type: website
-  render:
-    - published-paper-tsne-R.qmd
