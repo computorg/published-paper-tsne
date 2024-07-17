@@ -1,3 +1,8 @@
+project:
+  type: website
+  render:
+    - published-paper-tsne-R.qmd
+
 title: "Visualizing Data using t-SNE (mock contributon)"
 subtitle: "A practical computo example"
 date: 2008-08-11
