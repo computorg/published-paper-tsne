@@ -15,14 +15,17 @@ jobs:
       - name: Checking out repository for Github action
         uses: actions/checkout@v4
 
-      - name: install dependencies for webshot2
-        run: sudo apt update && sudo apt install -y libcurl4-openssl-dev
-      
-      - name: Install R
-        uses: r-lib/actions/setup-r@v2
+      - name: Cache micromamba
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: environment.yml
+          cache-environment: true
 
-      - name: Install R Dependencies with renv
-        uses: r-lib/actions/setup-renv@v2
+      - name: register quarto in micromamba shell
+        shell: micromamba-shell {0}
+        run: |
+          echo "QUARTO_PYTHON=$(which python)" >> $GITHUB_ENV
+          echo "PATH=$PATH" >> $GITHUB_ENV
 
       - name: Set up quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -41,4 +44,3 @@ jobs:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          QUARTO_PROFILE: R
