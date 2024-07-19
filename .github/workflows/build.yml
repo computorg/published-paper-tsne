@@ -1,46 +1,22 @@
-name: build
+name: Main Workflows
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: ["main"]
+  repository_dispatch:
+    types: [custom-event] 
+  workflow_dispatch:
+
 
 jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write   
-    steps:
-      - name: Checking out repository for Github action
-        uses: actions/checkout@v4
-
-      - name: Cache micromamba
-        uses: mamba-org/setup-micromamba@v1
-        with:
-          environment-file: environment.yml
-          cache-environment: true
-
-      - name: register quarto in micromamba shell
-        shell: micromamba-shell {0}
-        run: |
-          echo "QUARTO_PYTHON=$(which python)" >> $GITHUB_ENV
-          echo "PATH=$PATH" >> $GITHUB_ENV
-
-      - name: Set up quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          tinytex: true
-
-      - name: tinytex libertinus-fonts workaround
-        run: ~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts
-  
-      - name: Install Computo extension for Quarto
-        run: quarto add --no-prompt computorg/computo-quarto-extension
-
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  call_python_workflows:
+    uses: computorg/workflows/python-env.yml@main
+    with:
+      config-path: './config/quarto_config.yml'
+  call_quartopublish_workflows:
+    uses: computorg/workflows/publish-render.yml@main
+    needs: call_python_workflows
+    with:
+      config-path: './config/quarto_config.yml'
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
