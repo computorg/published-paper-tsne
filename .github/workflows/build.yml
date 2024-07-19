@@ -9,7 +9,8 @@ on:
 
 permissions:
   contents: write
-  
+  pages: write
+
 jobs:
   call_python_workflows:
     uses: computorg/workflows/.github/workflows/python-env.yml@main
