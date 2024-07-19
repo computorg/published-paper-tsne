@@ -10,11 +10,13 @@ on:
 
 jobs:
   call_python_workflows:
-    uses: computorg/workflows/python-env.yml@main
+    uses: computorg/workflows/.github/workflows/python-env.yml@main
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
     with:
       config-path: './config/quarto_config.yml'
   call_quartopublish_workflows:
-    uses: computorg/workflows/publish-render.yml@main
+    uses: computorg/workflows/.github/workflows/publish-render.yml@main
     needs: call_python_workflows
     with:
       config-path: './config/quarto_config.yml'
