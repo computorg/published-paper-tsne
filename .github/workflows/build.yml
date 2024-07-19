@@ -7,7 +7,9 @@ on:
     types: [custom-event] 
   workflow_dispatch:
 
-
+permissions:
+  contents: write
+  
 jobs:
   call_python_workflows:
     uses: computorg/workflows/.github/workflows/python-env.yml@main
