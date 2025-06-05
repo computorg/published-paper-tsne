@@ -1,0 +1,49 @@
+Bootstrap: docker
+From: mambaorg/micromamba
+
+%files
+environment.yml /opt
+
+%post
+    apt-get update && apt-get install -y curl perl gnupg
+   # Install dependencies
+    micromamba install -q -y -n base -f /opt/environment.yml
+    micromamba clean --all --yes
+
+    # install quarto
+    curl -Ls https://github.com/quarto-dev/quarto-cli/releases/download/v1.7.31/quarto-1.7.31-linux-amd64.deb -o quarto.deb && \
+    dpkg -i quarto.deb&& \
+    rm quarto.deb
+
+    quarto install tinytex
+    /root/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus libertinus-fonts libertinus-otf orcidlink
+    
+%environment
+    export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+    export XDG_CACHE_HOME=/tmp/quarto_cache_home
+    export XDG_DATA_HOME=/tmp/quarto_data_home
+    # add /root/.TinyTex/bin to PATH in the /etc/profile
+    export PATH=/root/.TinyTeX/bin/x86_64-linux:$PATH
+
+%labels
+    EnvironmentFile: /opt/environment.yml
+
+%help
+    This container containes a Python environment created
+    from an environment file and  quarto CLI.
+
+    To run Python from the environment:
+
+        apptainer run my_environment.sif python
+
+    To see the environment file used to create the environment:
+
+        apptainer run my_environment.sif cat /opt/environment.yml
+
+    To see what packags are in the environment:
+
+        apptainer run micromamba list
+
+    To use quarto:
+
+        apptainer run my_environment.sif quarto --version

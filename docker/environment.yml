@@ -1,0 +1,11 @@
+name: tsne-paper
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - pandas
+  - scikit-learn
+  - jupyter
+  - jupyter-cache
+  - plotly
+  - python-kaleido
