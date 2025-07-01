@@ -4,7 +4,7 @@
 [![](https://img.shields.io/github/last-commit/computorg/published-paper-tsne.svg)](https://github.com/computorg/published-paper-tsne/commits/main)
 [![DOI:xxx/xxx-xxx](https://img.shields.io/badge/DOI-xxx/xxx--xxx-034E79.svg)](https://doi.org/xxx/xxx-xxx)
 [![review](https://img.shields.io/badge/review-report-blue)](https://github.com/computorg/published-paper-tsne/issues?q=is%3Aopen+is%3Aissue+label%3Areview)
-[![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/computorg/published-xxxx/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/computorg/published-xxxx)
+[![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/computorg/published-paper-tsne)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/computorg/published-paper-tsne)
 [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
 Authors:
