@@ -1,16 +1,12 @@
 ---
-format: 
-    gfm:
-        variant: +yaml_metadata_block
+format: gfm-commonmark
 ---
-
-# {{< meta title >}}
 
 _{{< meta description >}}_
 
-[![build status](https://github.com/{{< meta github-user >}}/{{< meta repo >}}/workflows/build/badge.svg)](https://github.com/{{< meta github-user >}}/{{< meta repo >}}/)
+[![build and publish](https://github.com/{{< meta github-user >}}/{{< meta repo >}}/actions/workflows/build.yml/badge.svg)](https://github.com/{{< meta github-user >}}/{{< meta repo >}}/actions/workflows/build.yml)
 [![DOI:{{< meta citation.doi >}}](https://img.shields.io/badge/DOI-{{< meta citation.doi >}}-034E79.svg)](https://doi.org/{{< meta citation.doi >}})
-[![reviews](https://img.shields.io/badge/review-report%201-blue)](https://github.com/{{< meta github-user >}}/{{< meta repo >}}/issues?q=is%3Aopen+is%3Aissue+label%3Areview)
+<!-- [![reviews](https://img.shields.io/badge/review-report-blue)](https://github.com/{{< meta github-user >}}/{{< meta repo >}}/issues?q=is%3Aopen+is%3Aissue+label%3Areview) -->
 [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
 Authors:
