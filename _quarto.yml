@@ -1,7 +1,8 @@
 project:
-  type: website
+  type: default
   render:
     - published-paper-tsne.qmd
+    - README.qmd
 
 title: "Visualizing Data using t-SNE (mock contributon)"
 subtitle: "A practical computo example"
@@ -9,8 +10,10 @@ date: 2008-08-11
 date-modified: last-modified
 description: |
   This page is a reworking of the original t-SNE article using the Computo template. It aims to help authors submitting to the journal by using some advanced formatting features. We warmly thank the authors of t-SNE and the editor of JMLR for allowing us to use their work to illustrate the Computo spirit.
+license: "CC BY"
 author: 
   - name: Laurens van der Maaten
+    email: machine@truc.fr
     url: https://lvdmaaten.github.io/
     affiliation: TiCC, Tilburg University
     affiliation-url: https://www.tilburguniversity.edu/
@@ -21,6 +24,8 @@ author:
     affiliation: Department of Computer Science, University of Toronto
     affiliation-url: https://web.cs.toronto.edu/
     orcid: 0000-0002-8063-7209
+abstract: |
+  We present a new technique called "t-SNE" that visualizes high-dimensional data by giving each datapoint a location in a two or three-dimensional map.  The technique is a variation of Stochastic Neighbor Embedding [@hinton:stochastic] that is much easier to optimize, and produces significantly better visualizations by reducing the tendency to crowd points together in the center of the map. t-SNE is better than existing techniques at creating a single map that reveals structure at many different scales. This is particularly important for high-dimensional data that lie on several different, but related, low-dimensional manifolds, such as images of objects from multiple classes seen from multiple viewpoints. For visualizing the structure of very large data sets, we show how t-SNE can use random walks on neighborhood graphs to allow the implicit structure of all the data to influence the way in which a subset of the data is displayed. We illustrate the performance of t-SNE on a wide variety of data sets and compare it with many other non-parametric visualization techniques, including Sammon mapping, Isomap, and Locally Linear Embedding. The visualization produced by t-SNE are significantly better than those produced by other techniques on almost all of the data sets.
 keywords: [visualization, dimensionality reduction, manifold learning, embedding algorithms, multidimensional scaling]
 bibliography: references.bib
 github-user: computorg
@@ -28,11 +33,10 @@ repo: "published-paper-tsne"
 draft: false
 published: true
 citation:
-  title: "Visualizing Data using t-SNE: a practical Computo example (mock)"
   type: article-journal
   container-title: "Computo"
   publisher: "French Statistical Society"
-  url: https://computo-journal.org/published-paper-tsne
+  doi: 10.57750/xx-xxx
   issn: "2824-7795"
 format: 
   computo-html: default

@@ -1,0 +1,22 @@
+---
+format: 
+    gfm:
+        variant: +yaml_metadata_block
+---
+
+# {{< meta title >}}
+
+_{{< meta description >}}_
+
+[![build status](https://github.com/{{< meta github-user >}}/{{< meta repo >}}/workflows/build/badge.svg)](https://github.com/{{< meta github-user >}}/{{< meta repo >}}/)
+[![DOI:{{< meta citation.doi >}}](https://img.shields.io/badge/DOI-{{< meta citation.doi >}}-034E79.svg)](https://doi.org/{{< meta citation.doi >}})
+[![reviews](https://img.shields.io/badge/review-report%201-blue)](https://github.com/{{< meta github-user >}}/{{< meta repo >}}/issues?q=is%3Aopen+is%3Aissue+label%3Areview)
+[![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
+
+Authors:
+
+- [{{< meta by-author.1.name.literal >}}]({{< meta by-author.1.url >}}) ({{< meta by-affiliation.1.name >}})
+- [{{< meta by-author.2.name.literal >}}]({{< meta by-author.2.url >}}) ({{< meta by-affiliation.2.name >}})
+
+{{< meta abstract >}}
+
