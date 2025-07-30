@@ -11,16 +11,19 @@ illustrate the Computo spirit.*
 [![build and
 publish](https://github.com/computorg/published-paper-tsne/actions/workflows/build.yml/badge.svg)](https://github.com/computorg/published-paper-tsne/actions/workflows/build.yml)
 [![DOI:10.57750/xxxxxx](https://img.shields.io/badge/DOI-10.57750/xxxxxx-034E79.svg)](https://doi.org/10.57750/xxxxxx)
-<!-- [![reviews](https://img.shields.io/badge/review-report-blue)](https://github.com/computorg/published-paper-tsne/issues?q=is%3Aopen+is%3Aissue+label%3Areview) -->
 [![Creative Commons
 License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
-Authors:
+<!-- [![reviews](https://img.shields.io/badge/review-report-blue)](https://github.com/computorg/published-paper-tsne/issues?q=is%3Aopen+is%3Aissue+label%3Areview) -->
+
+### Authors
 
 - [Laurens van der Maaten](https://lvdmaaten.github.io/) (TiCC, Tilburg
   University)
 - [Geoffrey Hinton](https://www.cs.toronto.edu/~hinton/) (Department of
   Computer Science, University of Toronto)
+
+### Abstract
 
 We present a new technique called “t-SNE” that visualizes
 high-dimensional data by giving each datapoint a location in a two or
