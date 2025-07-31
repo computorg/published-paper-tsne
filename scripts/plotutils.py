@@ -4,6 +4,8 @@ import pandas as pd
 import numpy as np
 import plotly.io as pio
 import os
+import kaleido
+kaleido.get_chrome_sync()
 
 pio.templates.default = "plotly_white"
 if os.environ["QUARTO_FIG_FORMAT"] == "pdf":
