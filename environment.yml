@@ -8,4 +8,4 @@ dependencies:
   - jupyter
   - jupyter-cache
   - plotly
-  - python-kaleido
+  - python-kaleido==0.2.1
