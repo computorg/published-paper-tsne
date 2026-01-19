@@ -1,4 +1,4 @@
-# Visualizing Data using t-SNE (mock contributon)
+# Visualizing Data using t-SNE (mock contribution)
 Laurens van der Maaten, Geoffrey Hinton
 2008-08-11
 
