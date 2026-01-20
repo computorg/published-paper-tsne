@@ -168,7 +168,7 @@ Taken together, t-SNE puts emphasis on (1) modeling dissimilar datapoints by mea
     \State compute pairwise affinities $p_{j|i}$ with perplexity $Perp$ (using Equation 1)
     \State set $p_{ij} = \frac{1}{2n} (p_{j|i} + p_{i|j})$
     \State sample initial solution $\mathcal{Y}^{(0)} = \{y_1,\dots,y_n\}$ from $\mathcal{N}(0,1e^{-4} I)$
-    \For{$t = 0$\dots$T$}
+    \For{$t = 0$ $\dots$ $T$}
         \State compute low-dimensional affinities $q_{ij}$ (using Equation 4)
         \State compute gradient $\frac{\partial C}{\partial \mathcal{Y}}$ (using Equation 5)
         \State et $\mathcal{Y}^{t} = \mathcal{Y}^{t-1} + \eta \frac{\partial C}{\partial \mathcal{Y}} + \alpha(t) \left(\mathcal{Y}^{t-1} - \mathcal{Y}^{t-2}\right)$ 
