@@ -6,7 +6,7 @@ import plotly.io as pio
 import os
 
 pio.templates.default = "plotly_white"
-if os.environ["QUARTO_FIG_FORMAT"] == "pdf":
+if os.environ.get("QUARTO_FIG_FORMAT") == "pdf":
     pio.renderers.default = "pdf"
 
 def plot2d(X, y, manifold_method):
