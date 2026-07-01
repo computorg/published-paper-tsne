@@ -30,14 +30,14 @@ keywords: [visualization, dimensionality reduction, manifold learning, embedding
 bibliography: references.bib
 github-user: computorg
 repo: "published-paper-tsne"
-draft: false
-published: true
+status: published
 citation:
   type: article-journal
   container-title: "Computo"
   publisher: "French Statistical Society"
-  doi: 10.57750/xxxxxx
+  doi: 10.57750/xxx-xxx
   issn: "2824-7795"
+  url: "https://computo-journal.org/published-paper-tsne/"
 format: 
   computo-html: default
   computo-pdf:

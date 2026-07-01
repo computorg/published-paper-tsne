@@ -10,7 +10,7 @@ illustrate the Computo spirit.*
 
 [![build and
 publish](https://github.com/computorg/published-paper-tsne/actions/workflows/build.yml/badge.svg)](https://github.com/computorg/published-paper-tsne/actions/workflows/build.yml)
-[![DOI:10.57750/xxxxxx](https://img.shields.io/badge/DOI-10.57750/xxxxxx-034E79.svg)](https://doi.org/10.57750/xxxxxx)
+[![DOI:10.57750/xxx-xxx](https://img.shields.io/badge/DOI-{{< shields-encode citation.doi >}}-034E79.svg)](https://doi.org/10.57750/xxx-xxx)
 [![Creative Commons
 License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
@@ -45,14 +45,13 @@ including Sammon mapping, Isomap, and Locally Linear Embedding. The
 visualization produced by t-SNE are significantly better than those
 produced by other techniques on almost all of the data sets.
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-hinton:stochastic" class="csl-entry">
 
 Hinton, Geoffrey E, and Sam Roweis. 2003. “Stochastic Neighbor
 Embedding.” In *Advances in Neural Information Processing Systems*,
-edited by S. Becker, S. Thrun, and K. Obermayer. Vol. 15. MIT Press.
+edited by S. Becker, S. Thrun, and K. Obermayer, vol. 15. MIT Press.
 <https://proceedings.neurips.cc/paper/2002/file/6150ccc6069bea6b5716254057a194ef-Paper.pdf>.
 
 </div>
