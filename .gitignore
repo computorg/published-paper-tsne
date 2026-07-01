@@ -31,10 +31,10 @@ logo_text_white.pdf
 logo_notext_white.png
 
 # Quarto output files
-published-paper-tsne.pdf
-published-paper-tsne.html
-published-paper-tsne.ipynb
-published-paper-tsne.tex
+main.pdf
+main.html
+main.ipynb
+main.tex
 
 # Latex compilation files
 *.aux

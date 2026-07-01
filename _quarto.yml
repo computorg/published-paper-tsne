@@ -1,7 +1,7 @@
 project:
   type: default
   render:
-    - published-paper-tsne.qmd
+    - main.qmd
     - README.qmd
 
 title: "Visualizing Data using t-SNE (mock contribution)"
