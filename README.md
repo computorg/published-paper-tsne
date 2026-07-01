@@ -10,7 +10,7 @@ illustrate the Computo spirit.*
 
 [![build and
 publish](https://github.com/computorg/published-paper-tsne/actions/workflows/build.yml/badge.svg)](https://github.com/computorg/published-paper-tsne/actions/workflows/build.yml)
-[![DOI:10.57750/xxx-xxx](https://img.shields.io/badge/DOI-{{< shields-encode citation.doi >}}-034E79.svg)](https://doi.org/10.57750/xxx-xxx)
+[![DOI:10.57750/xxx-xxx](https://img.shields.io/badge/DOI-10.57750%2Fxxx--xxx-034E79.svg)](https://doi.org/10.57750/xxx-xxx)
 [![Creative Commons
 License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
@@ -18,10 +18,8 @@ License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommo
 
 ### Authors
 
-- [Laurens van der Maaten](https://lvdmaaten.github.io/) (TiCC, Tilburg
-  University)
-- [Geoffrey Hinton](https://www.cs.toronto.edu/~hinton/) (Department of
-  Computer Science, University of Toronto)
+- [Laurens van der Maaten](https://lvdmaaten.github.io/) (TiCC, Tilburg University)
+- [Geoffrey Hinton](https://www.cs.toronto.edu/~hinton/) (Department of Computer Science, University of Toronto)
 
 ### Abstract
 
