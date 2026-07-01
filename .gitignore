@@ -45,3 +45,5 @@ published-paper-tsne.tex
 DS_Store
 /.luarc.json
 
+
+**/*.quarto_ipynb
