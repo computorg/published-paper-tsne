@@ -1,5 +1,6 @@
 ---
 format: gfm-commonmark
+default-image-extension: ""
 ---
 
 _{{< meta description >}}_
