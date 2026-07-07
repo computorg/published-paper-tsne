@@ -10,11 +10,11 @@ illustrate the Computo spirit.*
 
 [![build and
 publish](https://github.com/computorg/published-paper-tsne/actions/workflows/build.yml/badge.svg)](https://github.com/computorg/published-paper-tsne/actions/workflows/build.yml)
+[![reviews](https://img.shields.io/badge/review-report-blue.png)](https://github.com/computorg/published-paper-tsne/issues?q=is%3Aopen+is%3Aissue+label%3Areview)
+[![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/computorg/published-paper-tsne.png)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/computorg/published-paper-tsne)
 [![DOI:10.57750/xxx-xxx](https://img.shields.io/badge/DOI-10.57750%2Fxxx--xxx-034E79.svg)](https://doi.org/10.57750/xxx-xxx)
 [![Creative Commons
 License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
-
-<!-- [![reviews](https://img.shields.io/badge/review-report-blue)](https://github.com/computorg/published-paper-tsne/issues?q=is%3Aopen+is%3Aissue+label%3Areview) -->
 
 ### Authors
 
